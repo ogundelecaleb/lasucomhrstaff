@@ -18,6 +18,7 @@ const AddUser = () => {
 
   const [roleData, setRoleData] = useState([]);
   const [firstName, setFirstName] = useState('');
+  const [middleName, setMiddleName] = useState("")
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [staffID, setStaffID] = useState('')
@@ -153,6 +154,7 @@ const AddUser = () => {
       const response = await api.addUser({
         title:selectedTitle,
         first_name:firstName,
+        middle_name: middleName,
         last_name:lastName,
         email,
         staff_number:staffID,
@@ -234,6 +236,23 @@ const AddUser = () => {
                 placeholder='Last Name'
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className='my-5 form-group row'>
+            <label
+              for='inputPassword'
+              className=' fs-5 fw-semibold col-md-2 col-form-label'>
+              Middle Name <sup className='text-danger'>*</sup>
+            </label>
+            <div className='col-md-8'>
+              <input
+                style={{ height: "60px" }}
+                type='text'
+                className='form-control rounded-0'
+                placeholder='Last Name'
+                value={middleName}
+                onChange={(e) => setMiddleName(e.target.value)}
               />
             </div>
           </div>
