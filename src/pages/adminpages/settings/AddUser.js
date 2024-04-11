@@ -250,7 +250,7 @@ const AddUser = () => {
                 style={{ height: "60px" }}
                 type='text'
                 className='form-control rounded-0'
-                placeholder='Last Name'
+                placeholder='Middle Name'
                 value={middleName}
                 onChange={(e) => setMiddleName(e.target.value)}
               />
