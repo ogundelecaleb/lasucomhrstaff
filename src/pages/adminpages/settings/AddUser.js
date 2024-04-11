@@ -226,23 +226,6 @@ const AddUser = () => {
             <label
               for='inputPassword'
               className=' fs-5 fw-semibold col-md-2 col-form-label'>
-              Last Name <sup className='text-danger'>*</sup>
-            </label>
-            <div className='col-md-8'>
-              <input
-                style={{ height: "60px" }}
-                type='text'
-                className='form-control rounded-0'
-                placeholder='Last Name'
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className='my-5 form-group row'>
-            <label
-              for='inputPassword'
-              className=' fs-5 fw-semibold col-md-2 col-form-label'>
               Middle Name <sup className='text-danger'>*</sup>
             </label>
             <div className='col-md-8'>
@@ -256,6 +239,24 @@ const AddUser = () => {
               />
             </div>
           </div>
+          <div className='my-5 form-group row'>
+            <label
+              for='inputPassword'
+              className=' fs-5 fw-semibold col-md-2 col-form-label'>
+              Last Name <sup className='text-danger'>*</sup>
+            </label>
+            <div className='col-md-8'>
+              <input
+                style={{ height: "60px" }}
+                type='text'
+                className='form-control rounded-0'
+                placeholder='Last Name'
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+          </div>
+        
           <div className='my-5 form-group row'>
             <label
               for='email'
