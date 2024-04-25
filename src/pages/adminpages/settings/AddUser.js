@@ -15,7 +15,6 @@ const AddUser = () => {
   const [departmentOptions, setDepartmentOptions] = useState([]);
   const [selectedDivision, setSelectedDivision] = useState("");
   const [divisionOptions, setDivisionOptions] = useState([]);
-
   const [roleData, setRoleData] = useState([]);
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState("")
@@ -154,7 +153,7 @@ const AddUser = () => {
       const response = await api.addUser({
         title:selectedTitle,
         first_name:firstName,
-        middle_name: middleName,
+        maiden_name: middleName,
         last_name:lastName,
         email,
         staff_number:staffID,
