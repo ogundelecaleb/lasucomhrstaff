@@ -37,7 +37,7 @@ const EditRole  = () => {
 
     try {
       if (id) {
-        const response = await api.updateRole(id, { name: roleName, description });
+        const response = await api.updateRole( {staffId:id,  name: roleName, description });
         console.log("res of action==>>>>>", response);
         enqueueSnackbar("Role updated successfully", { variant: "success" });
       }
