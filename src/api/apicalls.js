@@ -149,7 +149,7 @@ export function deleteRole(data) {
 }
 
 export function updateRole(data) {
-  return apiPut(UPDATEROLE + data);
+  return apiPut(UPDATEROLE , data);
 }
 
 export function updateUserRole(data) {
