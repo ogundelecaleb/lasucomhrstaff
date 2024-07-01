@@ -169,7 +169,7 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
           <Flex className="flex flex-row">
             <div>
               <FormControl mb={4}>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>Position</FormLabel>
                 <Input
                   type="text"
                   name="title"
@@ -177,18 +177,8 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
                   onChange={handleInputChange}
                 />
               </FormControl>
-
               <FormControl mb={4}>
-                <FormLabel>Requirements</FormLabel>
-                <Input
-                  type="text"
-                  name="requirements"
-                  value={newJob.requirements}
-                  onChange={handleInputChange}
-                />
-              </FormControl>
-              <FormControl mb={4}>
-                <FormLabel>Location</FormLabel>
+                <FormLabel>Department</FormLabel>
                 <Input
                   type="text"
                   name="location"
@@ -196,6 +186,17 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
                   onChange={handleInputChange}
                 />
               </FormControl>
+
+              <FormControl mb={4}>
+                <FormLabel>Qualification/Requirements</FormLabel>
+                <Input
+                  type="text"
+                  name="requirements"
+                  value={newJob.requirements}
+                  onChange={handleInputChange}
+                />
+              </FormControl>
+            
               <FormControl mb={4}>
                 <FormLabel>Salary</FormLabel>
                 <Input
@@ -294,7 +295,7 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
             </div>
           </Flex>
           <FormControl mb={4}>
-            <FormLabel>Description</FormLabel>
+            <FormLabel>Key responsibilities</FormLabel>
             <Textarea
               name="description"
               value={newJob.description}
