@@ -151,12 +151,12 @@ const SeeJobs = () => {
           </p>
         </div>
         <div className="w-full md:w-[50%]">
-          <img src="./woman.png" alt="woman" className="md:hidden" />
+          {/* <img src="./woman.png" alt="woman" className="md:hidden h-[3600px]" /> */}
         </div>
         <img
           src="./woman.png"
           alt="woman"
-          className="absolute bottom-0 right-0 h-[480px]"
+          className="absolute bottom-0 right-0 h-[360px] md:h-[480px]"
         />
       </div>
 
