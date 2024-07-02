@@ -668,7 +668,7 @@ const SeeJobs = () => {
                     }}
                     className="border-[0.2px]  border-[#98A2B3] w-[99px] bg-[#17082d] flex items-center justify-center text-center rounded-[8px] py-[12px] text-[14px] font-medium text-white"
                   >
-                    {isLoading ? (
+                    {(jobId === job.id && isLoading) ? (
                       <ClipLoader color={"white"} size={20} />
                     ) : (
                       <> Apply</>
