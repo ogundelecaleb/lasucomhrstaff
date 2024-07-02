@@ -18,36 +18,38 @@ import {
 } from "@chakra-ui/react";
 import api from "../../../api";
 import { MoonLoader } from "react-spinners";
-import { getYear, getMonth } from 'date-fns';
+import { getYear, getMonth } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useSnackbar } from "notistack";
-import { Select } from '@chakra-ui/react';
+import { Select } from "@chakra-ui/react";
 
 const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
   const { enqueueSnackbar } = useSnackbar();
   const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
-  const [selectedStaffType, setSelectedStaffType] = useState('');
+  const [selectedStaffType, setSelectedStaffType] = useState("");
   const [selectedDivision, setSelectedDivision] = useState("");
   const [divisionOptions, setDivisionOptions] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [departmentOptions, setDepartmentOptions] = useState([]);
 
   useEffect(() => {
-    api.fetchDivision()
-    .then(response => setDivisionOptions(response.data))
-    .catch(error => {
-      enqueueSnackbar("Error fetching Divisions/Unit", { variant: "error" });
-    })
+    api
+      .fetchDivision()
+      .then((response) => setDivisionOptions(response.data))
+      .catch((error) => {
+        enqueueSnackbar("Error fetching Divisions/Unit", { variant: "error" });
+      });
   }, []);
 
   useEffect(() => {
-    api.fethallDeparments()
-    .then(response => setDepartmentOptions(response.data))
-    .catch(error => {
-      enqueueSnackbar("Error fetching Departments", { variant: "error" });
-    })
+    api
+      .fethallDeparments()
+      .then((response) => setDepartmentOptions(response.data))
+      .catch((error) => {
+        enqueueSnackbar("Error fetching Departments", { variant: "error" });
+      });
   }, []);
 
   function range(start, end, step) {
@@ -57,7 +59,7 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
     }
     return result;
   }
-  
+
   const years = range(1990, getYear(new Date()) + 1, 1);
   const months = [
     "January",
@@ -96,8 +98,14 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
 
   async function handleCreateJob(e) {
     e.preventDefault();
-  
-    if (!newJob.title || !newJob.description || !newJob.requirements || !newJob.location || !newJob.salary) {
+
+    if (
+      !newJob.title ||
+      !newJob.description ||
+      !newJob.requirements ||
+      
+      !newJob.salary
+    ) {
       toast({
         title: "Please fill in all fields",
         status: "warning",
@@ -106,7 +114,7 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
       });
       return;
     }
-  
+
     setIsLoading(true);
 
     try {
@@ -121,26 +129,26 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
         unit_id: selectedDivision.id,
         department_id: selectedDepartment.id,
       });
-  
+
       console.log("response ===>>>>>", response);
-  
-      if (response.error) {
-        throw new Error(response.error.toString());
-      }
-  
-      enqueueSnackbar('Application successful', { variant: 'success' });
+
+      // if (response.error) {
+      //   throw new Error(response.error.toString());
+      // }
+
+      enqueueSnackbar("Application successful", { variant: "success" });
       setIsLoading(false);
-      onCreateJob(newJob);
+      // onCreateJob(newJob);
       resetForm();
       onClose();
     } catch (error) {
       console.error("API error:", error);
-      const errorMessage = error.message || 'An error occurred';
-      enqueueSnackbar(errorMessage, { variant: 'error' });
+      const errorMessage = error.message || "An error occurred";
+      enqueueSnackbar(errorMessage, { variant: "error" });
       setIsLoading(false);
     }
   }
-  
+
   const resetForm = () => {
     setNewJob({
       title: "",
@@ -149,14 +157,14 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
       location: "",
       salary: "",
       closingdate: "",
-      selectedDivision:"",
-      selectedDepartment: ""
+      selectedDivision: "",
+      selectedDepartment: "",
     });
   };
-  
+
   const handleStaffChange = (event) => {
     setSelectedStaffType(event.target.value);
-    console.log(selectedStaffType)
+    console.log(selectedStaffType);
   };
 
   return (
@@ -178,6 +186,75 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
                 />
               </FormControl>
               <FormControl mb={4}>
+                <FormLabel>Staff Type</FormLabel>
+                <Select
+                  placeholder="Select an option"
+                  id="staffType"
+                  value={selectedStaffType}
+                  onChange={handleStaffChange}
+                >
+                  <option value="ASE">ASE</option>
+                  <option value="NASE">NASE</option>
+                </Select>
+              </FormControl>
+              {selectedStaffType === "ASE" && (
+                <div>
+                    <FormLabel>Department</FormLabel>
+                  <Select
+                    id="department"
+                    className="form-control rounded-10"
+                    value={selectedDepartment ? selectedDepartment.id : ""}
+                    onChange={(e) => {
+                      const selectedId = e.target.value;
+                      const selectedDepartmentObject = departmentOptions.find(
+                        (department) => department.id === parseInt(selectedId)
+                      );
+                      console.log(
+                        "Selected Department Object:",
+                        selectedDepartmentObject
+                      );
+                      setSelectedDepartment(selectedDepartmentObject);
+                    }}
+                  >
+                    <option value="">Select Department</option>
+                    {departmentOptions.map((department) => (
+                      <option key={department.id} value={department.id}>
+                        {department.name}
+                      </option>
+                    ))}
+                  </Select>
+                </div>
+              )}
+              {selectedStaffType === "NASE" && (
+                <div>
+                  <FormLabel>Division/Unit</FormLabel>
+
+                  <Select
+                    id="division"
+                    value={selectedDivision ? selectedDivision.id : ""}
+                    onChange={(e) => {
+                      const selectedId = e.target.value;
+                      const selectedDivisionObject = divisionOptions.find(
+                        (division) => division.id === parseInt(selectedId)
+                      );
+                      console.log(
+                        "selected Division Object:",
+                        selectedDivisionObject
+                      );
+                      setSelectedDivision(selectedDivisionObject);
+                    }}
+                    className="form-control rounded-10"
+                  >
+                    <option value="">Select Unit/Division</option>
+                    {divisionOptions.map((division) => (
+                      <option key={division.id} value={division.id}>
+                        {division.name}
+                      </option>
+                    ))}
+                  </Select>
+                </div>
+              )}
+              {/* <FormControl mb={4} mt={4}>
                 <FormLabel>Department</FormLabel>
                 <Input
                   type="text"
@@ -185,9 +262,9 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
                   value={newJob.location}
                   onChange={handleInputChange}
                 />
-              </FormControl>
+              </FormControl> */}
 
-              <FormControl mb={4}>
+              <FormControl mb={4} mt={4}>
                 <FormLabel>Qualification/Requirements</FormLabel>
                 <Input
                   type="text"
@@ -196,7 +273,7 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
                   onChange={handleInputChange}
                 />
               </FormControl>
-            
+
               <FormControl mb={4}>
                 <FormLabel>Salary</FormLabel>
                 <Input
@@ -302,67 +379,6 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
               onChange={handleInputChange}
             />
           </FormControl>
-          <FormControl mb={4}>
-            <Select
-              placeholder="Select an option"
-              id="staffType"
-              value={selectedStaffType}
-              onChange={handleStaffChange}
-            >
-              <option value="ASE">ASE</option>
-              <option value="NASE">NASE</option>
-            </Select>
-          </FormControl>
-          {selectedStaffType === "ASE" && (
-            <select
-              id="department"
-              className="form-control rounded-10"
-              value={selectedDepartment ? selectedDepartment.id : ""}
-              onChange={(e) => {
-                const selectedId = e.target.value;
-                const selectedDepartmentObject = departmentOptions.find(
-                  (department) => department.id === parseInt(selectedId)
-                );
-                console.log(
-                  "Selected Department Object:",
-                  selectedDepartmentObject
-                );
-                setSelectedDepartment(selectedDepartmentObject);
-              }}
-            >
-              <option value="">Select Department</option>
-              {departmentOptions.map((department) => (
-                <option key={department.id} value={department.id}>
-                  {department.name}
-                </option>
-              ))}
-            </select>
-          )}
-          {selectedStaffType === "NASE" && (
-            <select
-              id="division"
-              value={selectedDivision ? selectedDivision.id : ""}
-              onChange={(e) => {
-                const selectedId = e.target.value;
-                const selectedDivisionObject = divisionOptions.find(
-                  (division) => division.id === parseInt(selectedId)
-                );
-                console.log(
-                  "selected Division Object:",
-                  selectedDivisionObject
-                );
-                setSelectedDivision(selectedDivisionObject);
-              }}
-              className="form-control rounded-10"
-            >
-              <option value="">Select Unit/Division</option>
-              {divisionOptions.map((division) => (
-                <option key={division.id} value={division.id}>
-                  {division.name}
-                </option>
-              ))}
-            </select>
-          )}
         </ModalBody>
         <ModalFooter>
           <Button
