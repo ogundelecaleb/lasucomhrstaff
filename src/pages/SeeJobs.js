@@ -168,7 +168,7 @@ const SeeJobs = () => {
         {jobListings.map((job) => (
           <div key={job.id} className="flex justify-center  mb-4">
             {/* <JobCard job={job} /> */}
-            <div className=" border-[0.2px] border-[#98a2b3] rounded-[8px] py-[11px] px-[10] md:px-[16px] w-full max-w-[560px]">
+            <div className=" border-[0.2px] border-[#98a2b3] rounded-[8px] py-[11px] px-[10px]  md:px-[16px] w-full max-w-[560px]">
               <div className="flex items-center gap-1  mb-2">
                 <h5 className="card-title">Position: </h5>{" "}
                 <h5 className="card-title"> {job.title}</h5>
