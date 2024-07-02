@@ -73,9 +73,14 @@ const SeeJobs = () => {
   async function handleSubmit(e) {
   
     setIsLoading(true);
+    if(!formValues.resume_file) {
+      enqueueSnackbar("Please upload your resume", { variant: "error" });
+      setIsLoading(false);
+      return;
+    }
     const formData = new FormData();
 
-    formData.append("job_id", formValues.jobId);
+    formData.append("job_id",jobId);
     formData.append("name", formValues.name);
     formData.append("email", formValues.email);
     formData.append("last_name", formValues.lastName);
@@ -110,6 +115,25 @@ const SeeJobs = () => {
       });
       setIsLoading(false);
       setJobId("");
+      setFormValues({name: "",
+
+      email: "",
+      nationality: "",
+      stateOfOrigin: "",
+      dateOfBirth: "",
+      gender: "",
+      marital_status: "",
+      image: "",
+      permanent_address: "",
+      current_postal_address: "",
+      number_of_children: "",
+      academic_qualifications: "",
+      statement_of_experience: "",
+      hobbies: "",
+      skills: "",
+      reference_phone: "",
+      resume_file: "",
+      reference_address: ""})
     } catch (error) {
       console.error(error);
       enqueueSnackbar(error.message, { variant: "error" });
