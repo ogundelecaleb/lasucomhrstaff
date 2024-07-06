@@ -4,16 +4,16 @@ import { TbDirection, TbGridDots } from "react-icons/tb";
 // import { TfiMenuAlt } from "react-icons/tf";
 // import { CgLayoutGridSmall } from "react-icons/cg";
 import { MdSearch } from "react-icons/md";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import api from "../../../api";
+// import CommonButton from "../../components/commonbutton/Button";
 
-const JobApplicants = () => {
+const AvailableJobs = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const location = useLocation();
+
   const [jobListings, setJobListings] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   useEffect(() => {
     if (jobListings) {
       fetchJobDetails();
@@ -23,7 +23,7 @@ const JobApplicants = () => {
   async function fetchJobDetails() {
     try {
       setIsLoading(true);
-      const response = await api.fetchApplicants(location.state?.item.id);
+      const response = await api.fetchJobs();
       console.log("User Details:", response);
       setJobListings(response.data);
     } catch (error) {
@@ -33,50 +33,9 @@ const JobApplicants = () => {
       setIsLoading(false);
     }
   }
-  const data = [
-    {
-      id: 1,
-      img: "https://bit.ly/prosper-baba",
-      name: "Precious Akanle",
-      stage: "in Review",
-      date: "13 july 2023",
-      department: "Oral Pathology & Oral Medicine",
-    },
-    {
-      id: 2,
-      img: "https://bit.ly/prosper-baba",
-      name: "Precious Akanle",
-      stage: "in Review",
-      date: "13 july 2023",
-      department: "Oral Pathology & Oral Medicine",
-    },
-    {
-      id: 3,
-      img: "https://bit.ly/prosper-baba",
-      name: "Precious Akanle",
-      stage: "in Review",
-      date: "13 july 2023",
-      department: "Oral Pathology & Oral Medicine",
-    },
-    {
-      id: 4,
-      img: "https://bit.ly/prosper-baba",
-      name: "Precious Akanle",
-      stage: "in Review",
-      date: "13 july 2023",
-      department: "Oral Pathology & Oral Medicine",
-    },
-    {
-      id: 5,
-      img: "https://bit.ly/prosper-baba",
-      name: "Precious Akanle",
-      stage: "in Review",
-      date: "13 july 2023",
-      department: "Oral Pathology & Oral Medicine",
-    },
-  ];
+ 
   return (
-    <div className="container px-4">
+    <div className=" px-4">
       <div className="row mt-4 pa-res px-3">
         <div className="col-lg-4 pt-3 " style={{ height: "70px" }}>
           <p className="fs-5 ">Total Applicants : {jobListings?.length}</p>
@@ -118,27 +77,29 @@ const JobApplicants = () => {
           <table class="table table-hover">
             <thead>
               <tr className="border">
-               
+                <th scope="col" className="py-3">
+                  <input type="checkbox" className="border" />
+                </th>
                 <th scope="col" className="fw-light py-3 text-muted fs-6">
-                  Applicant Name{" "}
+                Position{" "}
                   <label style={{ marginBottom: "-8px" }}>
                     <TbDirection size={"25"} />
                   </label>
                 </th>
                 <th scope="col" className="fw-light py-3 text-muted fs-6">
-                  Email{" "}
+                Staff Type{" "}
                   <label style={{ marginBottom: "-8px" }}>
                     <TbDirection size={"25"} />
                   </label>
                 </th>
                 <th scope="col" className="fw-light py-3 text-muted fs-6">
-            Academic Qualification{" "}
+                  Department/Unit{" "}
                   <label style={{ marginBottom: "-8px" }}>
                     <TbDirection size={"25"} />
                   </label>
                 </th>
                 <th scope="col" className="fw-light py-3 text-muted fs-6">
-               Hiring Stage
+                  Requirement{" "}
                   <label style={{ marginBottom: "-8px" }}>
                     <TbDirection size={"25"} />
                   </label>
@@ -152,74 +113,63 @@ const JobApplicants = () => {
               </tr>
             </thead>
             <br />
-            {!isLoading && jobListings?.length === 0 && (
-              <tr>
-                <td className="text-center" colspan="6">
-                  <img
-                    src="./nodata.gif"
-                    className="mx-auto mt-6 h-[70px] "
-                    alt=""
-                  />
-                  <h3 className="text-[30px] leading-[35px]  text-[#1A202C] font-extrabold mb-[6px]">
-                    No Data
-                  </h3>
-                </td>
-              </tr>
-            )}
-            {jobListings &&
-              jobListings?.map((item, key) => (
-                <tbody key={key} className="border">
+              
+                {!isLoading && jobListings?.length === 0 && (
                   <tr>
-                   
-                    <td>
-                      <div className="d-flex py-2 gap-4">
-                        <div style={{ lineHeight: "5px" }}>
-                          <p className="fw-semibold mb-0">{item.name}</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-2">
-                      <p className="mb-0">{item.email}</p>
-                    </td>
-                    <td className="fw-semibold py-2">
-                      <p className="mb-0">{item?.academic_qualifications}</p>
-                    </td>
-                    <td className="py-24 max-w-[200px] ">
-                     
-                        <button
-                          className={`rounded-[20px] md:rounded-[20px] text-center px-[12px]  py-[4px] md:py-3  border-[0.5px] ${
-                            item?.status === "Pending"
-                              ? "bg-[#FEECEB] text-[#F44336] border-[#F44336]"
-                              : item?.status === "Shortlisted"
-                              ? "bg-[#FFF5E6] text-[#F44336] border-[#FF9800]"
-                              : "bg-[#EDF7EE] text-[#4CAF50] border-[#4CAF50]"
-                          }  text-[10px] md:text-[12px]  font-semibold leading-[16px] md:leading-[18px] `}
-                        >
-                          <p className="mb-0">{item?.status}</p>
-                        </button>
-                  
-                    </td>
-                    <td className="fw-semibold py-2">
-                      <Link
-                        to={`/applicant-detail`}
-                        // to={`jobapplicants/${item.id}`}
-                        state={{ item: item , job: location.state?.item}}
-                      >
-                        <button
-                          className="btn py-1 px-3 rounded-0 mt-3 btn-sm rounded-0 fw-semibold"
-                          style={{
-                            border: "1px solid #984779",
-                            color: "#987779",
-                            backgroundColor: "#E9EBFD",
-                          }}
-                        >
-                          See Application
-                        </button>
-                      </Link>
+                    <td className="text-center" colspan="6">
+                      <img
+                        src="./nodata.gif"
+                        className="mx-auto mt-6 h-[70px] "
+                        alt=""
+                      />
+                      <h3 className="text-[30px] leading-[35px]  text-[#1A202C] font-extrabold mb-[6px]">
+                        No Project
+                      </h3>
                     </td>
                   </tr>
-                </tbody>
-              ))}
+                )}
+            { jobListings && jobListings?.map((item, key) => (
+              <tbody key={key} className="border">
+                <tr>
+                  <th scope="row">
+                    <input type="checkbox" className="mt-4" />
+                  </th>
+                  <td>
+                    <div className="d-flex gap-4">
+                     
+                      <div style={{ lineHeight: "5px" }}>
+                        <p className="fw-semibold mt-3">{item.title}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-2">
+                  <p className="">{item.unit === null ? "ASE" : "NASE"}</p>
+                  </td>
+                  <td className="fw-semibold py-2">
+                    <p className="">{item?.department?.name}</p>
+                  </td>
+                  <td className=" max-w-[200px] "><p className="line-clamp-2">{item?.requirements}</p></td>
+                  <td className="fw-semibold">
+                    <Link
+                      // to={`applicant-detail/${item.id}`}
+                      to={"/jobapplicants"}
+                      state={{ item: item }}
+                    >
+                      <button
+                        className="btn py-1 px-3 rounded-0 mt-3 btn-sm rounded-0 fw-semibold"
+                        style={{
+                          border: "1px solid #984779",
+                          color: "#987779",
+                          backgroundColor: "#E9EBFD",
+                        }}
+                      >
+                        See Application
+                      </button>
+                    </Link>
+                  </td>
+                </tr>
+              </tbody>
+            ))}
           </table>
         </div>
       </div>
@@ -283,4 +233,4 @@ const JobApplicants = () => {
   );
 };
 
-export default JobApplicants;
+export default AvailableJobs;

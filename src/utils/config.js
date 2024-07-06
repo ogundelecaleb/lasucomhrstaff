@@ -54,3 +54,4 @@ export const FETCHJOBS = getApiUrl('/all-jobs')
 export const DELETEJOBS = getApiUrl("/jobs/")
 export const EDITJOBS = getApiUrl("/Jobs/");
 export const APPLYJOB = getApiUrl("/apply");
+export const FETCHAPPLICANTS = getApiUrl("/job-applications/");

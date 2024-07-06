@@ -10,20 +10,19 @@ const ApplicantsProfile = ({ data }) => {
             <div>
               <p className='fs-6  text-muted'>Full Name</p>
               <p className='fs-6 fw-semibold' style={{ marginTop: "-15px" }}>
-                {data.name}
+                {data.item.name}
               </p>
             </div>
             <div>
               <p className='fs-6  text-muted'>Date of Birth</p>
               <p className='fs-6 fw-semibold' style={{ marginTop: "-15px" }}>
-                March 32, 1965 <span className='text-muted'>(58 years)</span>
+                {data.item.date_of_birth} <span className='text-muted'>(58 years)</span>
               </p>
             </div>
             <div>
               <p className='fs-6  text-muted'>Address</p>
               <p className='fs-6 fw-semibold' style={{ marginTop: "-15px" }}>
-                4517 Washington Ave Ikeja,
-                <br /> Lagos
+               {data.item.permanent_address}
               </p>
             </div>
           </div>
@@ -48,13 +47,13 @@ const ApplicantsProfile = ({ data }) => {
             <div>
               <p className='fs-6  text-muted'>Nationality</p>
               <p className='fs-6 fw-semibold' style={{ marginTop: "-15px" }}>
-                Nigerian
+              {data.item.nationality}
               </p>
             </div>
             <div>
               <p className='fs-6  text-muted'> Highest Qulification Held</p>
               <p className='fs-6 fw-semibold' style={{ marginTop: "-15px" }}>
-                PHD Clinical Phsicology
+              {data.item.academic_qualifications}
               </p>
             </div>
           </div>

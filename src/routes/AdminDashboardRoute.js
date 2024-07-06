@@ -22,10 +22,12 @@ import ChangePassword from "../pages/adminpages/profile/changepassword/ChangePas
 import ChangeEmail from "../pages/adminpages/profile/changeemail/ChangeEmail";
 // import Staff from "../pages/staffpages/staff/Staff";
 import { Notification } from "../pages/adminpages/notification/Notification";
-import JobOpening from '../pages/adminpages/jobpenings/JobOpening';
+import JobOpening from "../pages/adminpages/jobpenings/JobOpening";
+import ApplicantsDetails from "../pages/adminpages/job-applicants/ApplicantsDetails";
+import AvailableJobs from "../pages/adminpages/job-applicants/AvailableJobs";
+import JobApplicants from "../pages/adminpages/job-applicants/JobApplicants";
 
 const AdminDashboardRoute = ({ mobile, setMobile, display }) => {
-
   // const navigate = useNavigate();
   // const handleNavigate = () => {
   //   navigate("leaveSecond");
@@ -40,55 +42,71 @@ const AdminDashboardRoute = ({ mobile, setMobile, display }) => {
   };
 
   return (
-    <div className='rightBody  text-dark'>
-      <Navbar mobile={mobile} reuseableNavigation={reuseableNavigation} setMobile={setMobile} display={display} />
+    <div className="rightBody  text-dark">
+      <Navbar
+        mobile={mobile}
+        reuseableNavigation={reuseableNavigation}
+        setMobile={setMobile}
+        display={display}
+      />
       <Routes>
-        <Route path='/dashboard' element={<MainAdminDashboard />} />
-        <Route path='/leave' exact element={<Leave />} />
+        <Route path="/dashboard" element={<MainAdminDashboard />} />
+        <Route path="/leave" exact element={<Leave />} />
         <Route
-          path='leave/leave-applicant-details/:id'
+          path="leave/leave-applicant-details/:id"
           exact
           element={<LeaveApplicantDetails />}
         />
         <Route
-          path='/job-openings'
+          path="/job-openings"
           element={<JobOpening reuseableNavigation={reuseableNavigation} />}
         />
-        <Route path='/promotion/*' exact element={<Promotion />} />
-        <Route path='/staff/*' exact element={<AdminStaffRoute />} />
-        <Route path='calender' exact element={<Calender />} />
+        <Route path="/promotion/*" exact element={<Promotion />} />
+        <Route path="/staff/*" exact element={<AdminStaffRoute />} />
+        <Route path="calender" exact element={<Calender />} />
         <Route
-          path='/job-applicants/*'
+          path="/job-applicants/*"
           exact
           element={<JobApplicantsRoutes />}
         />
-        <Route path='/report' element={<Report />} />
-        <Route path='/event' element={<Event />} />
-        <Route path='settings/*' element={<AdminSettingsRoute />} />
-        <Route path='inbox/*' element={<AdminboxRoute />} />
-        <Route path='profile' element={<Profile reuseableNavigation={reuseableNavigation}/>} />
+         <Route reuseableNavigation={reuseableNavigation}  path='/availablejobs' element={<AvailableJobs />} />
+      <Route reuseableNavigation={reuseableNavigation}  path='/jobapplicants' element={ <JobApplicants/>} />
+
         <Route
-          path='/notification'
+          path="/applicant-detail"
           element={
-            <Notification reuseableNavigation={reuseableNavigation} />
+            <ApplicantsDetails reuseableNavigation={reuseableNavigation} />
           }
         />
+
+        <Route path="/report" element={<Report />} />
+        <Route path="/event" element={<Event />} />
+        <Route path="settings/*" element={<AdminSettingsRoute />} />
+        <Route path="inbox/*" element={<AdminboxRoute />} />
         <Route
-          path='/edit-profile'
+          path="profile"
+          element={<Profile reuseableNavigation={reuseableNavigation} />}
+        />
+        <Route
+          path="/notification"
+          element={<Notification reuseableNavigation={reuseableNavigation} />}
+        />
+        <Route
+          path="/edit-profile"
           element={<EditProfile reuseableNavigation={reuseableNavigation} />}
         />
         <Route
-          path='/second-edit-profile'
+          path="/second-edit-profile"
           element={
             <SecondEditProfile reuseableNavigation={reuseableNavigation} />
           }
         />
         <Route
-          path='/change-password'
+          path="/change-password"
           element={<ChangePassword reuseableNavigation={reuseableNavigation} />}
         />
         <Route
-          path='/change-email'
+          path="/change-email"
           element={<ChangeEmail reuseableNavigation={reuseableNavigation} />}
         />
       </Routes>

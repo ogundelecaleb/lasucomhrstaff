@@ -42,7 +42,8 @@ import {
   FETCHJOBS,
   EDITJOBS,
   DELETEJOBS,
-  APPLYJOB
+  APPLYJOB,
+  FETCHAPPLICANTS
 } from "../utils/config";
 import { apiGet, apiPost, apiPut, apiDelete } from "../utils/utils";
 
@@ -233,3 +234,8 @@ export function deleteJobs(data) {
 export function applyJob(data) {
   return apiPost(APPLYJOB, data, { 'Content-Type': 'multipart/form-data' });
 }
+
+export function fetchApplicants(data) {
+  return apiGet(FETCHAPPLICANTS + data);
+}
+

@@ -10,9 +10,9 @@ const ApplicantsDetails = () => {
   const navigate = useNavigate();
   const width = 75;
   const data = location.state;
-
+// console.log("jopooooffff====>>",location.state.job)
   return (
-    <div className='container px-4'>
+    <div className=' px-4'>
       <div className='d-flex flex-wrap mt-3 align-items-center justify-content-between'>
         <div
           style={{ cursor: "pointer" }}
@@ -23,35 +23,16 @@ const ApplicantsDetails = () => {
         </div>
         <div>
           {" "}
-          <div className='ms-2'>
-            <select
-              style={{ width: "150px" }}
-              className='form-select rounded-0'
-              aria-label='Default select example'>
-              <option selected>More Action</option>
-              <option value='1'>1</option>
-              <option value='2'>2</option>
-              <option value='3'>3</option>
-            </select>
-          </div>
+         
         </div>
       </div>
       <div className='row my-4 pad-r-res'>
         <div className='col-lg-4 border mt-3' style={{ height: "700px" }}>
-          <div className='d-flex gap-3 my-4'>
-            <div>
-              <img
-                src='https://bit.ly/prosper-baba'
-                width={"80px"}
-                style={{ borderRadius: "50%" }}
-                alt='/'
-              />
-            </div>
+          <div className='d-flex gap-3 mt-3'>
+            
             <div>
               <p className='fw-semibold fs-5'>{data.item.name}</p>
-              <p className='text-muted' style={{ marginTop: "-17px" }}>
-                Ls-112234566
-              </p>
+            
             </div>
           </div>
           <div className='py-2 px-3 ' style={{ backgroundColor: "#F8F8FD" }}>
@@ -62,11 +43,11 @@ const ApplicantsDetails = () => {
               <p className='text-muted'>2 days ago</p>
             </div>
             <div className='mt-2'>
-              <p className='fw-semibold fs-6'>Best Clinical Science</p>
+              <p className='fw-semibold fs-6'>{data.job?.department.name}</p>
               <p
                 className='fw-semibold text-muted'
                 style={{ marginTop: "-15px" }}>
-                Snr Lecturer Oral Pathology & Oral Medicine
+              {data.job?.title}
               </p>
             </div>
           </div>
@@ -117,7 +98,7 @@ const ApplicantsDetails = () => {
             <div>
               <p className='text-muted'>Email</p>
               <p className='' style={{ marginTop: "-17px" }}>
-                Ajalamarcus@gmail.com
+              {data?.item.email}
               </p>
             </div>
           </div>
@@ -145,7 +126,7 @@ const ApplicantsDetails = () => {
           className='col-lg-7 border mt-3 tb-res-parent'
           style={{ height: "950px" }}>
           {/* <div className='tb-res'> */}
-          <JobApplicantTab data={data.item} />
+          <JobApplicantTab data={data} />
           {/* </div> */}
         </div>
       </div>

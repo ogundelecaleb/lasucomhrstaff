@@ -76,7 +76,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
             Job Openings
           </div>
         </CustomLink>
-        <CustomLink to='job-applicants'>
+        <CustomLink to='availablejobs'>
           <div
             id='hoverEffect'
             className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
