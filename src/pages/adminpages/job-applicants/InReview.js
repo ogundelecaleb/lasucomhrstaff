@@ -2,27 +2,46 @@ import React, { useState } from "react";
 import {
   Flex,
 } from "@chakra-ui/layout";
+import api from "../../../api";
+import { enqueueSnackbar } from "notistack";
 const InReview = (props) => {
 
   const [reviewStatus, setReviewStatus] = useState("In Progress");
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleStatusChange = (newStatus) => {
     setReviewStatus(newStatus);
   };
+
+  const handleSubmit = async()=> {
+
+    try {
+      const response = await api.review(props.applicantId,{
+        review_decision : reviewStatus,
+        review_comments: ""
+      })
+      enqueueSnackbar(response?.message, { variant: "success" });
+
+      props.moveToNextStage()
+
+    }catch (error) {
+      console.error("API error:", error);
+      
+      enqueueSnackbar("error sending request", { variant: "error" });
+      setIsLoading(false);
+    }
+  }
+
+  console.log(props)
 
   return (
     <div className='border-bottom pb-4'>
       <p className='fw-semibold fs-6'>Stage Info</p>
       <div className='row'>
         <div className='col-lg-6'>
+          
           <div>
-            <p className='text-muted'>Submission Date</p>
-            <p className='fw-semibold' style={{ marginTop: "-15px" }}>
-              10 - 13 july 2023
-            </p>
-          </div>
-          <div>
-            <button className='my-4 btn btn-outline-dark rounded-0' onClick={props.moveToNextStage}>
+            <button className='my-4 btn btn-outline-dark rounded-0' onClick={handleSubmit}>
               Move To Next Stage
             </button>
           </div>
@@ -39,7 +58,7 @@ const InReview = (props) => {
                 <button className='text-danger rounded-0 btn border' onClick={() => handleStatusChange("Rejected")}>Reject</button>
               </div>
               <div w='16'>
-                <button className='btn btn-success rounded-0' onClick={() => handleStatusChange("Passed")}>Pass</button>
+                <button className='btn btn-success rounded-0' onClick={() => handleStatusChange("Pass")}>Pass</button>
               </div>
           </Flex>
         </div>

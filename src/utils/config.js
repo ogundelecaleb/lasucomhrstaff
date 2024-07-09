@@ -55,3 +55,7 @@ export const DELETEJOBS = getApiUrl("/jobs/")
 export const EDITJOBS = getApiUrl("/Jobs/");
 export const APPLYJOB = getApiUrl("/apply");
 export const FETCHAPPLICANTS = getApiUrl("/job-applications/");
+export const REVIEW = getApiUrl("/job-application/review-shortlist/");
+export const CBT = getApiUrl("/job-application/cbt-interview/");
+export const INTERVIEW = getApiUrl("/job-application/interview/");
+export const HIRE = getApiUrl("/job-application/hire_or_decline_applicant/");

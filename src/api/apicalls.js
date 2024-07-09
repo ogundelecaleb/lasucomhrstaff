@@ -43,7 +43,11 @@ import {
   EDITJOBS,
   DELETEJOBS,
   APPLYJOB,
-  FETCHAPPLICANTS
+  FETCHAPPLICANTS,
+  REVIEW,
+  CBT,
+  INTERVIEW,
+  HIRE
 } from "../utils/config";
 import { apiGet, apiPost, apiPut, apiDelete } from "../utils/utils";
 
@@ -237,5 +241,21 @@ export function applyJob(data) {
 
 export function fetchApplicants(data) {
   return apiGet(FETCHAPPLICANTS + data);
+}
+
+export function review(id, data) {
+  return apiPost(REVIEW + id, data);
+}
+
+export function cbt(id, data) {
+  return apiPost(CBT + id, data);
+}
+
+export function interview(id, data) {
+  return apiPost(INTERVIEW + id, data);
+}
+
+export function hire(id, data) {
+  return apiPost(HIRE + id, data);
 }
 

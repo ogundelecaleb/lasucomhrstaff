@@ -5,11 +5,13 @@ import HiredDecined from "./HiredDecined";
 import InReview from "./InReview";
 import Shortlisted from "./Shortlisted";
 import CbtTest from "./CbtTest";
-const HiringProgress = () => {
+const HiringProgress = (data) => {
   const [tab, setTab] = useState("in-review");
   const switchTabs = (tabValue) => {
     setTab(tabValue);
   };
+  const applicantId = data.data?.item?.applicant_job_id
+  // console.log(data.data?.item?.applicant_job_id)
 
   const moveToNextStage = () => {
     if (tab === "in-review") {
@@ -91,22 +93,22 @@ const HiringProgress = () => {
       <div className='mt-4'>
         {tab === "in-review" && (
         <div>
-          <InReview moveToNextStage={moveToNextStage}/>
+          <InReview applicantId={applicantId} moveToNextStage={moveToNextStage}/>
         </div>
         )}
         {tab === "shortlisted" && (
           <div>
-            <Shortlisted moveToNextStage={moveToNextStage}/>
+            <Shortlisted applicantId={applicantId} moveToNextStage={moveToNextStage}/>
           </div>
         )}
         {tab === "CbtTest" && (
           <div>
-            <CbtTest moveToNextStage={moveToNextStage}/>
+            <CbtTest applicantId={applicantId} moveToNextStage={moveToNextStage}/>
           </div>
         )}
         {tab === "interview" && (
           <div>
-            <Interview moveToNextStage={moveToNextStage}/>
+            <Interview applicantId={applicantId} moveToNextStage={moveToNextStage}/>
           </div>
         )}
         {tab === "hired-declined" && (

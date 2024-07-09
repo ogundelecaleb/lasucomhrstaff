@@ -76,7 +76,7 @@ const JobApplicants = () => {
     },
   ];
   return (
-    <div className="container px-4">
+    <div className=" px-4">
       <div className="row mt-4 pa-res px-3">
         <div className="col-lg-4 pt-3 " style={{ height: "70px" }}>
           <p className="fs-5 ">Total Applicants : {jobListings?.length}</p>

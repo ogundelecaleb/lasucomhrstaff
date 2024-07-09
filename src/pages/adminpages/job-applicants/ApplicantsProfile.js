@@ -61,7 +61,7 @@ const ApplicantsProfile = ({ data }) => {
             <div>
               <p className='fs-6  text-muted'>State of Origin</p>
               <p className='fs-6 fw-semibold' style={{ marginTop: "-15px" }}>
-                Akoko South
+              {data.item.state_of_origin}
               </p>
             </div>
             <div>
@@ -72,18 +72,22 @@ const ApplicantsProfile = ({ data }) => {
                 <span
                   className='py-1 px-2 text-primary'
                   style={{ backgroundColor: "#F8F8FD" }}>
-                  Microsoft word
+                 {data.item.skills}
                 </span>
-                <span
-                  className='px-2 text-primary py-1'
-                  style={{ backgroundColor: "#F8F8FD" }}>
-                  Powerpoint
-                </span>
+               
+              </div>
+            </div>
+            <div>
+              <p className='fs-6  text-muted'>Hobbies</p>
+              <div
+                className='fs-6 fw-semibold d-flex flex-wrap gap-2'
+                style={{ marginTop: "-15px" }}>
                 <span
                   className='py-1 px-2 text-primary'
                   style={{ backgroundColor: "#F8F8FD" }}>
-                  Research
+                 {data.item.hobbies}
                 </span>
+               
               </div>
             </div>
           </div>

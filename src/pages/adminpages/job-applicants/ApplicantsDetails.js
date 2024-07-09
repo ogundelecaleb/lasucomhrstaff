@@ -31,7 +31,7 @@ const ApplicantsDetails = () => {
           <div className='d-flex gap-3 mt-3'>
             
             <div>
-              <p className='fw-semibold fs-5'>{data.item.name}</p>
+              <p className='fw-semibold fs-5'>{data?.item?.name}</p>
             
             </div>
           </div>
@@ -40,10 +40,10 @@ const ApplicantsDetails = () => {
               style={{ height: "30px" }}
               className='d-flex border-bottom align-items-start gap-4'>
               <p className=''>Applied Department</p>
-              <p className='text-muted'>2 days ago</p>
+              <p className='text-muted'>{data?.item?.date_applied}</p>
             </div>
             <div className='mt-2'>
-              <p className='fw-semibold fs-6'>{data.job?.department.name}</p>
+              <p className='fw-semibold fs-6'>{data.job?.department?.name}</p>
               <p
                 className='fw-semibold text-muted'
                 style={{ marginTop: "-15px" }}>
@@ -98,7 +98,7 @@ const ApplicantsDetails = () => {
             <div>
               <p className='text-muted'>Email</p>
               <p className='' style={{ marginTop: "-17px" }}>
-              {data?.item.email}
+              {data?.item?.email}
               </p>
             </div>
           </div>
@@ -107,11 +107,11 @@ const ApplicantsDetails = () => {
             <div>
               <p className='text-muted'>Phone</p>
               <p className='' style={{ marginTop: "-17px" }}>
-                +234 1000 389 898
+              {data?.item?.reference_phone}
               </p>
             </div>
           </div>
-          <div className='d-flex mt-1 gap-2'>
+          {/* <div className='d-flex mt-1 gap-2'>
             <AiFillLinkedin size={"20px"} className='mt-1 text-muted' />
             <div>
               <p className='text-muted'>Linkedin</p>
@@ -119,7 +119,7 @@ const ApplicantsDetails = () => {
                 Linekdin.com/jeromebell
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className='col-lg-1' style={{ width: "80px" }}></div>
         <div
