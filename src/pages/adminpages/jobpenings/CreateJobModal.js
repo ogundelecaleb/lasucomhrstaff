@@ -103,7 +103,6 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
       !newJob.title ||
       !newJob.description ||
       !newJob.requirements ||
-      
       !newJob.salary
     ) {
       toast({
@@ -174,7 +173,7 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
         <ModalHeader>Create New Job</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Flex className="flex flex-row">
+          <Flex className="flex flex-row gap-2">
             <div>
               <FormControl mb={4}>
                 <FormLabel>Position</FormLabel>
@@ -186,7 +185,7 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
                 />
               </FormControl>
               <FormControl mb={4}>
-                <FormLabel>Staff Type</FormLabel>
+                <FormLabel>Staff Category</FormLabel>
                 <Select
                   placeholder="Select an option"
                   id="staffType"
@@ -194,12 +193,13 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
                   onChange={handleStaffChange}
                 >
                   <option value="ASE">ASE</option>
-                  <option value="NASE">NASE</option>
+                  <option value="NASE">NASE(Admin and Tech)</option>
+                  <option value="NASE(Junior)">NASE(Junior)</option>
                 </Select>
               </FormControl>
               {selectedStaffType === "ASE" && (
                 <div>
-                    <FormLabel>Department</FormLabel>
+                  <FormLabel>Department</FormLabel>
                   <Select
                     id="department"
                     className="form-control rounded-10"
@@ -225,7 +225,8 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
                   </Select>
                 </div>
               )}
-              {selectedStaffType === "NASE" && (
+              {(selectedStaffType === "NASE" ||
+                selectedStaffType === "NASE(Junior)") && (
                 <div>
                   <FormLabel>Division/Unit</FormLabel>
 
@@ -248,7 +249,13 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
                     <option value="">Select Unit/Division</option>
                     {divisionOptions.map((division) => (
                       <option key={division.id} value={division.id}>
-                        {division.name}
+                        {division.name === "STUDENT AFFAIRS DIVISION"
+                          ? "REGISTRAR ADMINISTRATION"
+                          : division.name === "PROVOST OFFICE (NASE)"
+                          ? "LIBRARY"
+                          : division.name === "DEANS OFFICE (NASE)"
+                          ? ""
+                          : division.name}
                       </option>
                     ))}
                   </Select>
@@ -276,98 +283,34 @@ const CreateJobModal = ({ isOpen, onClose, onCreateJob }) => {
 
               <FormControl mb={4}>
                 <FormLabel>Salary</FormLabel>
-                <Input
-                  type="text"
-                  name="salary"
+                <Select
                   value={newJob.salary}
                   onChange={handleInputChange}
-                />
+                  color={"#515B6F"}
+                  name="salary"
+                >
+                  <option value="">Select salary</option>
+                  <option value="CONUNASS">CONUNASS</option>
+                  <option value="CONUATSS">CONUATSS</option>
+                </Select>
               </FormControl>
             </div>
             <Spacer />
             <div>
               <FormControl mb={4}>
                 <FormLabel>Closing date</FormLabel>
-                <DatePicker
-                  autoComplete="off"
-                  renderCustomHeader={({
-                    date,
-                    changeYear,
-                    changeMonth,
-                    decreaseMonth,
-                    increaseMonth,
-                    prevMonthButtonDisabled,
-                    nextMonthButtonDisabled,
-                  }) => (
-                    <div
-                      style={{
-                        margin: 10,
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <button
-                        onClick={decreaseMonth}
-                        disabled={prevMonthButtonDisabled}
-                      >
-                        {"<"}
-                      </button>
-                      <select
-                        value={getYear(date)}
-                        onChange={({ target: { value } }) => changeYear(value)}
-                      >
-                        {years.map((option) => (
-                          <option key={option} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-
-                      <select
-                        value={months[getMonth(date)]}
-                        onChange={({ target: { value } }) =>
-                          changeMonth(months.indexOf(value))
-                        }
-                      >
-                        {months.map((option) => (
-                          <option key={option} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-
-                      <button
-                        onClick={increaseMonth}
-                        disabled={nextMonthButtonDisabled}
-                      >
-                        {">"}
-                      </button>
-                    </div>
-                  )}
-                  selected={
-                    newJob.closingdate ? new Date(newJob.closingdate) : null
-                  }
-                  onChange={(date) => {
-                    if (date instanceof Date && !isNaN(date)) {
-                      const formattedDate = date.toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "2-digit",
-                        day: "2-digit",
-                      });
-                      setNewJob((prevJob) => ({
-                        ...prevJob,
-                        closingdate: formattedDate,
-                      }));
-                    } else {
-                      setNewJob((prevJob) => ({ ...prevJob, closingdate: "" }));
-                    }
-                  }}
-                  dateFormat="yyyy-MM-dd"
+                <input
                   className="form-control rounded-md"
-                  id="exampleFormControlInput1"
-                  placeholder=""
-                  shouldCloseOnSelect={true}
+                  type="date"
+                  min={new Date().toISOString().split("T")[0]}
+                  value={newJob?.closingdate}
+                  onChange={(e)=>  setNewJob((prevJob) => ({
+                    ...prevJob,
+                    closingdate: e.target.value,
+                  }))}
                 />
+
+               
               </FormControl>
             </div>
           </Flex>
