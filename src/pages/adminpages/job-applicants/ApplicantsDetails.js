@@ -30,8 +30,9 @@ const ApplicantsDetails = () => {
         <div className='col-lg-4 border mt-3' style={{ height: "700px" }}>
           <div className='d-flex gap-3 mt-3'>
             
-            <div>
+            <div className="flex justify-between items-center w-full">
               <p className='fw-semibold fs-5'>{data?.item?.name}</p>
+              <p className='fw-semibold fs-5'>{data?.item?.reference_number}</p>
             
             </div>
           </div>

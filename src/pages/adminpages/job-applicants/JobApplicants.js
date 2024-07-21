@@ -33,48 +33,7 @@ const JobApplicants = () => {
       setIsLoading(false);
     }
   }
-  const data = [
-    {
-      id: 1,
-      img: "https://bit.ly/prosper-baba",
-      name: "Precious Akanle",
-      stage: "in Review",
-      date: "13 july 2023",
-      department: "Oral Pathology & Oral Medicine",
-    },
-    {
-      id: 2,
-      img: "https://bit.ly/prosper-baba",
-      name: "Precious Akanle",
-      stage: "in Review",
-      date: "13 july 2023",
-      department: "Oral Pathology & Oral Medicine",
-    },
-    {
-      id: 3,
-      img: "https://bit.ly/prosper-baba",
-      name: "Precious Akanle",
-      stage: "in Review",
-      date: "13 july 2023",
-      department: "Oral Pathology & Oral Medicine",
-    },
-    {
-      id: 4,
-      img: "https://bit.ly/prosper-baba",
-      name: "Precious Akanle",
-      stage: "in Review",
-      date: "13 july 2023",
-      department: "Oral Pathology & Oral Medicine",
-    },
-    {
-      id: 5,
-      img: "https://bit.ly/prosper-baba",
-      name: "Precious Akanle",
-      stage: "in Review",
-      date: "13 july 2023",
-      department: "Oral Pathology & Oral Medicine",
-    },
-  ];
+
   return (
     <div className=" px-4">
       <div className="row mt-4 pa-res px-3">
@@ -99,26 +58,13 @@ const JobApplicants = () => {
         <div
           className="col-lg-4 d-flex flex-wrap gap-3 align-items-center"
           style={{ cursor: "pointer", height: "70px" }}
-        >
-          <div className="d-flex">
-            <div className="border py-2 px-2">
-              <TbGridDots size={"15"} />
-            </div>
-            <div className="py-2 px-2 border">
-              <AiOutlineMenu size={"15"} />
-            </div>
-          </div>
-          <div className="border d-flex align-items-center gap-2 py-2 px-2">
-            <AiOutlineMenu /> Filter
-          </div>
-        </div>
+        ></div>
       </div>
       <div className="px-3 tb-res-parent mt-4 ">
         <div className="tb-res">
           <table class="table table-hover">
             <thead>
               <tr className="border">
-               
                 <th scope="col" className="fw-light py-3 text-muted fs-6">
                   Applicant Name{" "}
                   <label style={{ marginBottom: "-8px" }}>
@@ -132,13 +78,13 @@ const JobApplicants = () => {
                   </label>
                 </th>
                 <th scope="col" className="fw-light py-3 text-muted fs-6">
-            Academic Qualification{" "}
+                  Academic Qualification{" "}
                   <label style={{ marginBottom: "-8px" }}>
                     <TbDirection size={"25"} />
                   </label>
                 </th>
                 <th scope="col" className="fw-light py-3 text-muted fs-6">
-               Hiring Stage
+                  Hiring Stage
                   <label style={{ marginBottom: "-8px" }}>
                     <TbDirection size={"25"} />
                   </label>
@@ -170,7 +116,6 @@ const JobApplicants = () => {
               jobListings?.map((item, key) => (
                 <tbody key={key} className="border">
                   <tr>
-                   
                     <td>
                       <div className="d-flex py-2 gap-4">
                         <div style={{ lineHeight: "5px" }}>
@@ -185,25 +130,23 @@ const JobApplicants = () => {
                       <p className="mb-0">{item?.academic_qualifications}</p>
                     </td>
                     <td className="py-24 max-w-[200px] ">
-                     
-                        <button
-                          className={`rounded-[20px] md:rounded-[20px] text-center px-[12px]  py-[4px] md:py-3  border-[0.5px] ${
-                            item?.status === "Pending"
-                              ? "bg-[#FEECEB] text-[#F44336] border-[#F44336]"
-                              : item?.status === "Shortlisted"
-                              ? "bg-[#FFF5E6] text-[#F44336] border-[#FF9800]"
-                              : "bg-[#EDF7EE] text-[#4CAF50] border-[#4CAF50]"
-                          }  text-[10px] md:text-[12px]  font-semibold leading-[16px] md:leading-[18px] `}
-                        >
-                          <p className="mb-0">{item?.status}</p>
-                        </button>
-                  
+                      <button
+                        className={`rounded-[20px] md:rounded-[20px] text-center px-[12px]  py-[4px] md:py-3  border-[0.5px] ${
+                          item?.status === "Pending"
+                            ? "bg-[#FEECEB] text-[#F44336] border-[#F44336]"
+                            : item?.status === "Shortlisted"
+                            ? "bg-[#FFF5E6] text-[#F44336] border-[#FF9800]"
+                            : "bg-[#EDF7EE] text-[#4CAF50] border-[#4CAF50]"
+                        }  text-[10px] md:text-[12px]  font-semibold leading-[16px] md:leading-[18px] `}
+                      >
+                        <p className="mb-0">{item?.status}</p>
+                      </button>
                     </td>
                     <td className="fw-semibold py-2">
                       <Link
                         to={`/applicant-detail`}
                         // to={`jobapplicants/${item.id}`}
-                        state={{ item: item , job: location.state?.item}}
+                        state={{ item: item, job: location.state?.item }}
                       >
                         <button
                           className="btn py-1 px-3 rounded-0 mt-3 btn-sm rounded-0 fw-semibold"
@@ -213,7 +156,7 @@ const JobApplicants = () => {
                             backgroundColor: "#E9EBFD",
                           }}
                         >
-                          See Application
+                          See applicant details
                         </button>
                       </Link>
                     </td>

@@ -48,6 +48,8 @@ const SeeJobs = () => {
     reference_phone: "",
     resume_file: "",
     reference_address: "",
+    academic_file:"",
+    birth_certificate:""
   });
 
   useEffect(() => {
@@ -107,6 +109,8 @@ const SeeJobs = () => {
     formData.append("reference_phone", formValues.reference_phone);
     formData.append("reference_address", formValues.reference_address);
     formData.append("resume_file", formValues.resume_file);
+    formData.append("birth_certificate", formValues.birth_certificate);
+    formData.append("academic_file", formValues.academic_file);
     try {
       const response = await api.applyJob(formData);
       console.log("Response: ", response);
@@ -248,9 +252,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.name}
                         onChange={(e) =>
                           setFormValues({
@@ -275,9 +279,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.dateOfBirth}
                         onChange={(e) =>
                           setFormValues({
@@ -302,9 +306,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.email}
                         onChange={(e) =>
                           setFormValues({
@@ -329,9 +333,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.stateOfOrigin}
                         onChange={(e) =>
                           setFormValues({
@@ -356,9 +360,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.permanent_address}
                         onChange={(e) =>
                           setFormValues({
@@ -383,9 +387,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.current_postal_address}
                         onChange={(e) =>
                           setFormValues({
@@ -410,9 +414,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.nationality}
                         onChange={(e) =>
                           setFormValues({
@@ -437,9 +441,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.marital_status}
                         onChange={(e) =>
                           setFormValues({
@@ -470,9 +474,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.number_of_children}
                         onChange={(e) =>
                           setFormValues({
@@ -497,9 +501,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.academic_qualifications}
                         onChange={(e) =>
                           setFormValues({
@@ -518,15 +522,15 @@ const SeeJobs = () => {
                       Statement of experience
                     </label>
                     <div className=" relative    flex items-center">
-                      <input
+                      <textarea
                         type="text"
                         placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        className="w-full h-[148px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         maxLength={1000}
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.statement_of_experience}
                         onChange={(e) =>
                           setFormValues({
@@ -539,6 +543,8 @@ const SeeJobs = () => {
                         spellCheck="false"
                       />
                     </div>
+                    <sup className='text-danger'>Must not be more than 1000 words</sup>
+
                   </div>
                   <div className="mb-[16px]">
                     <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
@@ -551,9 +557,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.hobbies}
                         onChange={(e) =>
                           setFormValues({
@@ -578,9 +584,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.skills}
                         onChange={(e) =>
                           setFormValues({
@@ -605,9 +611,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
+                          
                         value={formValues.reference_phone}
                         onChange={(e) =>
                           setFormValues({
@@ -632,9 +638,8 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
+                         
                         name="full-name"
-                        id="full-name"
                         value={formValues.reference_address}
                         onChange={(e) =>
                           setFormValues({
@@ -659,9 +664,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        autoFocus
-                        name="full-name"
-                        id="full-name"
+                        max-file-size="2084"
+                        accept=".pdf,.docx"
+                        name="resume"
                         // value={formValues.resume_file}
                         onChange={(e) =>
                           setFormValues({
@@ -674,6 +679,67 @@ const SeeJobs = () => {
                         spellCheck="false"
                       />
                     </div>
+                    <sup className='text-danger'>Format accepted: Docx/Pdf</sup>
+
+                  </div>
+                  <div className="mb-[16px]">
+                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                      Birth Certificate 
+                    </label>
+                    <div className=" relative    flex items-center">
+                      <input
+                        type="file"
+                        placeholder=""
+                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        required
+                        autoComplete="on"
+                         max-file-size="2084"
+                         accept=".pdf,.docx"
+                        name="birth-certificate"
+                          
+                        // value={formValues.resume_file}
+                        onChange={(e) =>
+                          setFormValues({
+                            ...formValues,
+                            birth_certificate: e.target.files[0],
+                          })
+                        }
+                        autoCapitalize="off"
+                        autoCorrect="off"
+                        spellCheck="false"
+                      />
+                    </div>
+                    <sup className='text-danger'>Format accepted: Docx/Pdf</sup>
+
+                  </div>
+                  <div className="mb-[16px]">
+                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                    Academic Experience
+                    </label>
+                    <div className=" relative    flex items-center">
+                      <input
+                        type="file"
+                        placeholder=""
+                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        
+                        autoComplete="on"
+                        max-file-size="2084"
+                        accept=".pdf,.docx"
+                        name="full-name"
+                          
+                        // value={formValues.resume_file}
+                        onChange={(e) =>
+                          setFormValues({
+                            ...formValues,
+                            academic_file: e.target.files[0],
+                          })
+                        }
+                        autoCapitalize="off"
+                        autoCorrect="off"
+                        spellCheck="false"
+                      />
+                    </div>
+                    <sup className='text-danger'>Format accepted: Docx/Pdf</sup>
                   </div>
                 </div>
               )}
