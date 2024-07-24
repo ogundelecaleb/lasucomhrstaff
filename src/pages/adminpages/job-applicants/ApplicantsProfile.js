@@ -16,7 +16,7 @@ const ApplicantsProfile = ({ data }) => {
             <div>
               <p className='fs-6  text-muted'>Date of Birth</p>
               <p className='fs-6 fw-semibold' style={{ marginTop: "-15px" }}>
-                {data.item.date_of_birth} <span className='text-muted'>(58 years)</span>
+                {data.item.date_of_birth} <span className='text-muted'></span>
               </p>
             </div>
             <div>

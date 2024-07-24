@@ -118,18 +118,21 @@ const JobApplicants = () => {
                   <tr>
                     <td>
                       <div className="d-flex py-2 gap-4">
-                        <div style={{ lineHeight: "5px" }}>
+                        <div style={{ lineHeight: "" }}>
                           <p className="fw-semibold mb-0">{item.name}</p>
                         </div>
                       </div>
                     </td>
-                    <td className="py-2">
+                    <td className="">
+                    <div className="d-flex py-2 gap-4">
                       <p className="mb-0">{item.email}</p>
+                      </div>
                     </td>
                     <td className="fw-semibold py-2">
-                      <p className="mb-0">{item?.academic_qualifications}</p>
+                    <div className="d-flex py-2 gap-4">
+                    <p className="mb-0">{item?.academic_qualifications}</p>                      </div>
                     </td>
-                    <td className="py-24 max-w-[200px] ">
+                    <td className="py-2 max-w-[200px] ">
                       <button
                         className={`rounded-[20px] md:rounded-[20px] text-center px-[12px]  py-[4px] md:py-3  border-[0.5px] ${
                           item?.status === "Pending"
@@ -142,14 +145,15 @@ const JobApplicants = () => {
                         <p className="mb-0">{item?.status}</p>
                       </button>
                     </td>
-                    <td className="fw-semibold py-2">
+                    <td className="fw-semibold ">
                       <Link
                         to={`/applicant-detail`}
                         // to={`jobapplicants/${item.id}`}
                         state={{ item: item, job: location.state?.item }}
+                        className="py-2"
                       >
                         <button
-                          className="btn py-1 px-3 rounded-0 mt-3 btn-sm rounded-0 fw-semibold"
+                          className="btn py-1 px-3   btn-sm rounded-0 fw-semibold"
                           style={{
                             border: "1px solid #984779",
                             color: "#987779",
@@ -166,62 +170,7 @@ const JobApplicants = () => {
           </table>
         </div>
       </div>
-      <div className="row px-4">
-        <div className="col-lg-4 d-flex gap-3 align-items-center ">
-          <p className="mt-3 fw-semibold text-muted">Show results</p>
-          <div className="">
-            <select
-              style={{ width: "70px" }}
-              className="form-select rounded-0"
-              aria-label="Default select example"
-            >
-              <option selected>1</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          </div>
-          <p className="mt-3 fw-semibold text-muted">Applicants per page</p>
-        </div>
-        <div className="col-lg-4 "></div>
-        <div className="col-lg-4">
-          <div className="d-flex justify-content-end py-2 mt-4 px-5">
-            <h1>
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <p class="page-link" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                      <span class="sr-only">Previous</span>
-                    </p>
-                  </li>
-                  <li class="page-item">
-                    <p class="page-link" href="#">
-                      1
-                    </p>
-                  </li>
-                  <li class="page-item">
-                    <p class="page-link" href="#">
-                      2
-                    </p>
-                  </li>
-                  <li class="page-item">
-                    <p class="page-link" href="#">
-                      3
-                    </p>
-                  </li>
-                  <li class="page-item">
-                    <p class="page-link" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                      <span class="sr-only">Next</span>
-                    </p>
-                  </li>
-                </ul>
-              </nav>
-            </h1>
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 };

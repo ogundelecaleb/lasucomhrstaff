@@ -38,12 +38,12 @@ const JobApplicantTab = ({ data }) => {
               color={"gray"}>
               Hiring Progress
             </Tab>
-            <Tab
+            {/* <Tab
               _focus={{ color: "black" }}
               fontWeight={"semibold"}
               color={"gray"}>
               Assumption Of Duty
-            </Tab>
+            </Tab> */}
           </TabList>
           <TabIndicator
             mt='-1.5px'
@@ -63,9 +63,9 @@ const JobApplicantTab = ({ data }) => {
         <TabPanel>
           <HiringProgress data={data} />
         </TabPanel>
-        <TabPanel>
+        {/* <TabPanel>
           <AssumptionOfDuty data={data} />
-        </TabPanel>
+        </TabPanel> */}
       </TabPanels>
     </Tabs>
   );
