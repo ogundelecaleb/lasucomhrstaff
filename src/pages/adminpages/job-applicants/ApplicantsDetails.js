@@ -66,7 +66,7 @@ const ApplicantsDetails = () => {
                     borderRadius: "50%",
                     backgroundColor: "#26A4FF",
                   }}></div>
-                <p style={{ color: "#26A4FF" }}>Interview</p>
+                <p style={{ color: "#26A4FF" }}>{data?.item?.status}</p>
               </div>
             </div>
             <div style={{ width: "100%" }} id='progress-bar'>

@@ -28,9 +28,9 @@ const ApplicantsProfile = ({ data }) => {
           </div>
           <div className='col-lg-6'>
             <div>
-              <p className='fs-6  text-muted'>Gender</p>
+              <p className='fs-6  text-muted'>Marital Status</p>
               <p className='fs-6 fw-semibold' style={{ marginTop: "-15px" }}>
-                Male
+              {data.item.marital_status}
               </p>
             </div>
             <div>
@@ -72,7 +72,7 @@ const ApplicantsProfile = ({ data }) => {
                 <span
                   className='py-1 px-2 text-primary'
                   style={{ backgroundColor: "#F8F8FD" }}>
-                 {data.item.skills}
+                 {data.item.skills || "- -||- -"}
                 </span>
                
               </div>
@@ -86,6 +86,19 @@ const ApplicantsProfile = ({ data }) => {
                   className='py-1 px-2 text-primary'
                   style={{ backgroundColor: "#F8F8FD" }}>
                  {data.item.hobbies}
+                </span>
+               
+              </div>
+            </div>
+            <div>
+              <p className='fs-6  text-muted'>Statement of Experience</p>
+              <div
+                className='fs-6 fw-semibold d-flex flex-wrap gap-2'
+                style={{ marginTop: "-15px" }}>
+                <span
+                  className='py-1 px-2 text-primary'
+                  style={{ backgroundColor: "#F8F8FD" }}>
+                 {data.item.statement_of_experience}
                 </span>
                
               </div>

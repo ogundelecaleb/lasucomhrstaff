@@ -13,6 +13,7 @@ import ApplicantsProfile from "./ApplicantsProfile";
 import Resume from "./Resume";
 import HiringProgress from "./HiringProgress";
 import AssumptionOfDuty from "./AssumptionOfDuty";
+import BirthCertificate from "./BirthCertificate";
 
 const JobApplicantTab = ({ data }) => {
   return (
@@ -31,6 +32,12 @@ const JobApplicantTab = ({ data }) => {
               fontWeight={"semibold"}
               color={"gray"}>
               Resume
+            </Tab>
+            <Tab
+              _focus={{ color: "black" }}
+              fontWeight={"semibold"}
+              color={"gray"}>
+           Birth Certificate
             </Tab>
             <Tab
               _focus={{ color: "black" }}
@@ -59,6 +66,9 @@ const JobApplicantTab = ({ data }) => {
         </TabPanel>
         <TabPanel>
           <Resume data={data} />
+        </TabPanel>
+        <TabPanel>
+          <BirthCertificate data={data} />
         </TabPanel>
         <TabPanel>
           <HiringProgress data={data} />

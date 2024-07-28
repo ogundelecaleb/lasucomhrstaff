@@ -48,9 +48,28 @@ const SeeJobs = () => {
     reference_phone: "",
     resume_file: "",
     reference_address: "",
-    academic_file:"",
-    birth_certificate:""
+    academic_file: "",
+    birth_certificate: "",
   });
+  const [reference, setReference] = useState([{ name: "", contact: "" }]);
+
+  const handleAddReference = () => {
+    if (reference?.length >= 4) {
+      enqueueSnackbar("Maximum number of beneficiaries reached", {
+        variant: "warning",
+      });
+      return;
+    }
+    console.log("beneficiaries?.length", reference?.length);
+    setReference([...reference, { name: "", contact: "" }]);
+  };
+
+  const handleChange = (index, event) => {
+    const { name, value } = event.target;
+    const newReference = [...reference];
+    newReference[index][name] = value;
+    setReference(newReference);
+  };
 
   useEffect(() => {
     if (jobListings) {
@@ -73,16 +92,15 @@ const SeeJobs = () => {
   }
 
   async function handleSubmit(e) {
-  
     setIsLoading(true);
-    if(!formValues.resume_file) {
+    if (!formValues.resume_file) {
       enqueueSnackbar("Please upload your resume", { variant: "error" });
       setIsLoading(false);
       return;
     }
     const formData = new FormData();
 
-    formData.append("job_id",jobId);
+    formData.append("job_id", jobId);
     formData.append("name", formValues.name);
     formData.append("email", formValues.email);
     formData.append("last_name", formValues.lastName);
@@ -106,7 +124,7 @@ const SeeJobs = () => {
     );
     formData.append("hobbies", formValues.hobbies);
     formData.append("skills", formValues.skills);
-    formData.append("reference_phone", formValues.reference_phone);
+    formData.append("reference", reference);
     formData.append("reference_address", formValues.reference_address);
     formData.append("resume_file", formValues.resume_file);
     formData.append("birth_certificate", formValues.birth_certificate);
@@ -119,33 +137,33 @@ const SeeJobs = () => {
       });
       setIsLoading(false);
       setJobId("");
-      setFormValues({name: "",
+      setFormValues({
+        name: "",
 
-      email: "",
-      nationality: "",
-      stateOfOrigin: "",
-      dateOfBirth: "",
-      gender: "",
-      marital_status: "",
-      image: "",
-      permanent_address: "",
-      current_postal_address: "",
-      number_of_children: "",
-      academic_qualifications: "",
-      statement_of_experience: "",
-      hobbies: "",
-      skills: "",
-      reference_phone: "",
-      resume_file: "",
-      reference_address: ""})
+        email: "",
+        nationality: "",
+        stateOfOrigin: "",
+        dateOfBirth: "",
+        gender: "",
+        marital_status: "",
+        image: "",
+        permanent_address: "",
+        current_postal_address: "",
+        number_of_children: "",
+        academic_qualifications: "",
+        statement_of_experience: "",
+        hobbies: "",
+        skills: "",
+        reference_phone: "",
+        resume_file: "",
+        reference_address: "",
+      });
     } catch (error) {
       console.error(error);
       enqueueSnackbar(error.message, { variant: "error" });
       setIsLoading(false);
     }
   }
-
-  
 
   return (
     <div>
@@ -252,9 +270,7 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
-                          
                         value={formValues.name}
                         onChange={(e) =>
                           setFormValues({
@@ -279,9 +295,7 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
-                          
                         value={formValues.dateOfBirth}
                         onChange={(e) =>
                           setFormValues({
@@ -306,9 +320,7 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
-                          
                         value={formValues.email}
                         onChange={(e) =>
                           setFormValues({
@@ -333,9 +345,7 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
-                          
                         value={formValues.stateOfOrigin}
                         onChange={(e) =>
                           setFormValues({
@@ -360,9 +370,7 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
-                          
                         value={formValues.permanent_address}
                         onChange={(e) =>
                           setFormValues({
@@ -387,9 +395,7 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
-                          
                         value={formValues.current_postal_address}
                         onChange={(e) =>
                           setFormValues({
@@ -414,9 +420,7 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
-                          
                         value={formValues.nationality}
                         onChange={(e) =>
                           setFormValues({
@@ -441,9 +445,7 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
-                          
                         value={formValues.marital_status}
                         onChange={(e) =>
                           setFormValues({
@@ -474,9 +476,7 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
-                          
                         value={formValues.number_of_children}
                         onChange={(e) =>
                           setFormValues({
@@ -501,9 +501,7 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
-                          
                         value={formValues.academic_qualifications}
                         onChange={(e) =>
                           setFormValues({
@@ -528,9 +526,8 @@ const SeeJobs = () => {
                         className="w-full h-[148px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         maxLength={1000}
+                        maxLength={1000}
                         name="full-name"
-                          
                         value={formValues.statement_of_experience}
                         onChange={(e) =>
                           setFormValues({
@@ -543,8 +540,9 @@ const SeeJobs = () => {
                         spellCheck="false"
                       />
                     </div>
-                    <sup className='text-danger'>Must not be more than 1000 words</sup>
-
+                    <sup className="text-danger">
+                      Must not be more than 1000 words
+                    </sup>
                   </div>
                   <div className="mb-[16px]">
                     <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
@@ -557,9 +555,7 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
-                          
                         value={formValues.hobbies}
                         onChange={(e) =>
                           setFormValues({
@@ -584,9 +580,7 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
-                          
                         value={formValues.skills}
                         onChange={(e) =>
                           setFormValues({
@@ -600,7 +594,7 @@ const SeeJobs = () => {
                       />
                     </div>
                   </div>
-                  <div className="mb-[16px]">
+                  {/* <div className="mb-[16px]">
                     <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
                       Reference Phone Number
                     </label>
@@ -611,9 +605,7 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
-                          
                         value={formValues.reference_phone}
                         onChange={(e) =>
                           setFormValues({
@@ -626,8 +618,62 @@ const SeeJobs = () => {
                         spellCheck="false"
                       />
                     </div>
-                  </div>
-                  <div className="mb-[16px]">
+                  </div> */}
+
+                  {reference.map((ref, index) => (
+                    <div key={index} style={{ marginBottom: "10px" }}>
+                      <div className=" pe-">
+                        <div class="form-group mb-2">
+                        <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+
+                           Reference Full Name <sup className="text-danger">*</sup>
+                          </label>
+                          <input
+                            type="text"
+                            style={{ height: "40px" }}
+                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            id="exampleFormControlInput1"
+                            name="name"
+                            placeholder="Name"
+                            value={ref.name}
+                            onChange={(event) => handleChange(index, event)}
+                          />
+                        </div>
+                        <div class="row">
+                          <div className="col-lg-6">
+                            <div class="form-group">
+                              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                               Reference Email <sup className="text-danger">*</sup>
+                              </label>
+                              <input
+                                type="text"
+                                style={{ height: "40px" }}
+                                className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+
+                                id="exampleFormControlInput1"
+                                name="contact"
+                                placeholder="090-090"
+                                value={ref.contact}
+                                onChange={(event) => handleChange(index, event)}
+                              />
+                            </div>
+                          </div>
+                          
+                         
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    className="btn py-2 px-4  mb-2 text-white rounded-md"
+                    style={{ backgroundColor: "#17082d" }}
+                    onClick={handleAddReference}
+                  >
+                    Add More Reference
+                  </button>
+
+                  {/* <div className="mb-[16px]">
                     <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
                       Reference Address
                     </label>
@@ -638,7 +684,6 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         
                         name="full-name"
                         value={formValues.reference_address}
                         onChange={(e) =>
@@ -652,7 +697,7 @@ const SeeJobs = () => {
                         spellCheck="false"
                       />
                     </div>
-                  </div>
+                  </div> */}
                   <div className="mb-[16px]">
                     <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
                       Resume File
@@ -679,12 +724,11 @@ const SeeJobs = () => {
                         spellCheck="false"
                       />
                     </div>
-                    <sup className='text-danger'>Format accepted: Docx/Pdf</sup>
-
+                    <sup className="text-danger">Format accepted: Docx/Pdf</sup>
                   </div>
                   <div className="mb-[16px]">
                     <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Birth Certificate 
+                      Birth Certificate
                     </label>
                     <div className=" relative    flex items-center">
                       <input
@@ -693,10 +737,9 @@ const SeeJobs = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                         max-file-size="2084"
-                         accept=".pdf,.docx"
+                        max-file-size="2084"
+                        accept=".pdf,.docx"
                         name="birth-certificate"
-                          
                         // value={formValues.resume_file}
                         onChange={(e) =>
                           setFormValues({
@@ -709,24 +752,21 @@ const SeeJobs = () => {
                         spellCheck="false"
                       />
                     </div>
-                    <sup className='text-danger'>Format accepted: Docx/Pdf</sup>
-
+                    <sup className="text-danger">Format accepted: Docx/Pdf</sup>
                   </div>
                   <div className="mb-[16px]">
                     <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                    Academic Experience
+                      Academic Experience
                     </label>
                     <div className=" relative    flex items-center">
                       <input
                         type="file"
                         placeholder=""
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                        
                         autoComplete="on"
                         max-file-size="2084"
                         accept=".pdf,.docx"
                         name="full-name"
-                          
                         // value={formValues.resume_file}
                         onChange={(e) =>
                           setFormValues({
@@ -739,7 +779,7 @@ const SeeJobs = () => {
                         spellCheck="false"
                       />
                     </div>
-                    <sup className='text-danger'>Format accepted: Docx/Pdf</sup>
+                    <sup className="text-danger">Format accepted: Docx/Pdf</sup>
                   </div>
                 </div>
               )}
@@ -758,7 +798,7 @@ const SeeJobs = () => {
                     }}
                     className="border-[0.2px]  border-[#98A2B3] w-[99px] bg-[#17082d] flex items-center justify-center text-center rounded-[8px] py-[12px] text-[14px] font-medium text-white"
                   >
-                    {(jobId === job.id && isLoading) ? (
+                    {jobId === job.id && isLoading ? (
                       <ClipLoader color={"white"} size={20} />
                     ) : (
                       <> Apply</>
