@@ -124,7 +124,7 @@ const SeeJobs = () => {
     );
     formData.append("hobbies", formValues.hobbies);
     formData.append("skills", formValues.skills);
-    formData.append("reference", reference);
+    formData.append("references", JSON.stringify(reference) );
     formData.append("reference_address", formValues.reference_address);
     formData.append("resume_file", formValues.resume_file);
     formData.append("birth_certificate", formValues.birth_certificate);
@@ -795,6 +795,7 @@ const SeeJobs = () => {
                       } else {
                         setJobId(job.id);
                       }
+                     // console.log("referencess", reference)
                     }}
                     className="border-[0.2px]  border-[#98A2B3] w-[99px] bg-[#17082d] flex items-center justify-center text-center rounded-[8px] py-[12px] text-[14px] font-medium text-white"
                   >

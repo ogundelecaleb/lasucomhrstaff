@@ -600,7 +600,7 @@ const AddUser = () => {
               </div>
             )}
 
-            {selectedRole === "RSWEP" && (
+            {(selectedRole === "RSWEP" || selectedDivision.id === 8) && (
               <div>
                 <div className='my-5 form-group row'>
                   <label htmlFor='department' className='fs-5 fw-semibold col-md-2 col-form-label'>
@@ -631,7 +631,7 @@ const AddUser = () => {
               </div>
             )}
 
-            {selectedRole === "DEAN" && (
+            {(selectedRole === "DEAN" || selectedRole === "RSWEP" || selectedRole === "HOD" || selectedDivision.id === 8) && (
               <div className='my-5 form-group row'>
                 <label htmlFor='faculty' className='fs-5 fw-semibold col-md-2 col-form-label'>
                   FACULTY<sup className='text-danger'>*</sup>

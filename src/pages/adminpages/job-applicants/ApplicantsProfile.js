@@ -91,6 +91,19 @@ const ApplicantsProfile = ({ data }) => {
               </div>
             </div>
             <div>
+              <p className='fs-6  text-muted'>Reference</p>
+              <div
+                className='fs-6 fw-semibold d-flex flex-wrap gap-2'
+                style={{ marginTop: "-15px" }}>
+                <span
+                  className='py-1 px-2 text-primary'
+                  style={{ backgroundColor: "#F8F8FD" }}>
+                 {data.item.application_references}
+                </span>
+               
+              </div>
+            </div>
+            <div>
               <p className='fs-6  text-muted'>Statement of Experience</p>
               <div
                 className='fs-6 fw-semibold d-flex flex-wrap gap-2'
