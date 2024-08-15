@@ -185,7 +185,8 @@ const UserList = () => {
                     <th scope='col'>Full Name</th>
                     <th scope='col'>Email Address</th>
                     <th scope='col'>Role</th>
-                    <th scope='col'>Faculty/Department</th>
+                    <th scope='col'>Faculty</th>
+                    <th scope='col'>Department/Unit</th>
                     <th scope='col'>Status</th>
                     <th scope='col'>Action</th>
                   </tr>
@@ -208,6 +209,14 @@ const UserList = () => {
                         {user.faculty
                           ? user.faculty.name
                           : user.department
+                          ? user.department.name
+                          : user.unit
+                          ? user.unit.name
+                          : 'N/A'}
+                      </td>
+                      <td className='fs-6'>
+                        {
+                          user.department
                           ? user.department.name
                           : user.unit
                           ? user.unit.name
