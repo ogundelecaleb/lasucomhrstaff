@@ -439,6 +439,7 @@ const AddUser = () => {
                   style={{ height: "60px" }}
                 >
                   <option value=''>Select Level</option>
+                  <option value='Level 6'>Level 6</option>
                   <option value='Level 7'>Level 7</option>
                   <option value='Level 8'>Level 8</option>
                   <option value='Level 9'>Level 9</option>
@@ -475,7 +476,7 @@ const AddUser = () => {
                   <option value='Level 3'>Level 3</option>
                   <option value='Level 4'>Level 4</option>
                   <option value='Level 5'>Level 5</option>
-                  <option value='Level 6'>Level 6</option>
+                  {/* <option value='Level 6'>Level 6</option> */}
                 </select>
                 </div>
               </div>
@@ -486,7 +487,7 @@ const AddUser = () => {
             <label
               for='inputPassword'
               className=' fs-5 fw-semibold col-md-2 col-form-label'>
-              Role <sup className='text-danger'>*</sup>
+              Designation <sup className='text-danger'>*</sup>
             </label>
             <div className='col-sm-8 d-flex gap-4'>
              
@@ -511,7 +512,7 @@ const AddUser = () => {
                 <label
                   for='email'
                   className=' fs-5 fw-semibold col-md-2 col-form-label'>
-                  UNIT<sup className='text-danger'>*</sup>
+                  Office<sup className='text-danger'>*</sup>
                 </label>
                 <div className='col-md-8'>
                   <select

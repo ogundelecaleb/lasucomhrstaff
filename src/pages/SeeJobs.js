@@ -75,6 +75,7 @@ const SeeJobs = () => {
     if (jobListings) {
       fetchJobDetails();
     }
+    checkJobExpire("2024-08-23")
   }, []);
 
   async function fetchJobDetails() {
@@ -165,6 +166,22 @@ const SeeJobs = () => {
     }
   }
 
+  function checkJobExpire(date) {
+    // Parse the date strings into Date objects
+    const expDate = new Date(date);
+    const currentDate = new Date();
+
+    // Calculate the difference in date
+    const diffTime = Math.floor( expDate - currentDate);
+
+    // Convert the difference into milliseconds and then into days
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    //console.log("diff in days===>>>", diffDays);
+
+  if(diffDays < 0) return true
+   
+}
+
   return (
     <div>
       <div className="flex items-center py-2 px-4 md:px-[40px] xl:px-[80px] md:py-3 bg-slate-100 border-b border-gray-100">
@@ -254,7 +271,7 @@ const SeeJobs = () => {
                 <h5 className="text-[#000] text-[16px] font-semibold leading-[24px] mb-0 whitespace-nowrap">
                   Closing:{" "}
                 </h5>{" "}
-                <p className="mb-0"> {job.closing_date}</p>
+                <p className="mb-0">{checkJobExpire(job.closing_date)? "Closed" : job.closing_date}</p>
               </div>
 
               {jobId === job.id && (
@@ -789,6 +806,7 @@ const SeeJobs = () => {
                 <div className="">
                   {" "}
                   <button
+                  disabled={checkJobExpire(job.closing_date)}
                     onClick={() => {
                       if (jobId === job.id) {
                         handleSubmit();
@@ -802,7 +820,7 @@ const SeeJobs = () => {
                     {jobId === job.id && isLoading ? (
                       <ClipLoader color={"white"} size={20} />
                     ) : (
-                      <> Apply</>
+                      <> {checkJobExpire(job.closing_date)? "Closed" : "Apply"}</>
                     )}
                   </button>
                 </div>
