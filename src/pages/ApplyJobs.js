@@ -13,7 +13,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import logo from "../asset/logo(small).svg";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import api from "../api";
 import { setUserData } from "../utils/utils";
 import { useSnackbar } from "notistack";
@@ -21,9 +21,10 @@ import { ClipLoader, MoonLoader } from "react-spinners";
 import JobCard from "./adminpages/jobpenings/JobCard";
 import { NumericFormat } from "react-number-format";
 
-const SeeJobs = () => {
+const ApplyJob = () => {
   const { enqueueSnackbar } = useSnackbar();
-const navigate= useNavigate()
+  const location = useLocation();
+  const { job } = location.state;
   const [jobListings, setJobListings] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isApply, setIsApply] = useState(false);
@@ -75,7 +76,7 @@ const navigate= useNavigate()
     if (jobListings) {
       fetchJobDetails();
     }
-    checkJobExpire("2024-08-23")
+    checkJobExpire("2024-08-23");
   }, []);
 
   async function fetchJobDetails() {
@@ -101,7 +102,7 @@ const navigate= useNavigate()
     }
     const formData = new FormData();
 
-    formData.append("job_id", jobId);
+    formData.append("job_id", job?.id);
     formData.append("name", formValues.name);
     formData.append("email", formValues.email);
     formData.append("last_name", formValues.lastName);
@@ -125,7 +126,7 @@ const navigate= useNavigate()
     );
     formData.append("hobbies", formValues.hobbies);
     formData.append("skills", formValues.skills);
-    formData.append("references", JSON.stringify(reference) );
+    formData.append("references", JSON.stringify(reference));
     formData.append("reference_address", formValues.reference_address);
     formData.append("resume_file", formValues.resume_file);
     formData.append("birth_certificate", formValues.birth_certificate);
@@ -172,15 +173,14 @@ const navigate= useNavigate()
     const currentDate = new Date();
 
     // Calculate the difference in date
-    const diffTime = Math.floor( expDate - currentDate);
+    const diffTime = Math.floor(expDate - currentDate);
 
     // Convert the difference into milliseconds and then into days
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     //console.log("diff in days===>>>", diffDays);
 
-  if(diffDays < 0) return true
-   
-}
+    if (diffDays < 0) return true;
+  }
 
   return (
     <div>
@@ -200,38 +200,10 @@ const navigate= useNavigate()
           </h2>
         </div>
       </div>
-      <div className=" py-6 px-4 md:px-[40px] relative xl:px-[80px] md:py-9 h-[600px] flex flex-col md:flex-row gap-[30px] bg-[#17082d]">
-        <div className="w-full md:w-[50%]">
-          <p className="text-[24px] md:text-[36px]  text-lef font-normal  text-[#fff] md:mt-8  ">
-            At LASUCOM, we are committed to excellence in education, research,
-            and community service.
-          </p>
-          <p className="text-[16px] md:text-[20px]  text-lef font-normal  text-[#fff] md:max-w-[70%] ">
-            We believe that our faculty, staff, and administration play a
-            crucial role in achieving our mission. We invite you to explore
-            career opportunities and join our dynamic and inclusive academic
-            community.
-          </p>
-        </div>
-        <div className="w-full md:w-[50%]">
-          {/* <img src="./woman.png" alt="woman" className="md:hidden h-[3600px]" /> */}
-        </div>
-        <img
-          src="./woman.png"
-          alt="woman"
-          className="absolute bottom-0 right-0 h-[360px] md:h-[480px]"
-        />
-      </div>
-
-      <p className="text-[24px] md:text-[36px]  text-center py-4 md:py-8 font-normal  text-[#17082d]  ">
-        Availble Jobs !
-      </p>
 
       <div className=" py-2 px-4 md:px-[40px] xl:px-[80px] md:py-3">
-        {jobListings.map((job) => (
-          <div key={job.id} className="flex justify-center  mb-4">
-            {/* <JobCard job={job} /> */}
-            <div className=" border-[0.2px] border-[#98a2b3] rounded-[8px] py-[11px] px-[10px]  md:px-[16px] w-full max-w-[560px]">
+     
+            <div className=" mx-auto  py-[11px] px-[10px]  md:px-[16px] w-full max-w-[560px]">
               <div className="flex items-center gap-1  mb-2">
                 <h5 className="card-title">Position: </h5>{" "}
                 <h5 className="card-title"> {job.title}</h5>
@@ -271,10 +243,14 @@ const navigate= useNavigate()
                 <h5 className="text-[#000] text-[16px] font-semibold leading-[24px] mb-0 whitespace-nowrap">
                   Closing:{" "}
                 </h5>{" "}
-                <p className="mb-0">{checkJobExpire(job.closing_date)? "Closed" : job.closing_date}</p>
+                <p className="mb-0">
+                  {checkJobExpire(job.closing_date)
+                    ? "Closed"
+                    : job.closing_date}
+                </p>
               </div>
 
-              {jobId === job.id && (
+             
                 <div className="mt-5">
                   <div className="mb-[16px]">
                     <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
@@ -612,38 +588,38 @@ const navigate= useNavigate()
                     </div>
                   </div>
                   {/* <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Reference Phone Number
-                    </label>
-                    <div className=" relative    flex items-center">
-                      <input
-                        type="text"
-                        placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                        required
-                        autoComplete="on"
-                        name="full-name"
-                        value={formValues.reference_phone}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            reference_phone: e.target.value,
-                          })
-                        }
-                        autoCapitalize="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                      />
-                    </div>
-                  </div> */}
+                      <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                        Reference Phone Number
+                      </label>
+                      <div className=" relative    flex items-center">
+                        <input
+                          type="text"
+                          placeholder=""
+                          className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                          required
+                          autoComplete="on"
+                          name="full-name"
+                          value={formValues.reference_phone}
+                          onChange={(e) =>
+                            setFormValues({
+                              ...formValues,
+                              reference_phone: e.target.value,
+                            })
+                          }
+                          autoCapitalize="off"
+                          autoCorrect="off"
+                          spellCheck="false"
+                        />
+                      </div>
+                    </div> */}
 
                   {reference.map((ref, index) => (
                     <div key={index} style={{ marginBottom: "10px" }}>
                       <div className=" pe-">
                         <div class="form-group mb-2">
-                        <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-
-                           Reference Full Name <sup className="text-danger">*</sup>
+                          <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                            Reference Full Name{" "}
+                            <sup className="text-danger">*</sup>
                           </label>
                           <input
                             type="text"
@@ -660,13 +636,13 @@ const navigate= useNavigate()
                           <div className="col-lg-6">
                             <div class="form-group">
                               <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                               Reference Email <sup className="text-danger">*</sup>
+                                Reference Email{" "}
+                                <sup className="text-danger">*</sup>
                               </label>
                               <input
                                 type="text"
                                 style={{ height: "40px" }}
                                 className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-
                                 id="exampleFormControlInput1"
                                 name="contact"
                                 placeholder="090-090"
@@ -675,8 +651,6 @@ const navigate= useNavigate()
                               />
                             </div>
                           </div>
-                          
-                         
                         </div>
                       </div>
                     </div>
@@ -690,31 +664,6 @@ const navigate= useNavigate()
                     Add More Reference
                   </button>
 
-                  {/* <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Reference Address
-                    </label>
-                    <div className=" relative    flex items-center">
-                      <input
-                        type="text"
-                        placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                        required
-                        autoComplete="on"
-                        name="full-name"
-                        value={formValues.reference_address}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            reference_address: e.target.value,
-                          })
-                        }
-                        autoCapitalize="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                      />
-                    </div>
-                  </div> */}
                   <div className="mb-[16px]">
                     <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
                       Resume File
@@ -799,41 +748,41 @@ const navigate= useNavigate()
                     <sup className="text-danger">Format accepted: Docx/Pdf</sup>
                   </div>
                 </div>
-              )}
+      
 
               <div className="border-[0.8px]  border-[#E4E7EC] mb-[20px]" />
               <div className=" flex w-full  justify-end">
                 <div className="">
                   {" "}
                   <button
-                  disabled={checkJobExpire(job.closing_date)}
+                    disabled={checkJobExpire(job.closing_date)}
                     onClick={() => {
-                      navigate("/apply", {
-                        state:{ job}
-                      })
                       if (jobId === job.id) {
                         handleSubmit();
                       } else {
                         setJobId(job.id);
                       }
-                     // console.log("referencess", reference)
+                      // console.log("referencess", reference)
                     }}
                     className="border-[0.2px]  border-[#98A2B3] w-[99px] bg-[#17082d] flex items-center justify-center text-center rounded-[8px] py-[12px] text-[14px] font-medium text-white"
                   >
                     {jobId === job.id && isLoading ? (
                       <ClipLoader color={"white"} size={20} />
                     ) : (
-                      <> {checkJobExpire(job.closing_date)? "Closed" : "Apply"}</>
+                      <>
+                        {" "}
+                        {checkJobExpire(job.closing_date) ? "Closed" : "Apply"}
+                      </>
                     )}
                   </button>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+         
+       
       </div>
     </div>
   );
 };
 
-export default SeeJobs;
+export default ApplyJob;

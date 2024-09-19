@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SnackbarProvider } from "notistack";
 import { Toaster } from "react-hot-toast";
 import SeeJobs from "./pages/SeeJobs";
+import ApplyJob from "./pages/ApplyJobs";
 
 
 const queryClient = new QueryClient({
@@ -28,6 +29,7 @@ function App() {
               <Routes>
                 <Route path='/' exact element={<Login />} />
                 <Route path='/career' exact element={<SeeJobs />} />
+                <Route path='/apply' exact element={<ApplyJob />} />
                 <Route path='/*' element={<AdminDashboard />} />
               </Routes>
             </div>

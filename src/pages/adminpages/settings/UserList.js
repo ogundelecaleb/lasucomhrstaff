@@ -11,8 +11,10 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-  Skeleton
+  Skeleton, Avatar
 } from "@chakra-ui/react";
+import { RxAvatar } from "react-icons/rx";
+
 import { MdModeEditOutline, MdSearch, MdOutlineRemoveRedEye} from "react-icons/md";
 import { RiDeleteBinFill } from "react-icons/ri";
 import CommonButton from "../../../components/commonbutton/Button";
@@ -127,9 +129,10 @@ const UserList = () => {
             display={"flex"}
             alignItems={"center"}
             borderBottom='1px solid #EBEAED'
-            px='10'
-            justifyContent='space-between'>
-            <Text className='fw-semibold ps-4 fs-4'>Manage Users</Text>{" "}
+            px='5'
+            justifyContent='space-between'
+            >
+            <Text      className="text-[18px] font-semibold">Manage Users</Text>{" "}
             <Link
               to={`/settings/add-user`}>
               <CommonButton title={"Add Staff"} />
@@ -172,7 +175,7 @@ const UserList = () => {
               </div>
             </div>
           </div>
-          <div className='tb-res-parent mt-4'>
+          <div className='tb-res-parent overflow-auto mt-4'>
             <div className='tb-res'>
               <table className='table table-hover table-bordered'>
                 <thead>
@@ -199,13 +202,23 @@ const UserList = () => {
                       {index + 1}
                       </th>
                       <td>
-                        <img src={user.img} style={{ height: "60px" }} alt='/' />
+
+                      {user.image ? (
+              <Avatar h={'40px'}
+                w={'40px'}
+                borderWidth={1}
+                borderColor={"#ccc"}
+                src={user.image} />
+            ) : (
+              <RxAvatar size={40} color={'#25324B'} />
+            )}
+                        {/* <img src={user.image} style={{ height: "60px" }} alt='staff' /> */}
                       </td>
                       <td className='fs-6'>{user.title}</td>
-                      <td className='fs-6'>{user.first_name}  {user.last_name}</td>
+                      <td className='fs-6 whitespace-nowrap'>{user.first_name}  {user.last_name}</td>
                       <td className='fs-6'>{user.email}</td>
                       <td className='fs-6'>{user.role}</td>
-                      <td className='fs-6'>
+                      <td className='fs-6 whitespace-nowrap'>
                         {user.faculty
                           ? user.faculty.name
                           : user.department
@@ -214,7 +227,7 @@ const UserList = () => {
                           ? user.unit.name
                           : 'N/A'}
                       </td>
-                      <td className='fs-6'>
+                      <td className='fs-6 whitespace-nowrap'>
                         {
                           user.department
                           ? user.department.name
@@ -226,7 +239,7 @@ const UserList = () => {
 
                       <td className='fs-6'>{user.status}</td>
                       <td
-                        className=' '
+                        className='flex gap-2 '
                         align='center'
                         style={{ cursor: "pointer" }}>
                         <MdModeEditOutline
@@ -237,12 +250,12 @@ const UserList = () => {
                         />
                         <MdOutlineRemoveRedEye
                           size={"25"}
-                          className='bg-secondary py-1 px-1 mt-2 text-white rounded-2'
+                          className='bg-secondary py-1 px-1  text-white rounded-2'
                           onClick={() => handleView(user.id)}
                         />
                         <RiDeleteBinFill
                           size={"25"}
-                          className='bg-secondary py-1 px-1 mt-2 text-white rounded-2'
+                          className='bg-secondary py-1 px-1  text-white rounded-2'
                           onClick={() => handleDeleteClick(user)}
                         />
                       </td>

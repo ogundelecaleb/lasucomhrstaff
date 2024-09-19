@@ -42,12 +42,12 @@ const Navbar = ({ mobile, setMobile, display, reuseableNavigation, userData }) =
 
   return (
     <div
-      className='border text-dark d-flex justify-content-between align-items-center sticky-top'
-      style={{ width: "100%", height: "10%", backgroundColor: "white" }}>
+      className='border text-dark flex justify-between items-center sticky-top'
+      style={{ width: "100%", backgroundColor: "white" }}>
       <div className='burger'>
         <div className={display ? "d-block" : "d-none"}>
           <button
-            className='col-lg-1 text-dark '
+            className=' text-dark '
             onClick={() => setMobile(!mobile)}>
             <i className='ms-3 fa fa-bars'></i>
           </button>
