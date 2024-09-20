@@ -29,6 +29,7 @@ const AddUser = () => {
   const [selectedConuass, setSelectedConuass] = useState("");
   const [selectedConunass, setSelectedConunass] = useState("");
   const [selectedLevel, setSelectedLevel] = useState("");
+  const [office, setOffice]= useState("")
 
   useEffect(() => {
     api
@@ -205,6 +206,7 @@ const AddUser = () => {
         conuass: selectedConuass,
         conunass: selectedConunass,
         level: selectedLevel,
+        office: office,
         confirmation: selectedConfirmed,
         total_leave_due: setEntitledLeave(),
         faculty_id: selectedFaculty.id,
@@ -220,7 +222,24 @@ const AddUser = () => {
       setIsLoading(false);
     }
   }
-
+const Offices = [
+  {id: 1,
+    name: "Office Of The Financial Controller"
+  },
+  {id: 2,
+    name: "Office Of The College Secretary"
+  },
+  {id: 3,
+    name: "Office Of The Deputy Provost"
+  },
+  {id: 4,
+    name: "Office Of The Provost"
+  },
+  {id:5 ,
+    name: "Office Of The Medical Librarian"
+  },
+  
+]
   return (
     <div className="pb-3 mb-5 shadow  mt-5 mx-2 md:mx-5">
       <p className="border-bottom mb-5 text-[18px] font-semibold ps-4 py-3"> Add User</p>
@@ -605,13 +624,39 @@ const AddUser = () => {
               "CS",
               "DPT",
 
-            ].includes(selectedRole) && (
-              <div className="my-5 form-group row">
+            ].includes(selectedRole) && (<>
+             <div className="my-5 form-group row">
                 <label
                   for="email"
                   className="text-[18px] font-medium col-md-2"
                   >
                   Office<sup className="text-danger">*</sup>
+                </label>
+                <div className="col-md-8">
+                  <select
+                    id="division"
+                    value={office}
+                    onChange={(e) => {
+                     setOffice(e.target.value)
+                    }}
+                    className="form-control rounded-0"
+                    style={{ height: "60px" }}
+                  >
+                    <option value="">Select Office</option>
+                    {Offices.map((office) => (
+                      <option key={office.id} value=  {office.name}>
+                        {office.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div className="my-5 form-group row">
+                <label
+                  for="email"
+                  className="text-[18px] font-medium col-md-2"
+                  >
+                  Unit/Division<sup className="text-danger">*</sup>
                 </label>
                 <div className="col-md-8">
                   <select
@@ -636,7 +681,49 @@ const AddUser = () => {
                   </select>
                 </div>
               </div>
+            </>
+            
             )}
+             {(selectedRole === "DEAN" ||
+            selectedRole === "RSWEP" ||
+            selectedRole === "HOD" ||
+            selectedDivision.id === 8) && (
+            <div className="my-5 form-group row">
+              <label
+                htmlFor="faculty"
+                className="text-[18px] font-medium col-md-2"
+                >
+                FACULTY<sup className="text-danger">*</sup>
+              </label>
+              <div className="col-md-8">
+                <select
+                  id="faculty"
+                  className="form-control rounded-0"
+                  style={{ height: "60px" }}
+                  value={selectedFaculty ? selectedFaculty.id : ""}
+                  onChange={(e) => {
+                    const selectedId = e.target.value;
+                    const selectedFacultyObject = facultyOptions.find(
+                      (faculty) => faculty.id === parseInt(selectedId)
+                    );
+                    console.log(
+                      "Selected Faculty Object:",
+                      selectedFacultyObject
+                    );
+                    setSelectedFaculty(selectedFacultyObject);
+                  }}
+                >
+                  <option value="">Select Faculty</option>
+                  {facultyOptions.map((faculty) => (
+                    <option key={faculty.id} value={faculty.id}>
+                      {faculty.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          )}
+
 
           {selectedRole === "HOD" && (
             <div>
@@ -677,6 +764,8 @@ const AddUser = () => {
             </div>
           )}
 
+          
+
           {(selectedRole === "RSWEP" || selectedDivision.id === 8) && (
             <div>
               <div className="my-5 form-group row">
@@ -716,46 +805,7 @@ const AddUser = () => {
             </div>
           )}
 
-          {(selectedRole === "DEAN" ||
-            selectedRole === "RSWEP" ||
-            selectedRole === "HOD" ||
-            selectedDivision.id === 8) && (
-            <div className="my-5 form-group row">
-              <label
-                htmlFor="faculty"
-                className="text-[18px] font-medium col-md-2"
-                >
-                FACULTY<sup className="text-danger">*</sup>
-              </label>
-              <div className="col-md-8">
-                <select
-                  id="faculty"
-                  className="form-control rounded-0"
-                  style={{ height: "60px" }}
-                  value={selectedFaculty ? selectedFaculty.id : ""}
-                  onChange={(e) => {
-                    const selectedId = e.target.value;
-                    const selectedFacultyObject = facultyOptions.find(
-                      (faculty) => faculty.id === parseInt(selectedId)
-                    );
-                    console.log(
-                      "Selected Faculty Object:",
-                      selectedFacultyObject
-                    );
-                    setSelectedFaculty(selectedFacultyObject);
-                  }}
-                >
-                  <option value="">Select Faculty</option>
-                  {facultyOptions.map((faculty) => (
-                    <option key={faculty.id} value={faculty.id}>
-                      {faculty.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          )}
-
+         
           <div className="my-5 form-group row">
             <label
               htmlFor="staffType"

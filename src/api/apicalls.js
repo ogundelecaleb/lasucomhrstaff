@@ -47,7 +47,8 @@ import {
   REVIEW,
   CBT,
   INTERVIEW,
-  HIRE
+  HIRE,
+  CARRYOVER
 } from "../utils/config";
 import { apiGet, apiPost, apiPut, apiDelete } from "../utils/utils";
 
@@ -257,5 +258,8 @@ export function interview(id, data) {
 
 export function hire(id, data) {
   return apiPost(HIRE + id, data);
+}
+export function caaryoverLeave( data) {
+  return apiPost(CARRYOVER, data);
 }
 

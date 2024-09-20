@@ -19,6 +19,7 @@ import EditRole from '../pages/adminpages/settings/EditRole';
 import EditUser from "../pages/adminpages/settings/EditUser";
 import PersonalRecord from "../pages/adminpages/settings/personalrecord/PersonalRecord";
 import EditDivision from "../pages/adminpages/settings/EditDivision";
+import CarryOverLeave from "../pages/adminpages/leave/CarryOverLeave";
 
 const AdminSettingsRoute = () => {
   const navigate = useNavigate();

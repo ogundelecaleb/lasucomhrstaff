@@ -8,6 +8,7 @@ import { SnackbarProvider } from "notistack";
 import { Toaster } from "react-hot-toast";
 import SeeJobs from "./pages/SeeJobs";
 import ApplyJob from "./pages/ApplyJobs";
+import CarryOverLeave from "./pages/adminpages/leave/CarryOverLeave";
 
 
 const queryClient = new QueryClient({
@@ -30,6 +31,7 @@ function App() {
                 <Route path='/' exact element={<Login />} />
                 <Route path='/career' exact element={<SeeJobs />} />
                 <Route path='/apply' exact element={<ApplyJob />} />
+                <Route path='/carryover' exact element={<CarryOverLeave />} />
                 <Route path='/*' element={<AdminDashboard />} />
               </Routes>
             </div>

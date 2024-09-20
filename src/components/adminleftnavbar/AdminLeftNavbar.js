@@ -5,6 +5,8 @@ import { MdDashboard, MdMoveToInbox, MdAccountTree, MdSupervisedUserCircle } fro
 import { IoMdCalendar,IoMdSettings } from "react-icons/io";
 import { RxReload } from "react-icons/rx";
 import { RiBubbleChartFill } from "react-icons/ri";
+import { FcLeave } from "react-icons/fc";
+
 import { HiUpload } from "react-icons/hi";
 import { MdInsertChart } from "react-icons/md";
 import { Link, useMatch, useResolvedPath,useNavigate } from "react-router-dom";
@@ -90,10 +92,19 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
             id='hoverEffect'
             className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
             style={{ height: "48px", width: "90%" }}>
-            <RxReload size='25' style={{ color: "#84818A" }} />
+            <FcLeave size='25' style={{ color: "#84818A" }} />
             Leave
           </div>
         </CustomLink>
+        <Link to='/carryover'>
+          <div
+            id='hoverEffect'
+            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <RxReload size='25' style={{ color: "#84818A" }} />
+            Leave Carryover
+          </div>
+        </Link>
 
         <CustomLink to='promotion'>
           <div
