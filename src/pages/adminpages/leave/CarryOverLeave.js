@@ -85,12 +85,14 @@ const CarryOverLeave = () => {
         staff_id: userId,
       });
       console.log("responce==>>>>>", response);
+      closeSumbitModal()
       enqueueSnackbar("Leave carried over successfully", {
         variant: "success",
       });
       setLoading(false);
     } catch (error) {
       console.log(error);
+      closeSumbitModal()
       enqueueSnackbar(error.message, { variant: "error" });
       setLoading(false);
     }
@@ -185,7 +187,7 @@ const CarryOverLeave = () => {
                       <th scope="col">Full Name</th>
 
                       <th scope="col">Department/Unit</th>
-                      <th scope="col">Unused Leave</th>
+                      <th scope="col">Current Leave</th>
 
                       <th scope="col">Action</th>
                     </tr>
@@ -244,8 +246,8 @@ const CarryOverLeave = () => {
                   </ModalBody>
                   <ModalFooter>
                     <Button colorScheme="red" mr={3} onClick={handleSubmit}>
-                      {isLoading ? (
-                        <ClipLoader color={"white"} size={4} />
+                      {Loading ? (
+                        <ClipLoader color={"white"} size={16} />
                       ) : (
                         "Yes"
                       )}{" "}
