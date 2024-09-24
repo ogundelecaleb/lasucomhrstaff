@@ -32,6 +32,7 @@ const AddUser = () => {
   const [office, setOffice] = useState("");
   const [dofa, setDofa] = useState("");
   const [step, setStep] = useState("");
+  const [cadre, setCadre]= useState("");
 
   useEffect(() => {
     api
@@ -476,11 +477,32 @@ const AddUser = () => {
               </div>
             </div>
           )}
-
           {selectedStaffType === "NASE" && (
             <div className="my-5 form-group row">
               <label for="email" className="text-[18px] font-medium col-md-2">
-                CONUNASS<sup className="text-danger">*</sup>
+                Cadre<sup className="text-danger">*</sup>
+              </label>
+              <div className="col-md-8">
+                <select
+                  id="conunass"
+                  value={cadre}
+                  onChange={(e) => setCadre(e.target.value)}
+                  className="form-control rounded-0"
+                  style={{ height: "60px" }}
+                >
+                  <option value="">Select Cadre</option>
+                  <option value="CONUNASS">CONUNASS</option>
+                  <option value="CONUATSS">CONUATSS</option>
+                </select>
+              </div>
+            </div>
+          )}
+
+
+          {cadre && (
+            <div className="my-5 form-group row">
+              <label for="email" className="text-[18px] font-medium col-md-2">
+                {cadre}<sup className="text-danger">*</sup>
               </label>
               <div className="col-md-8">
                 <select
@@ -551,6 +573,30 @@ const AddUser = () => {
               </div>
             </div>
           )}
+           <div className="my-5 form-group row">
+            <label for="email" className="text-[18px] font-medium col-md-2">
+              Step<sup className="text-danger">*</sup>
+            </label>
+            <div className="col-md-8">
+              <select
+                id="step"
+                value={step}
+                onChange={(e) => {
+                  setStep(e.target.value);
+                }}
+                className="form-control rounded-0"
+                style={{ height: "60px" }}
+              >
+                <option value="">Select Step</option>
+                {array.map((result) => (
+                  <option key={office.id} value={result.id}>
+                    {result.id}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
 
           <div className="my-5 form-group row">
             <label
@@ -577,7 +623,7 @@ const AddUser = () => {
             </div>
           </div>
 
-          {(selectedRole === "HOU" || selectedRole === "DP") && (
+          {/* {(selectedRole === "HOU" || selectedRole === "DP") && (
             <div className="my-5 form-group row">
               <label for="email" className="text-[18px] font-medium col-md-2">
                 Office<sup className="text-danger">*</sup>
@@ -609,7 +655,7 @@ const AddUser = () => {
                 </select>
               </div>
             </div>
-          )}
+          )} */}
 
           {selectedStaffType === "NASE" &&
             selectedRole &&
@@ -791,30 +837,7 @@ const AddUser = () => {
             </div>
           )}
 
-          <div className="my-5 form-group row">
-            <label for="email" className="text-[18px] font-medium col-md-2">
-              Step<sup className="text-danger">*</sup>
-            </label>
-            <div className="col-md-8">
-              <select
-                id="step"
-                value={step}
-                onChange={(e) => {
-                  setStep(e.target.value);
-                }}
-                className="form-control rounded-0"
-                style={{ height: "60px" }}
-              >
-                <option value="">Select Step</option>
-                {array.map((result) => (
-                  <option key={office.id} value={result.id}>
-                    {result.id}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
+         
           <div className="my-5 form-group row">
             <label for="email" className="text-[18px] font-medium col-md-2">
               Date Of First Appointment<sup className="text-danger">*</sup>

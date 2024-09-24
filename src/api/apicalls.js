@@ -48,7 +48,8 @@ import {
   CBT,
   INTERVIEW,
   HIRE,
-  CARRYOVER
+  CARRYOVER,
+  ASSIGNROLE
 } from "../utils/config";
 import { apiGet, apiPost, apiPut, apiDelete } from "../utils/utils";
 
@@ -261,5 +262,9 @@ export function hire(id, data) {
 }
 export function caaryoverLeave( data) {
   return apiPost(CARRYOVER, data);
+}
+
+export function assignRole( data) {
+  return apiPost(ASSIGNROLE, data);
 }
 

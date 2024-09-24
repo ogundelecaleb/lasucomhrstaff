@@ -60,3 +60,4 @@ export const CBT = getApiUrl("/job-application/cbt-interview/");
 export const INTERVIEW = getApiUrl("/job-application/interview/");
 export const HIRE = getApiUrl("/job-application/hire_or_decline_applicant/");
 export const CARRYOVER = getApiUrl("/add-unused-leave-to-current-year");
+export const ASSIGNROLE = getApiUrl("/assign-role");
