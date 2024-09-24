@@ -218,8 +218,9 @@ const UserList = () => {
                       <td className='fs-6'>{user.title}</td>
                       <td className='fs-6 whitespace-nowrap'>{user.first_name}  {user.last_name}</td>
                       <td className='fs-6'>{user.email}</td>
-                      <td className='fs-6'>{user.role}</td>
+                      
                       <td className='fs-6'>{user.staff_number}</td>
+                      <td className='fs-6'>{user.role}</td>
                       <td className='fs-6 whitespace-nowrap'>
                         {user.faculty
                           ? user.faculty.name
