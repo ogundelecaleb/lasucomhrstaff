@@ -29,7 +29,9 @@ const AddUser = () => {
   const [selectedConuass, setSelectedConuass] = useState("");
   const [selectedConunass, setSelectedConunass] = useState("");
   const [selectedLevel, setSelectedLevel] = useState("");
-  const [office, setOffice]= useState("")
+  const [office, setOffice] = useState("");
+  const [dofa, setDofa] = useState("");
+  const [step, setStep] = useState("");
 
   useEffect(() => {
     api
@@ -211,6 +213,8 @@ const AddUser = () => {
         total_leave_due: setEntitledLeave(),
         faculty_id: selectedFaculty.id,
         department_id: selectedDepartment.id,
+        date_of_first_appointment: dofa,
+        step: step,
       });
       console.log("responce==>>>>>", response);
       enqueueSnackbar("User added successfully", { variant: "success" });
@@ -222,27 +226,43 @@ const AddUser = () => {
       setIsLoading(false);
     }
   }
-const Offices = [
-  {id: 1,
-    name: "Office Of The Financial Controller"
-  },
-  {id: 2,
-    name: "Office Of The College Secretary"
-  },
-  {id: 3,
-    name: "Office Of The Deputy Provost"
-  },
-  {id: 4,
-    name: "Office Of The Provost"
-  },
-  {id:5 ,
-    name: "Office Of The Medical Librarian"
-  },
-  
-]
+  const Offices = [
+    { id: 1, name: "Office Of The Financial Controller" },
+    { id: 2, name: "Office Of The College Secretary" },
+    { id: 3, name: "Office Of The Deputy Provost" },
+    { id: 4, name: "Office Of The Provost" },
+    { id: 5, name: "Office Of The Medical Librarian" },
+  ];
+
+  const array = [
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+    { id: 6 },
+    { id: 7 },
+    { id: 8 },
+    { id: 9 },
+    { id: 10 },
+    { id: 11 },
+    { id: 12 },
+    { id: 13 },
+    { id: 14 },
+    { id: 15 },
+    { id: 16 },
+    { id: 17 },
+    { id: 18 },
+    { id: 19 },
+    { id: 20 },
+  ];
+
   return (
     <div className="pb-3 mb-5 shadow  mt-5 mx-2 md:mx-5">
-      <p className="border-bottom mb-5 text-[18px] font-semibold ps-4 py-3"> Add User</p>
+      <p className="border-bottom mb-5 text-[18px] font-semibold ps-4 py-3">
+        {" "}
+        Add User
+      </p>
       <div className="px-4">
         <form onSubmit={handleSubmit}>
           <div className="my-4 form-group row">
@@ -323,10 +343,7 @@ const Offices = [
           </div>
 
           <div className="my-5 form-group row">
-            <label
-              for="email"
-              className="text-[18px] font-medium col-md-2"
-            >
+            <label for="email" className="text-[18px] font-medium col-md-2">
               Email Address<sup className="text-danger">*</sup>
             </label>
             <div className="col-md-8">
@@ -341,10 +358,7 @@ const Offices = [
             </div>
           </div>
           <div className="my-5 form-group row">
-            <label
-              for="staffid"
-              className="text-[18px] font-medium col-md-2"
-            >
+            <label for="staffid" className="text-[18px] font-medium col-md-2">
               Staff ID<sup className="text-danger">*</sup>
             </label>
             <div className="col-md-8">
@@ -368,7 +382,7 @@ const Offices = [
             <div className="col-sm-8 d-flex gap-4">
               <div className="d-flex  align-items-center gap-3">
                 <input
-                 // style={{ height: "60px" }}
+                  // style={{ height: "60px" }}
                   id="active"
                   type="radio"
                   name="status"
@@ -419,10 +433,7 @@ const Offices = [
 
           {selectedStaffType === "ASE" && (
             <div className="my-5 form-group row">
-              <label
-                for="email"
-                className="text-[18px] font-medium col-md-2"
-                >
+              <label for="email" className="text-[18px] font-medium col-md-2">
                 CONUASS<sup className="text-danger">*</sup>
               </label>
               <div className="col-md-8">
@@ -451,10 +462,7 @@ const Offices = [
 
           {selectedStaffType === "ASE" && selectedConuass && (
             <div className="my-5 form-group row">
-              <label
-                for="email"
-                className="text-[18px] font-medium col-md-2"
-                >
+              <label for="email" className="text-[18px] font-medium col-md-2">
                 Current Level
               </label>
               <div className="col-md-8">
@@ -471,10 +479,7 @@ const Offices = [
 
           {selectedStaffType === "NASE" && (
             <div className="my-5 form-group row">
-              <label
-                for="email"
-                className="text-[18px] font-medium col-md-2"
-                >
+              <label for="email" className="text-[18px] font-medium col-md-2">
                 CONUNASS<sup className="text-danger">*</sup>
               </label>
               <div className="col-md-8">
@@ -495,10 +500,7 @@ const Offices = [
 
           {selectedStaffType === "NASE" && selectedConunass === "Senior" && (
             <div className="my-5 form-group row">
-              <label
-                for="email"
-                className="text-[18px] font-medium col-md-2"
-                >
+              <label for="email" className="text-[18px] font-medium col-md-2">
                 Current Level<sup className="text-danger">*</sup>
               </label>
               <div className="col-md-8">
@@ -527,10 +529,7 @@ const Offices = [
 
           {selectedStaffType === "NASE" && selectedConunass === "Junior" && (
             <div className="my-5 form-group row">
-              <label
-                for="email"
-                className="text-[18px] font-medium col-md-2"
-                >
+              <label for="email" className="text-[18px] font-medium col-md-2">
                 Current Level<sup className="text-danger">*</sup>
               </label>
               <div className="col-md-8">
@@ -580,10 +579,7 @@ const Offices = [
 
           {(selectedRole === "HOU" || selectedRole === "DP") && (
             <div className="my-5 form-group row">
-              <label
-                for="email"
-                className="text-[18px] font-medium col-md-2"
-                >
+              <label for="email" className="text-[18px] font-medium col-md-2">
                 Office<sup className="text-danger">*</sup>
               </label>
               <div className="col-md-8">
@@ -617,74 +613,67 @@ const Offices = [
 
           {selectedStaffType === "NASE" &&
             selectedRole &&
-            ![
-              "DEAN",
-              "HOD",
-              "PT",
-              "CS",
-              "DPT",
-
-            ].includes(selectedRole) && (<>
-             <div className="my-5 form-group row">
-                <label
-                  for="email"
-                  className="text-[18px] font-medium col-md-2"
+            !["DEAN", "HOD", "PT", "CS", "DPT"].includes(selectedRole) && (
+              <>
+                <div className="my-5 form-group row">
+                  <label
+                    for="email"
+                    className="text-[18px] font-medium col-md-2"
                   >
-                  Office<sup className="text-danger">*</sup>
-                </label>
-                <div className="col-md-8">
-                  <select
-                    id="division"
-                    value={office}
-                    onChange={(e) => {
-                     setOffice(e.target.value)
-                    }}
-                    className="form-control rounded-0"
-                    style={{ height: "60px" }}
-                  >
-                    <option value="">Select Office</option>
-                    {Offices.map((office) => (
-                      <option key={office.id} value=  {office.name}>
-                        {office.name}
-                      </option>
-                    ))}
-                  </select>
+                    Office<sup className="text-danger">*</sup>
+                  </label>
+                  <div className="col-md-8">
+                    <select
+                      id="division"
+                      value={office}
+                      onChange={(e) => {
+                        setOffice(e.target.value);
+                      }}
+                      className="form-control rounded-0"
+                      style={{ height: "60px" }}
+                    >
+                      <option value="">Select Office</option>
+                      {Offices.map((office) => (
+                        <option key={office.id} value={office.name}>
+                          {office.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div className="my-5 form-group row">
-                <label
-                  for="email"
-                  className="text-[18px] font-medium col-md-2"
+                <div className="my-5 form-group row">
+                  <label
+                    for="email"
+                    className="text-[18px] font-medium col-md-2"
                   >
-                  Unit/Division<sup className="text-danger">*</sup>
-                </label>
-                <div className="col-md-8">
-                  <select
-                    id="division"
-                    value={selectedDivision ? selectedDivision.id : ""}
-                    onChange={(e) => {
-                      const selectedId = e.target.value;
-                      const selectedDivisionObject = divisionOptions.find(
-                        (division) => division.id === parseInt(selectedId)
-                      );
-                      setSelectedDivision(selectedDivisionObject);
-                    }}
-                    className="form-control rounded-0"
-                    style={{ height: "60px" }}
-                  >
-                    <option value="">Select Unit</option>
-                    {divisionOptions.map((division) => (
-                      <option key={division.id} value={division.id}>
-                        {division.name}
-                      </option>
-                    ))}
-                  </select>
+                    Unit/Division<sup className="text-danger">*</sup>
+                  </label>
+                  <div className="col-md-8">
+                    <select
+                      id="division"
+                      value={selectedDivision ? selectedDivision.id : ""}
+                      onChange={(e) => {
+                        const selectedId = e.target.value;
+                        const selectedDivisionObject = divisionOptions.find(
+                          (division) => division.id === parseInt(selectedId)
+                        );
+                        setSelectedDivision(selectedDivisionObject);
+                      }}
+                      className="form-control rounded-0"
+                      style={{ height: "60px" }}
+                    >
+                      <option value="">Select Unit</option>
+                      {divisionOptions.map((division) => (
+                        <option key={division.id} value={division.id}>
+                          {division.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
-              </div>
-            </>
-            
+              </>
             )}
-             {(selectedRole === "DEAN" ||
+          {(selectedRole === "DEAN" ||
             selectedRole === "RSWEP" ||
             selectedRole === "HOD" ||
             selectedDivision.id === 8) && (
@@ -692,7 +681,7 @@ const Offices = [
               <label
                 htmlFor="faculty"
                 className="text-[18px] font-medium col-md-2"
-                >
+              >
                 FACULTY<sup className="text-danger">*</sup>
               </label>
               <div className="col-md-8">
@@ -724,14 +713,13 @@ const Offices = [
             </div>
           )}
 
-
           {selectedRole === "HOD" && (
             <div>
               <div className="my-5 form-group row">
                 <label
                   htmlFor="department"
                   className="text-[18px] font-medium col-md-2"
-                  >
+                >
                   DEPARTMENT<sup className="text-danger">*</sup>
                 </label>
                 <div className="col-md-8">
@@ -763,8 +751,6 @@ const Offices = [
               </div>
             </div>
           )}
-
-          
 
           {(selectedRole === "RSWEP" || selectedDivision.id === 8) && (
             <div>
@@ -772,7 +758,7 @@ const Offices = [
                 <label
                   htmlFor="department"
                   className="text-[18px] font-medium col-md-2"
-                  >
+                >
                   DEPARTMENT<sup className="text-danger">*</sup>
                 </label>
                 <div className="col-md-8">
@@ -805,7 +791,48 @@ const Offices = [
             </div>
           )}
 
-         
+          <div className="my-5 form-group row">
+            <label for="email" className="text-[18px] font-medium col-md-2">
+              Step<sup className="text-danger">*</sup>
+            </label>
+            <div className="col-md-8">
+              <select
+                id="step"
+                value={step}
+                onChange={(e) => {
+                  setStep(e.target.value);
+                }}
+                className="form-control rounded-0"
+                style={{ height: "60px" }}
+              >
+                <option value="">Select Step</option>
+                {array.map((result) => (
+                  <option key={office.id} value={result.id}>
+                    {result.id}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="my-5 form-group row">
+            <label for="email" className="text-[18px] font-medium col-md-2">
+              Date Of First Appointment<sup className="text-danger">*</sup>
+            </label>
+            <div className="col-md-8">
+              <input
+                type="date"
+                id="first Appointment"
+                value={dofa}
+                onChange={(e) => {
+                  setDofa(e.target.value);
+                }}
+                className="form-control rounded-0"
+                style={{ height: "60px" }}
+              />
+            </div>
+          </div>
+
           <div className="my-5 form-group row">
             <label
               htmlFor="staffType"

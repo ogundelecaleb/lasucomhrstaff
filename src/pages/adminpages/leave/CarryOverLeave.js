@@ -187,6 +187,7 @@ const CarryOverLeave = () => {
                       <th scope="col">Full Name</th>
 
                       <th scope="col">Department/Unit</th>
+                      <th scope="col">Leave From Last Year</th>
                       <th scope="col">Current Leave</th>
 
                       <th scope="col">Action</th>
@@ -210,7 +211,7 @@ const CarryOverLeave = () => {
                             ? user.unit.name
                             : "N/A"}
                         </td>
-                        {/* <td className="fs-6">{user.email}</td> */}
+                        <td className="fs-6">{user.last_year_leave}</td>
 
                         <td className="fs-6">{user.total_leave_due}</td>
                         <td
@@ -239,10 +240,10 @@ const CarryOverLeave = () => {
               <Modal isOpen={isOpen} onClose={closeSumbitModal}>
                 <ModalOverlay />
                 <ModalContent>
-                  <ModalHeader>Confirm Delete</ModalHeader>
+                  <ModalHeader>Confirm Leave Carryover</ModalHeader>
                   <ModalCloseButton />
                   <ModalBody>
-                    Are you sure you want to delete this role?
+                    Are you sure you want to carryover this leave?
                   </ModalBody>
                   <ModalFooter>
                     <Button colorScheme="red" mr={3} onClick={handleSubmit}>
