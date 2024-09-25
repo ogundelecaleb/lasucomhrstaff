@@ -187,8 +187,8 @@ const CarryOverLeave = () => {
                       <th scope="col">Full Name</th>
 
                       <th scope="col">Department/Unit</th>
-                      <th scope="col">Leave From Last Year</th>
-                      <th scope="col">Current Leave</th>
+                      <th scope="col" className="whitespace-nowrap">Leave From Last Year</th>
+                      <th scope="col" className="whitespace-nowrap">Current Leave</th>
 
                       <th scope="col">Action</th>
                     </tr>
@@ -227,7 +227,7 @@ const CarryOverLeave = () => {
                           /> */}
                           <button
                             onClick={() => handleSubmitModal(user.id)}
-                            className="px-2 p-1 rounded-md border-[0.3px] border-slate-500 text-sm flex gap-1 items-center"
+                            className="px-2 p-1 rounded-md border-[0.3px] border-slate-500 text-sm flex gap-1 items-center whitespace-nowrap"
                           >
                             Carryover Unused Leave{" "}
                           </button>

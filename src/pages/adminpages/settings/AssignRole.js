@@ -106,6 +106,7 @@ const AssignRole = () => {
         variant: "success",
       });
       setLoading(false);
+      refetch();
     } catch (error) {
       console.log(error);
       closeSumbitModal();
@@ -153,7 +154,9 @@ const AssignRole = () => {
               px="5"
               justifyContent="space-between"
             >
-              <Text className="text-[18px] font-semibold">Assign Roles To Staff</Text>{" "}
+              <Text className="text-[18px] font-semibold">
+                Assign Roles To Staff
+              </Text>{" "}
               <Link to={`/settings/add-user`}>
                 <CommonButton title={"Add Staff"} />
               </Link>
@@ -203,7 +206,9 @@ const AssignRole = () => {
                       <th scope="col">Title</th>
                       <th scope="col">Full Name</th>
                       <th scope="col">PF</th>
-                      <th scope="col" className="whitespace-nowrap">Staff Type</th>
+                      <th scope="col" className="whitespace-nowrap">
+                        Staff Type
+                      </th>
                       <th scope="col">Role</th>
 
                       <th scope="col">Department/Unit</th>
@@ -266,7 +271,8 @@ const AssignRole = () => {
                     <div class="mb-3 flex flex-col">
                       <div>
                         <label class=" font-semibold">
-                          Current Role: <span className="font-normal">{userRole}</span> 
+                          Current Role:{" "}
+                          <span className="font-normal">{userRole}</span>
                         </label>
                       </div>
                     </div>
