@@ -431,6 +431,31 @@ const AddUser = () => {
               </select>
             </div>
           </div>
+          <div className="my-5 form-group row">
+            <label
+              for="inputPassword"
+              className="text-[18px] font-medium col-md-2"
+            >
+              Designation <sup className="text-danger">*</sup>
+            </label>
+            <div className="col-sm-8 d-flex gap-4">
+              <select
+                id="role"
+                value={selectedRole}
+                onChange={handleRoleChange}
+                className="form-control rounded-0"
+                style={{ height: "60px" }}
+              >
+                <option value="">Select Role</option>
+                {roleData.map((role) => (
+                  <option key={role.id} value={role.name}>
+                    {role.description}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
 
           {selectedStaffType === "ASE" && (
             <div className="my-5 form-group row">
@@ -477,7 +502,7 @@ const AddUser = () => {
               </div>
             </div>
           )}
-          {selectedStaffType === "NASE" && (
+          {selectedStaffType === "NASE" && (selectedRole !== "PROVOST" || selectedRole !== "CS") && (
             <div className="my-5 form-group row">
               <label for="email" className="text-[18px] font-medium col-md-2">
                 Cadre<sup className="text-danger">*</sup>
@@ -598,31 +623,7 @@ const AddUser = () => {
           </div>
 
 
-          <div className="my-5 form-group row">
-            <label
-              for="inputPassword"
-              className="text-[18px] font-medium col-md-2"
-            >
-              Designation <sup className="text-danger">*</sup>
-            </label>
-            <div className="col-sm-8 d-flex gap-4">
-              <select
-                id="role"
-                value={selectedRole}
-                onChange={handleRoleChange}
-                className="form-control rounded-0"
-                style={{ height: "60px" }}
-              >
-                <option value="">Select Role</option>
-                {roleData.map((role) => (
-                  <option key={role.id} value={role.name}>
-                    {role.description}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
+         
           {/* {(selectedRole === "HOU" || selectedRole === "DP") && (
             <div className="my-5 form-group row">
               <label for="email" className="text-[18px] font-medium col-md-2">
