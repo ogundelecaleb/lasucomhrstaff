@@ -27,6 +27,7 @@ import ApplicantsDetails from "../pages/adminpages/job-applicants/ApplicantsDeta
 import AvailableJobs from "../pages/adminpages/job-applicants/AvailableJobs";
 import JobApplicants from "../pages/adminpages/job-applicants/JobApplicants";
 import CarryOverLeave from "../pages/adminpages/leave/CarryOverLeave";
+import RecallLeave from "../pages/adminpages/leave/RecallLeave";
 
 const AdminDashboardRoute = ({ mobile, setMobile, display }) => {
   // const navigate = useNavigate();
@@ -66,6 +67,7 @@ const AdminDashboardRoute = ({ mobile, setMobile, display }) => {
         <Route path="/staff/*" exact element={<AdminStaffRoute />} />
         <Route path="calender" exact element={<Calender />} />
         <Route path="/carryover-leave" element={<CarryOverLeave />} />
+        <Route path="/recall-leave" element={<RecallLeave />} />
 
         <Route
           path="/job-applicants/*"

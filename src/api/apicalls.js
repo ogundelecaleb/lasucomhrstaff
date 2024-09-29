@@ -49,7 +49,9 @@ import {
   INTERVIEW,
   HIRE,
   CARRYOVER,
-  ASSIGNROLE
+  ASSIGNROLE,
+  STAFFONLEAVE,
+  RECALLSTAFF
 } from "../utils/config";
 import { apiGet, apiPost, apiPut, apiDelete } from "../utils/utils";
 
@@ -266,5 +268,12 @@ export function caaryoverLeave( data) {
 
 export function assignRole( data) {
   return apiPost(ASSIGNROLE, data);
+}
+
+export function staffOnLeave(data) {
+  return apiGet(STAFFONLEAVE, data);
+}
+export function recallStaff(data) {
+  return apiPost(RECALLSTAFF, data);
 }
 

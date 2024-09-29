@@ -13,6 +13,8 @@ import { Link, useMatch, useResolvedPath,useNavigate } from "react-router-dom";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { useState } from "react";
 import LogoutModal from "../../pages/adminpages/logout/Logout";
+import { IoPlayBackOutline } from "react-icons/io5";
+
 
 const AdminLeftNavbar = ({ mobile, setMobile }) => {
 
@@ -103,6 +105,16 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
             style={{ height: "48px", width: "90%" }}>
             <RxReload size='25' style={{ color: "#84818A" }} />
             Leave Carryover
+          </div>
+        </Link>
+
+        <Link to='/recall-leave'>
+          <div
+            id='hoverEffect'
+            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <IoPlayBackOutline size='25' style={{ color: "#84818A" }} />
+            Recall Leave
           </div>
         </Link>
 
