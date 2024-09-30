@@ -54,7 +54,7 @@ const RecallLeave = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [Loading, setLoading] = useState(false);
   const [daysRemaining, setDaysRemaing] = useState("");
-  const [reason, setReason] = useState("")
+  const [reason, setReason] = useState("");
 
   async function staffOnLeave(page) {
     const response = await api.staffOnLeave(searchTerm);
@@ -80,12 +80,12 @@ const RecallLeave = () => {
 
   async function handleSubmit() {
     setLoading(true);
-    if(!userId ){
-        enqueueSnackbar("Please select a staff", { variant: "error" });
+    if (!userId) {
+      enqueueSnackbar("Please select a staff", { variant: "error" });
       return;
     }
-    if(!userId ){
-        enqueueSnackbar("Days Remaining is Empty", { variant: "error" });
+    if (!userId) {
+      enqueueSnackbar("Days Remaining is Empty", { variant: "error" });
       return;
     }
 
@@ -93,7 +93,7 @@ const RecallLeave = () => {
       const response = await api.recallStaff({
         staff_id: userId,
         leave_duration: daysRemaining,
-        reason: reason
+        reason: reason,
       });
       console.log("responce==>>>>>", response);
       closeSumbitModal();
@@ -142,7 +142,9 @@ const RecallLeave = () => {
           <div className=" px-4">
             <div className="row mt-4 pa-res px-3">
               <div className="col-lg-4 pt-3 " style={{ height: "70px" }}>
-                <p className="fs-5 ">Recall Staffs On Leave :                   {data?.users.length}</p>
+                <p className="fs-5 ">
+                  Recall Staffs On Leave : {data?.users.length}
+                </p>
               </div>
               <div className="col-lg-3 " style={{ height: "70px" }}>
                 <div style={{ position: "relative" }}>
@@ -188,25 +190,19 @@ const RecallLeave = () => {
                       </th>
                       <th scope="col" className="fw-light py-3 text-muted fs-6">
                         Staff Name{" "}
-                     
                       </th>
                       <th scope="col" className="fw-light py-3 text-muted fs-6">
                         Leave Request
-                      
                       </th>
                       <th scope="col" className="fw-light py-3 text-muted fs-6">
                         Leave Duration
-                       
                       </th>
                       <th scope="col" className="fw-light py-3 text-muted fs-6">
                         Leave Start Date
-                      
                       </th>
                       <th scope="col" className="fw-light py-3 text-muted fs-6">
                         Status{" "}
-                        
                       </th>
-
                       <th scope="col" className="fw-light py-3 text-muted fs-6">
                         Action{" "}
                       </th>
@@ -214,10 +210,16 @@ const RecallLeave = () => {
                   </thead>
 
                   <br />
-
+                  {/* {data?.users
+                    ?.filter((item) =>
+                        item?.first_name
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase())
+                    )
+                    .map((item) => ( */}
                   {isLoading && !isPreviousData && <div>Loading...</div>}
                   {data?.users
-                    ?.filter((result) => result?.onleave)
+                    ?.filter((result) => result?.on_leave)
                     .map((item) => (
                       <tbody key={item.id} className="border">
                         <tr>
@@ -230,15 +232,11 @@ const RecallLeave = () => {
                               {item.first_name} {item.last_name}
                             </p>
                           </td>
-                          <td className="">
-                           {item.leave_type}
-                          </td>
-                          <td className="">
-                           {item.leave_duration}
-                          </td>
-                         
+                          <td className="">{item.leave_type}</td>
+                          <td className="">{item.leave_duration}</td>
+
                           <td className="fw-semibold">
-                        {formatDate(item.start_date)}
+                            {formatDate(item.start_date)}
                           </td>
                           <td>
                             <button className="btn fw-semibold   h-8 btn-sm rounded-2">
@@ -263,7 +261,7 @@ const RecallLeave = () => {
                               onClick={() => handleSubmitModal(item?.id)}
                               className="px-2 p-1 rounded-md border-[0.3px] border-slate-500 text-sm flex gap-1 items-center whitespace-nowrap"
                             >
-                           Recall Leave Days
+                              Recall Leave Days
                             </button>
                           </td>
                         </tr>
@@ -281,25 +279,28 @@ const RecallLeave = () => {
                 <ModalBody>
                   <div className="flex flex-col gap-2">
                     <label>Leave Days Remaining</label>
-                    <input 
-                    value={daysRemaining}
-                    onChange={(e)=> setDaysRemaing(e.target.value)}
-                    className="py-[6px] rounded-md border border-[#181818]" 
+                    <input
+                      value={daysRemaining}
+                      onChange={(e) => setDaysRemaing(e.target.value)}
+                      className="py-[6px] px-1 rounded-md border border-[#181818]"
                     />
                   </div>{" "}
-
                   <div className="flex flex-col gap-2 mt-2">
                     <label>Reason For Call back</label>
-                    <textarea 
-                    value={reason}
-                    onChange={(e)=> setReason(e.target.value)}
-                    className="py-[6px] min-h-[120px] rounded-md border border-[#181818]" 
+                    <textarea
+                      value={reason}
+                      onChange={(e) => setReason(e.target.value)}
+                      className="py-[4px] px-1 min-h-[120px] rounded-md border border-[#181818]"
                     />
                   </div>{" "}
                 </ModalBody>
                 <ModalFooter>
                   <Button colorScheme="red" mr={3} onClick={handleSubmit}>
-                    {Loading ? <ClipLoader color={"white"} size={16} /> : "Continue"}{" "}
+                    {Loading ? (
+                      <ClipLoader color={"white"} size={16} />
+                    ) : (
+                      "Continue"
+                    )}{" "}
                   </Button>
                   <Button onClick={closeSumbitModal}>Close</Button>
                 </ModalFooter>
