@@ -79,7 +79,7 @@ const EditUser = () => {
       status: userDetails.status || "",
       selectedConfirm: userDetails.confirmation || "",
     });
-    setSelectedDivision(userDetails?.unit?.name)
+    setSelectedDivision(userDetails?.unit?.id)
     setSelectedRole(userDetails.role || "");
     setSelectedConfirm(userDetails.confirmation || "");
   }, [userDetails]);
@@ -114,7 +114,12 @@ const EditUser = () => {
         role: formValues.selectedRole,
         total_leave_due: formValues.annualLeave,
         unit: selectedDivision.id,
-
+        maiden_name:userDetails?.maiden_name,
+        type: userDetails?.type,
+        conuass: userDetails?.conuass,
+        conunass: userDetails?.conunass,
+        level: userDetails?.level,
+        
       });
       console.log("responce==>>>>>", response);
       enqueueSnackbar("User updated successfully", { variant: "success" });
