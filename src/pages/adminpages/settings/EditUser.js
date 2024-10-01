@@ -14,6 +14,9 @@ const EditUser = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadinge, setIsLoadinge] = useState(false);
   const [userDetails, setUserDetails] = useState([]);
+  const [divisionOptions, setDivisionOptions] = useState([]);
+  const [selectedDivision, setSelectedDivision] = useState("");
+
   const [selectedRole, setSelectedRole] = useState(userDetails.role || "");
   const [selectedStatus, setSelectedStatus] = useState(
     userDetails.status || "active"
@@ -23,6 +26,15 @@ const EditUser = () => {
   );
   const [roleData, setRoleData] = useState([]);
   const { id } = useParams();
+
+  useEffect(() => {
+    api
+      .fetchDivision()
+      .then((response) => setDivisionOptions(response.data))
+      .catch((error) => {
+        enqueueSnackbar("Error fetching Divisions/Unit", { variant: "error" });
+      });
+  }, []);
 
   useEffect(() => {
     setIsLoadinge(true);
@@ -67,6 +79,7 @@ const EditUser = () => {
       status: userDetails.status || "",
       selectedConfirm: userDetails.confirmation || "",
     });
+    setSelectedDivision(userDetails?.unit?.name)
     setSelectedRole(userDetails.role || "");
     setSelectedConfirm(userDetails.confirmation || "");
   }, [userDetails]);
@@ -100,6 +113,8 @@ const EditUser = () => {
         status: formValues.status,
         role: formValues.selectedRole,
         total_leave_due: formValues.annualLeave,
+        unit: selectedDivision.id,
+
       });
       console.log("responce==>>>>>", response);
       enqueueSnackbar("User updated successfully", { variant: "success" });
@@ -302,6 +317,37 @@ const EditUser = () => {
                   </select>
                 </div>
               </div>
+
+              <div className="my-5 form-group row">
+                  <label
+                    for="email"
+                    className="text-[18px] font-medium col-md-2"
+                  >
+                    Unit/Division<sup className="text-danger">*</sup>
+                  </label>
+                  <div className="col-md-8">
+                    <select
+                      id="division"
+                      value={selectedDivision ? selectedDivision.id : ""}
+                      onChange={(e) => {
+                        const selectedId = e.target.value;
+                        const selectedDivisionObject = divisionOptions.find(
+                          (division) => division.id === parseInt(selectedId)
+                        );
+                        setSelectedDivision(selectedDivisionObject);
+                      }}
+                      className="form-control rounded-0"
+                      style={{ height: "60px" }}
+                    >
+                      <option value="">Select Unit</option>
+                      {divisionOptions.map((division) => (
+                        <option key={division.id} value={division.id}>
+                          {division.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
 
               <div className="my-5 form-group row">
                 <label
