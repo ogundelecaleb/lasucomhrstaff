@@ -18,12 +18,18 @@ import api from "../api";
 import { setUserData } from "../utils/utils";
 import { useSnackbar } from "notistack";
 import { ClipLoader, MoonLoader } from "react-spinners";
-import JobCard from "./adminpages/jobpenings/JobCard";
 import { NumericFormat } from "react-number-format";
+import {
+  EmailIcon,
+  FacebookIcon,
+  FacebookMessengerIcon,
+  TwitterIcon,
+  InstapaperIcon,
+} from "react-share";
 
 const SeeJobs = () => {
   const { enqueueSnackbar } = useSnackbar();
-const navigate= useNavigate()
+  const navigate = useNavigate();
   const [jobListings, setJobListings] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isApply, setIsApply] = useState(false);
@@ -75,7 +81,7 @@ const navigate= useNavigate()
     if (jobListings) {
       fetchJobDetails();
     }
-    checkJobExpire("2024-08-23")
+    checkJobExpire("2024-08-23");
   }, []);
 
   async function fetchJobDetails() {
@@ -125,7 +131,7 @@ const navigate= useNavigate()
     );
     formData.append("hobbies", formValues.hobbies);
     formData.append("skills", formValues.skills);
-    formData.append("references", JSON.stringify(reference) );
+    formData.append("references", JSON.stringify(reference));
     formData.append("reference_address", formValues.reference_address);
     formData.append("resume_file", formValues.resume_file);
     formData.append("birth_certificate", formValues.birth_certificate);
@@ -172,15 +178,14 @@ const navigate= useNavigate()
     const currentDate = new Date();
 
     // Calculate the difference in date
-    const diffTime = Math.floor( expDate - currentDate);
+    const diffTime = Math.floor(expDate - currentDate);
 
     // Convert the difference into milliseconds and then into days
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     //console.log("diff in days===>>>", diffDays);
 
-  if(diffDays < 0) return true
-   
-}
+    if (diffDays < 0) return true;
+  }
 
   return (
     <div>
@@ -224,7 +229,7 @@ const navigate= useNavigate()
       </div>
 
       <p className="text-[24px] md:text-[36px]  text-center py-4 md:py-8 font-normal  text-[#17082d]  ">
-        Availble Jobs !
+        Available Jobs !
       </p>
 
       <div className=" py-2 px-4 md:px-[40px] xl:px-[80px] md:py-3">
@@ -233,15 +238,17 @@ const navigate= useNavigate()
             {/* <JobCard job={job} /> */}
             <div className=" border-[0.2px] border-[#98a2b3] rounded-[8px] py-[11px] px-[10px]  md:px-[16px] w-full max-w-[560px]">
               <div className="flex items-center gap-1  mb-2">
-                <h5 className="card-title">Position: </h5>{" "}
-                <h5 className="card-title"> {job.title}</h5>
+                <h5 className="text-[#000] text-[16px] font-semibold leading-[24px] mb-0 ">
+                  Position:{" "}
+                </h5>{" "}
+                <p className="mb-0"> {job.title}</p>
               </div>
 
               <div className="flex  gap-1 mb-2 ">
                 <h5 className="text-[#000] text-[16px] font-semibold leading-[24px] mb-0 ">
                   Requirement:{" "}
                 </h5>{" "}
-                <p className="mb-0"> {job.requirements}</p>
+                <p className="mb-0 font-semibold"> {job.requirements}</p>
               </div>
 
               <div className="flex  gap-1 mb-2 ">
@@ -271,7 +278,11 @@ const navigate= useNavigate()
                 <h5 className="text-[#000] text-[16px] font-semibold leading-[24px] mb-0 whitespace-nowrap">
                   Closing:{" "}
                 </h5>{" "}
-                <p className="mb-0">{checkJobExpire(job.closing_date)? "Closed" : job.closing_date}</p>
+                <p className="mb-0">
+                  {checkJobExpire(job.closing_date)
+                    ? "Closed"
+                    : job.closing_date}
+                </p>
               </div>
 
               {jobId === job.id && (
@@ -511,6 +522,32 @@ const navigate= useNavigate()
                     <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
                       Academic Qualification
                     </label>
+
+                    <div>
+                      <label className="text-[14px] text-[#667185] leading-[16px]   mb-[4px] ">
+                        Institution
+                      </label>
+                      <div className=" relative    flex items-center">
+                        <input
+                          type="text"
+                          placeholder=""
+                          className="w-full pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                          required
+                          autoComplete="on"
+                          name="institution"
+                          // value={formValues.statement_of_experience}
+                          // onChange={(e) =>
+                          //   setFormValues({
+                          //     ...formValues,
+                          //     statement_of_experience: e.target.value,
+                          //   })
+                          // }
+                          autoCapitalize="off"
+                          autoCorrect="off"
+                          spellCheck="false"
+                        />
+                      </div>
+                    </div>
                     <div className=" relative    flex items-center">
                       <input
                         type="text"
@@ -641,9 +678,9 @@ const navigate= useNavigate()
                     <div key={index} style={{ marginBottom: "10px" }}>
                       <div className=" pe-">
                         <div class="form-group mb-2">
-                        <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-
-                           Reference Full Name <sup className="text-danger">*</sup>
+                          <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                            Reference Full Name{" "}
+                            <sup className="text-danger">*</sup>
                           </label>
                           <input
                             type="text"
@@ -660,13 +697,13 @@ const navigate= useNavigate()
                           <div className="col-lg-6">
                             <div class="form-group">
                               <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                               Reference Email <sup className="text-danger">*</sup>
+                                Reference Email{" "}
+                                <sup className="text-danger">*</sup>
                               </label>
                               <input
                                 type="text"
                                 style={{ height: "40px" }}
                                 className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-
                                 id="exampleFormControlInput1"
                                 name="contact"
                                 placeholder="090-090"
@@ -675,8 +712,6 @@ const navigate= useNavigate()
                               />
                             </div>
                           </div>
-                          
-                         
                         </div>
                       </div>
                     </div>
@@ -806,24 +841,27 @@ const navigate= useNavigate()
                 <div className="">
                   {" "}
                   <button
-                  disabled={checkJobExpire(job.closing_date)}
+                    disabled={checkJobExpire(job.closing_date)}
                     onClick={() => {
                       navigate("/apply", {
-                        state:{ job}
-                      })
+                        state: { job },
+                      });
                       if (jobId === job.id) {
                         handleSubmit();
                       } else {
                         setJobId(job.id);
                       }
-                     // console.log("referencess", reference)
+                      // console.log("referencess", reference)
                     }}
                     className="border-[0.2px]  border-[#98A2B3] w-[99px] bg-[#17082d] flex items-center justify-center text-center rounded-[8px] py-[12px] text-[14px] font-medium text-white"
                   >
                     {jobId === job.id && isLoading ? (
                       <ClipLoader color={"white"} size={20} />
                     ) : (
-                      <> {checkJobExpire(job.closing_date)? "Closed" : "Apply"}</>
+                      <>
+                        {" "}
+                        {checkJobExpire(job.closing_date) ? "Closed" : "Apply"}
+                      </>
                     )}
                   </button>
                 </div>
@@ -831,6 +869,25 @@ const navigate= useNavigate()
             </div>
           </div>
         ))}
+      </div>
+      <div className=" py-6 px-4 md:px-[40px] relative xl:px-[80px] md:py-9  flex flex-row justify-between   bg-[#17082d]">
+        <p className="text-sm text-white mb-0">
+          Copyright All Right Reserved {new Date().getFullYear()},{" "}
+          <a
+            href="https://lasucom.edu.ng/#"
+            target="_blank"
+            rel="noreferrer"
+            className="underlined"
+          >
+            lasucom.edu.ng
+          </a>{" "}
+        </p>
+
+        <div className="flex gap-2 items-center">
+          <TwitterIcon size={32} round={true} />
+          <InstapaperIcon size={32} round={true} />
+          <FacebookIcon size={32} round={true} />
+        </div>
       </div>
     </div>
   );

@@ -21,6 +21,7 @@ import PersonalRecord from "../pages/adminpages/settings/personalrecord/Personal
 import EditDivision from "../pages/adminpages/settings/EditDivision";
 import CarryOverLeave from "../pages/adminpages/leave/CarryOverLeave";
 import AssignRole from "../pages/adminpages/settings/AssignRole";
+import AddSupervisors from "../pages/adminpages/settings/AddSupervisors";
 
 const AdminSettingsRoute = () => {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ const AdminSettingsRoute = () => {
       <Routes>
         <Route path='/' element={<Settings />} />
         <Route path='add-user' element={<AddUser />} />
+        <Route path='add-supervisor' element={<AddSupervisors />} />
         <Route path='assign-role' element={<AssignRole />} />
         <Route path='user-list' element={<UserList />} />
         <Route path='permission-setup' element={<PermissionSetup />} />

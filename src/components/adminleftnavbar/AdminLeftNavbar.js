@@ -168,6 +168,14 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
           </div>
           <div className='d-flex flex-column align-items-center px-4'>
             <Link
+              to='settings/add-supervisor'
+              className='w-100 py-2 ps-2'
+              style={{ borderBottom: "1px solid #2D1460" }}>
+              Manage Supervisors
+            </Link>
+          </div>
+          <div className='d-flex flex-column align-items-center px-4'>
+            <Link
               to='settings/assign-role'
               className='w-100 py-2 ps-2'
               style={{ borderBottom: "1px solid #2D1460" }}>
