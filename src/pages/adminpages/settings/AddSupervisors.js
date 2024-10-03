@@ -234,7 +234,7 @@ const AddSupervisors = () => {
     <div className="pb-3 mb-5 shadow  mt-5 mx-2 md:mx-5">
       <p className="border-bottom mb-5 text-[18px] font-semibold ps-4 py-3">
         {" "}
-        Add User
+        Add Supervisor
       </p>
       <div className="px-4">
         <form onSubmit={handleSubmit}>
