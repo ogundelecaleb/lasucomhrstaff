@@ -179,7 +179,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
               to='settings/assign-role'
               className='w-100 py-2 ps-2'
               style={{ borderBottom: "1px solid #2D1460" }}>
-              Assign Role
+              Assign Designation
             </Link>
           </div>
           <div className='d-flex flex-column align-items-center px-4'>

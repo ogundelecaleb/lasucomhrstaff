@@ -65,6 +65,8 @@ const AssignRole = () => {
   const [roleData, setRoleData] = useState([]);
   const [role, setRole] = useState("");
   const [userRole, setUserRole] = useState("");
+  const [searchTerrm, setSearchTerm]= useState("")
+
 
   useEffect(() => {
     api
@@ -79,12 +81,12 @@ const AssignRole = () => {
   }, []);
 
   async function getUser(page) {
-    const response = await api.fetchUsers({ params: { page } });
+    const response = await api.fetchUsers({ params: { page, name: searchTerrm } });
     return response;
   }
 
   const { isLoading, isError, data, error, isPreviousData, refetch } = useQuery(
-    ["users", page],
+    ["users", page, searchTerrm],
     () => getUser(page),
     {
       keepPreviousData: true,
@@ -161,11 +163,7 @@ const AssignRole = () => {
                 <CommonButton title={"Add Staff"} />
               </Link>
             </Box>
-            <div className="d-flex justify-content-between">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
+         =
             <div className="row mt-1 pa-res px-3">
               <div
                 className="col-lg-3 d-flex gap-3 align-items-center "
@@ -184,6 +182,8 @@ const AssignRole = () => {
                       className="form-control mt-2 ps-5"
                       style={{ height: "45px" }}
                       placeholder="Search for staff"
+                      onChange={(e)=> setSearchTerm(e.target.value)}
+
                     />
                   </div>
                   <div

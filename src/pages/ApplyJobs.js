@@ -53,6 +53,19 @@ const ApplyJob = () => {
     birth_certificate: "",
   });
   const [reference, setReference] = useState([{ name: "", contact: "" }]);
+  const [academic, setAcademic] = useState([
+    { institution: "", degree: "", startDate: "", endDate: "", course: "" },
+  ]);
+  const [professional, setProfessional] = useState([
+    { institution: "", certificate: "", startDate: "", endDate: ""},
+  ]);
+  const [journal, setJournal] = useState([
+    { title: "", certificate: "", year: "", author: ""},
+  ]);
+
+  const [experience, setExperience] = useState([
+    { company: "", role: "", startDate: "", endDate: ""},
+  ]);
 
   const handleAddReference = () => {
     if (reference?.length >= 4) {
@@ -64,12 +77,60 @@ const ApplyJob = () => {
     console.log("beneficiaries?.length", reference?.length);
     setReference([...reference, { name: "", contact: "" }]);
   };
+  const handleAcademic = () => {
+    setAcademic([
+      ...academic,
+      { institution: "", degree: "", startDate: "", endDate: "", course: "" },
+    ]);
+  };
+  const handleProffesional = () => {
+    setProfessional([
+      ...professional,
+      { institution: "", certicate: "", startDate: "", endDate: "" },
+    ]);
+  };
+  const handleJournal = () => {
+    setJournal([
+      ...journal,
+      { title: "", certificate: "", year: "", author: ""},
+    ]);
+  };
+  const handleExperience = () => {
+    setExperience([
+      ...experience,
+      { company: "", role: "", startDate: "", endDate: ""},
+    ]);
+  };
 
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const newReference = [...reference];
     newReference[index][name] = value;
     setReference(newReference);
+  };
+  const handleAcademicChange = (index, event) => {
+    const { name, value } = event.target;
+    const newAcademic = [...academic];
+    newAcademic[index][name] = value;
+    setAcademic(newAcademic);
+  };
+  const handleProfessionalChange = (index, event) => {
+    const { name, value } = event.target;
+    const newProfessional = [...professional];
+    newProfessional[index][name] = value;
+    setProfessional(newProfessional);
+  };
+  const handleJounalChange = (index, event) => {
+    const { name, value } = event.target;
+    const newJournal = [...journal];
+    newJournal[index][name] = value;
+    setJournal(newJournal);
+  };
+  const handleExperienceChange = (index, event) => {
+    const { name, value } = event.target;
+    const newExperience = [...experience];
+    newExperience[index][name] = value;
+    setExperience(newExperience);
   };
 
   useEffect(() => {
@@ -202,59 +263,424 @@ const ApplyJob = () => {
       </div>
 
       <div className=" py-2 px-4 md:px-[40px] xl:px-[80px] md:py-3">
-     
-            <div className=" mx-auto  py-[11px] px-[10px]  md:px-[16px] w-full max-w-[560px]">
-              <div className="flex items-center gap-1  mb-2">
-                <h5 className="card-title">Position: </h5>{" "}
-                <h5 className="card-title"> {job.title}</h5>
-              </div>
+        <div className=" mx-auto  py-[11px] px-[10px]  md:px-[16px] w-full max-w-[560px]">
+          <div className="flex items-center gap-1  mb-2">
+            <h5 className="card-title">Position: </h5>{" "}
+            <h5 className="card-title"> {job.title}</h5>
+          </div>
 
-              <div className="flex  gap-1 mb-2 ">
-                <h5 className="text-[#000] text-[16px] font-semibold leading-[24px] mb-0 ">
-                  Requirement:{" "}
-                </h5>{" "}
-                <p className="mb-0"> {job.requirements}</p>
-              </div>
+          <div className="flex  gap-1 mb-2 ">
+            <h5 className="text-[#000] text-[16px] font-semibold leading-[24px] mb-0 ">
+              Requirement:{" "}
+            </h5>{" "}
+            <p className="mb-0"> {job.requirements}</p>
+          </div>
 
-              <div className="flex  gap-1 mb-2 ">
-                <h5 className="text-[#000] text-[16px] font-semibold leading-[24px] mb-0 whitespace-nowrap">
-                  Job description:{" "}
-                </h5>{" "}
-                <p className="mb-0"> {job.description}</p>
+          <div className="flex  gap-1 mb-2 ">
+            <h5 className="text-[#000] text-[16px] font-semibold leading-[24px] mb-0 whitespace-nowrap">
+              Job description:{" "}
+            </h5>{" "}
+            <p className="mb-0"> {job.description}</p>
+          </div>
+          <div className="flex  gap-1 mb-2 ">
+            <h5 className="text-[#000] text-[16px] font-semibold leading-[24px] mb-0 whitespace-nowrap">
+              Salary Expectation:{" "}
+            </h5>{" "}
+            <p className="mb-0">
+              {" "}
+              <NumericFormat
+                value={job?.salary}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"₦"}
+                decimalScale={2}
+                fixedDecimalScale={true}
+                renderText={(value) => <p className="mb-0">{value}</p>}
+              />
+            </p>{" "}
+          </div>
+          <div className="flex  gap-1 mb-2 ">
+            <h5 className="text-[#000] text-[16px] font-semibold leading-[24px] mb-0 whitespace-nowrap">
+              Closing:{" "}
+            </h5>{" "}
+            <p className="mb-0">
+              {checkJobExpire(job.closing_date) ? "Closed" : job.closing_date}
+            </p>
+          </div>
+
+          <div className="mt-5">
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                Name
+              </label>
+              <div className=" relative    flex items-center">
+                <input
+                  type="text"
+                  placeholder=""
+                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  required
+                  autoComplete="on"
+                  name="full-name"
+                  value={formValues.name}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      name: e.target.value,
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
               </div>
-              <div className="flex  gap-1 mb-2 ">
-                <h5 className="text-[#000] text-[16px] font-semibold leading-[24px] mb-0 whitespace-nowrap">
-                  Salary Expectation:{" "}
-                </h5>{" "}
-                <p className="mb-0">
+            </div>
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                Date of Birth
+              </label>
+              <div className=" relative    flex items-center">
+                <input
+                  type="date"
+                  placeholder=""
+                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  required
+                  autoComplete="on"
+                  name="full-name"
+                  value={formValues.dateOfBirth}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      dateOfBirth: e.target.value,
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
+              </div>
+            </div>
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                email
+              </label>
+              <div className=" relative    flex items-center">
+                <input
+                  type="email"
+                  placeholder=""
+                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  required
+                  autoComplete="on"
+                  name="full-name"
+                  value={formValues.email}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      email: e.target.value,
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
+              </div>
+            </div>
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                State of Origin
+              </label>
+              <div className=" relative    flex items-center">
+                <input
+                  type="text"
+                  placeholder=""
+                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  required
+                  autoComplete="on"
+                  name="full-name"
+                  value={formValues.stateOfOrigin}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      stateOfOrigin: e.target.value,
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
+              </div>
+            </div>
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                Permanent Address
+              </label>
+              <div className=" relative    flex items-center">
+                <input
+                  type="text"
+                  placeholder=""
+                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  required
+                  autoComplete="on"
+                  name="full-name"
+                  value={formValues.permanent_address}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      permanent_address: e.target.value,
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
+              </div>
+            </div>
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                Current Postal Address
+              </label>
+              <div className=" relative    flex items-center">
+                <input
+                  type="text"
+                  placeholder=""
+                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  required
+                  autoComplete="on"
+                  name="full-name"
+                  value={formValues.current_postal_address}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      current_postal_address: e.target.value,
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
+              </div>
+            </div>
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                Nationality
+              </label>
+              <div className=" relative    flex items-center">
+                <input
+                  type="text"
+                  placeholder=""
+                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  required
+                  autoComplete="on"
+                  name="full-name"
+                  value={formValues.nationality}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      nationality: e.target.value,
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
+              </div>
+            </div>
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                Marital Status
+              </label>
+              <div className=" relative    flex items-center">
+                <select
+                  type="text"
+                  placeholder=""
+                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  required
+                  autoComplete="on"
+                  name="full-name"
+                  value={formValues.marital_status}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      marital_status: e.target.value,
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                >
+                  <option value="">Select Marital Status</option>
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+                  <option value="Divorced">Divorced</option>
+                  <option value="Widowed">Widowed</option>
+                </select>
+              </div>
+            </div>
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                Number of Children
+              </label>
+              <div className=" relative    flex items-center">
+                <input
+                  type="text"
+                  placeholder=""
+                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  required
+                  autoComplete="on"
+                  name="full-name"
+                  value={formValues.number_of_children}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      number_of_children: e.target.value,
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
+              </div>
+            </div>
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px] font-semibold   ">
+                Academic Qualification
+              </label>
+              {academic.map((acad, index) => (
+                <div key={index} className="mt-[16px]">
                   {" "}
-                  <NumericFormat
-                    value={job?.salary}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"₦"}
-                    decimalScale={2}
-                    fixedDecimalScale={true}
-                    renderText={(value) => <p className="mb-0">{value}</p>}
-                  />
-                </p>{" "}
-              </div>
-              <div className="flex  gap-1 mb-2 ">
-                <h5 className="text-[#000] text-[16px] font-semibold leading-[24px] mb-0 whitespace-nowrap">
-                  Closing:{" "}
-                </h5>{" "}
-                <p className="mb-0">
-                  {checkJobExpire(job.closing_date)
-                    ? "Closed"
-                    : job.closing_date}
-                </p>
-              </div>
+                  <div>
+                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                      Institution
+                    </label>
+                    <div className=" relative    flex items-center">
+                      <input
+                        type="text"
+                        placeholder=""
+                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        required
+                        autoComplete="on"
+                        name="institution"
+                        value={acad.institution}
+                        onChange={(event) => handleAcademicChange(index, event)}
+                        autoCapitalize="off"
+                        autoCorrect="off"
+                        spellCheck="false"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-2">
+                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                      Degree
+                    </label>
+                    <div className=" relative    flex items-center">
+                      <input
+                        type="text"
+                        placeholder=""
+                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        required
+                        autoComplete="on"
+                        name="degree"
+                        value={acad.degree}
+                        onChange={(event) => handleAcademicChange(index, event)}
+                        autoCapitalize="off"
+                        autoCorrect="off"
+                        spellCheck="false"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-2">
+                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                      Course Studied
+                    </label>
+                    <div className=" relative    flex items-center">
+                      <input
+                        type="text"
+                        placeholder=""
+                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        required
+                        autoComplete="on"
+                        name="course"
+                        value={acad.course}
+                        onChange={(event) => handleAcademicChange(index, event)}
+                        autoCapitalize="off"
+                        autoCorrect="off"
+                        spellCheck="false"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex gap-4 mt-2">
+                    <div className="w-[40%] ">
+                      <div>
+                        <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                          Start Date
+                        </label>
+                        <div className=" relative    flex items-center">
+                          <input
+                            type="text"
+                            placeholder=""
+                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            required
+                            autoComplete="on"
+                            name="startDate"
+                            value={acad.startDate}
+                            onChange={(event) =>
+                              handleAcademicChange(index, event)
+                            }
+                            autoCapitalize="off"
+                            autoCorrect="off"
+                            spellCheck="false"
+                          />
+                        </div>
+                      </div>
+                    </div>
 
-             
-                <div className="mt-5">
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Name
+                    <div className="w-[40%] ">
+                      <div>
+                        <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                          End Date
+                        </label>
+                        <div className=" relative    flex items-center">
+                          <input
+                            type="text"
+                            placeholder=""
+                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            required
+                            autoComplete="on"
+                            name="endDate"
+                            value={acad.endDate}
+                            onChange={(event) =>
+                              handleAcademicChange(index, event)
+                            }
+                            autoCapitalize="off"
+                            autoCorrect="off"
+                            spellCheck="false"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              <button
+                type="button"
+                className="btn py-1 px-4 mt-4  mb-2 text-white rounded-md"
+                style={{ backgroundColor: "#17082d" }}
+                onClick={handleAcademic}
+              >
+                Add More Qualification
+              </button>
+            </div>
+
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px] font-semibold   ">
+                Pofessional Qualification 
+              </label>
+              {professional.map((prof, index) => (
+                <div key={index} className="mt-[16px]">
+                  {" "}
+                  <div>
+                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                      Institution
                     </label>
                     <div className=" relative    flex items-center">
                       <input
@@ -263,73 +689,18 @@ const ApplyJob = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        name="full-name"
-                        value={formValues.name}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            name: e.target.value,
-                          })
-                        }
+                        name="institution"
+                        value={prof.institution}
+                        onChange={(event) => handleProfessionalChange(index, event)}
                         autoCapitalize="off"
                         autoCorrect="off"
                         spellCheck="false"
                       />
                     </div>
                   </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Date of Birth
-                    </label>
-                    <div className=" relative    flex items-center">
-                      <input
-                        type="date"
-                        placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                        required
-                        autoComplete="on"
-                        name="full-name"
-                        value={formValues.dateOfBirth}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            dateOfBirth: e.target.value,
-                          })
-                        }
-                        autoCapitalize="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                      />
-                    </div>
-                  </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      email
-                    </label>
-                    <div className=" relative    flex items-center">
-                      <input
-                        type="email"
-                        placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                        required
-                        autoComplete="on"
-                        name="full-name"
-                        value={formValues.email}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            email: e.target.value,
-                          })
-                        }
-                        autoCapitalize="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                      />
-                    </div>
-                  </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      State of Origin
+                  <div className="mt-2">
+                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                      Certificate
                     </label>
                     <div className=" relative    flex items-center">
                       <input
@@ -338,23 +709,90 @@ const ApplyJob = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        name="full-name"
-                        value={formValues.stateOfOrigin}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            stateOfOrigin: e.target.value,
-                          })
-                        }
+                        name="certificate"
+                        value={prof.certificate}
+                        onChange={(event) => handleProfessionalChange(index, event)}
                         autoCapitalize="off"
                         autoCorrect="off"
                         spellCheck="false"
                       />
                     </div>
                   </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Permanent Address
+                 
+                  <div className="flex gap-4 mt-2">
+                    <div className="w-[40%] ">
+                      <div>
+                        <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                          Start Date
+                        </label>
+                        <div className=" relative    flex items-center">
+                          <input
+                            type="text"
+                            placeholder=""
+                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            required
+                            autoComplete="on"
+                            name="startDate"
+                            value={prof.startDate}
+                            onChange={(event) =>
+                              handleProfessionalChange(index, event)
+                            }
+                            autoCapitalize="off"
+                            autoCorrect="off"
+                            spellCheck="false"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="w-[40%] ">
+                      <div>
+                        <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                          End Date
+                        </label>
+                        <div className=" relative    flex items-center">
+                          <input
+                            type="text"
+                            placeholder=""
+                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            required
+                            autoComplete="on"
+                            name="endDate"
+                            value={prof.endDate}
+                            onChange={(event) =>
+                              handleProfessionalChange(index, event)
+                            }
+                            autoCapitalize="off"
+                            autoCorrect="off"
+                            spellCheck="false"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              <button
+                type="button"
+                className="btn py-1 px-4 mt-4  mb-2 text-white rounded-md"
+                style={{ backgroundColor: "#17082d" }}
+                onClick={handleProffesional}
+              >
+                Add More Qualification
+              </button>
+            </div>
+
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px] font-semibold   ">
+          Published Journal
+              </label>
+              {journal.map((item, index) => (
+                <div key={index} className="mt-[16px]">
+                  {" "}
+                  <div>
+                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                      Title
                     </label>
                     <div className=" relative    flex items-center">
                       <input
@@ -363,23 +801,18 @@ const ApplyJob = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        name="full-name"
-                        value={formValues.permanent_address}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            permanent_address: e.target.value,
-                          })
-                        }
+                        name="title"
+                        value={item.title}
+                        onChange={(event) => handleProfessionalChange(index, event)}
                         autoCapitalize="off"
                         autoCorrect="off"
                         spellCheck="false"
                       />
                     </div>
                   </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Current Postal Address
+                  <div className="mt-2">
+                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                      Author
                     </label>
                     <div className=" relative    flex items-center">
                       <input
@@ -388,23 +821,67 @@ const ApplyJob = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        name="full-name"
-                        value={formValues.current_postal_address}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            current_postal_address: e.target.value,
-                          })
-                        }
+                        name="author"
+                        value={item.author}
+                        onChange={(event) => handleProfessionalChange(index, event)}
                         autoCapitalize="off"
                         autoCorrect="off"
                         spellCheck="false"
                       />
                     </div>
                   </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Nationality
+                 
+                  <div className="flex gap-4 mt-2">
+                    <div className="w-[40%] ">
+                      <div>
+                        <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                          Year Published
+                        </label>
+                        <div className=" relative    flex items-center">
+                          <input
+                            type="text"
+                            placeholder=""
+                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            required
+                            autoComplete="on"
+                            name="year"
+                            value={item.year}
+                            onChange={(event) =>
+                              handleProfessionalChange(index, event)
+                            }
+                            autoCapitalize="off"
+                            autoCorrect="off"
+                            spellCheck="false"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                   
+                  </div>
+                </div>
+              ))}
+
+              <button
+                type="button"
+                className="btn py-1 px-4 mt-4  mb-2 text-white rounded-md"
+                style={{ backgroundColor: "#17082d" }}
+                onClick={handleProffesional}
+              >
+                Add More Publication
+              </button>
+            </div>
+
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px] font-semibold   ">
+                Work Experience 
+              </label>
+              {experience.map((exp, index) => (
+                <div key={index} className="mt-[16px]">
+                  {" "}
+                  <div>
+                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                      Company
                     </label>
                     <div className=" relative    flex items-center">
                       <input
@@ -413,54 +890,18 @@ const ApplyJob = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        name="full-name"
-                        value={formValues.nationality}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            nationality: e.target.value,
-                          })
-                        }
+                        name="company"
+                        value={exp.company}
+                        onChange={(event) => handleProfessionalChange(index, event)}
                         autoCapitalize="off"
                         autoCorrect="off"
                         spellCheck="false"
                       />
                     </div>
                   </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Marital Status
-                    </label>
-                    <div className=" relative    flex items-center">
-                      <select
-                        type="text"
-                        placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                        required
-                        autoComplete="on"
-                        name="full-name"
-                        value={formValues.marital_status}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            marital_status: e.target.value,
-                          })
-                        }
-                        autoCapitalize="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                      >
-                        <option value="">Select Marital Status</option>
-                        <option value="Single">Single</option>
-                        <option value="Married">Married</option>
-                        <option value="Divorced">Divorced</option>
-                        <option value="Widowed">Widowed</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Number of Children
+                  <div className="mt-2">
+                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                      Role
                     </label>
                     <div className=" relative    flex items-center">
                       <input
@@ -469,125 +910,160 @@ const ApplyJob = () => {
                         className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
-                        name="full-name"
-                        value={formValues.number_of_children}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            number_of_children: e.target.value,
-                          })
-                        }
+                        name="role"
+                        value={exp.role}
+                        onChange={(event) => handleProfessionalChange(index, event)}
                         autoCapitalize="off"
                         autoCorrect="off"
                         spellCheck="false"
                       />
                     </div>
                   </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Academic Qualification
-                    </label>
-                    <div className=" relative    flex items-center">
-                      <input
-                        type="text"
-                        placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                        required
-                        autoComplete="on"
-                        name="full-name"
-                        value={formValues.academic_qualifications}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            academic_qualifications: e.target.value,
-                          })
-                        }
-                        autoCapitalize="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                      />
+                 
+                  <div className="flex gap-4 mt-2">
+                    <div className="w-[40%] ">
+                      <div>
+                        <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                          Start Date
+                        </label>
+                        <div className=" relative    flex items-center">
+                          <input
+                            type="text"
+                            placeholder=""
+                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            required
+                            autoComplete="on"
+                            name="startDate"
+                            value={exp.startDate}
+                            onChange={(event) =>
+                              handleProfessionalChange(index, event)
+                            }
+                            autoCapitalize="off"
+                            autoCorrect="off"
+                            spellCheck="false"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="w-[40%] ">
+                      <div>
+                        <label className="text-[14px] text-[#667185] leading-[20px]   mb-[4px]">
+                          End Date
+                        </label>
+                        <div className=" relative    flex items-center">
+                          <input
+                            type="text"
+                            placeholder=""
+                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            required
+                            autoComplete="on"
+                            name="endDate"
+                            value={exp.endDate}
+                            onChange={(event) =>
+                              handleProfessionalChange(index, event)
+                            }
+                            autoCapitalize="off"
+                            autoCorrect="off"
+                            spellCheck="false"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Statement of experience
-                    </label>
-                    <div className=" relative    flex items-center">
-                      <textarea
-                        type="text"
-                        placeholder=""
-                        className="w-full h-[148px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                        required
-                        autoComplete="on"
-                        maxLength={1000}
-                        name="full-name"
-                        value={formValues.statement_of_experience}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            statement_of_experience: e.target.value,
-                          })
-                        }
-                        autoCapitalize="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                      />
-                    </div>
-                    <sup className="text-danger">
-                      Must not be more than 1000 words
-                    </sup>
-                  </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Hobbies
-                    </label>
-                    <div className=" relative    flex items-center">
-                      <input
-                        type="text"
-                        placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                        required
-                        autoComplete="on"
-                        name="full-name"
-                        value={formValues.hobbies}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            hobbies: e.target.value,
-                          })
-                        }
-                        autoCapitalize="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                      />
-                    </div>
-                  </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Skills
-                    </label>
-                    <div className=" relative    flex items-center">
-                      <input
-                        type="text"
-                        placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                        required
-                        autoComplete="on"
-                        name="full-name"
-                        value={formValues.skills}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            skills: e.target.value,
-                          })
-                        }
-                        autoCapitalize="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                      />
-                    </div>
-                  </div>
-                  {/* <div className="mb-[16px]">
+                </div>
+              ))}
+
+              <button
+                type="button"
+                className="btn py-1 px-4 mt-4  mb-2 text-white rounded-md"
+                style={{ backgroundColor: "#17082d" }}
+                onClick={handleExperience}
+              >
+                Add More Experience
+              </button>
+            </div>
+
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                Statement of experience
+              </label>
+              <div className=" relative    flex items-center">
+                <textarea
+                  type="text"
+                  placeholder=""
+                  className="w-full h-[148px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  required
+                  autoComplete="on"
+                  maxLength={1000}
+                  name="full-name"
+                  value={formValues.statement_of_experience}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      statement_of_experience: e.target.value,
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
+              </div>
+              <sup className="text-danger">
+                Must not be more than 1000 words
+              </sup>
+            </div>
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                Hobbies
+              </label>
+              <div className=" relative    flex items-center">
+                <input
+                  type="text"
+                  placeholder=""
+                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  required
+                  autoComplete="on"
+                  name="full-name"
+                  value={formValues.hobbies}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      hobbies: e.target.value,
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
+              </div>
+            </div>
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                Skills
+              </label>
+              <div className=" relative    flex items-center">
+                <input
+                  type="text"
+                  placeholder=""
+                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  required
+                  autoComplete="on"
+                  name="full-name"
+                  value={formValues.skills}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      skills: e.target.value,
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
+              </div>
+            </div>
+            {/* <div className="mb-[16px]">
                       <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
                         Reference Phone Number
                       </label>
@@ -613,173 +1089,138 @@ const ApplyJob = () => {
                       </div>
                     </div> */}
 
-                  {reference.map((ref, index) => (
-                    <div key={index} style={{ marginBottom: "10px" }}>
-                      <div className=" pe-">
-                        <div class="form-group mb-2">
-                          <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                            Reference Full Name{" "}
-                            <sup className="text-danger">*</sup>
-                          </label>
-                          <input
-                            type="text"
-                            style={{ height: "40px" }}
-                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                            id="exampleFormControlInput1"
-                            name="name"
-                            placeholder="Name"
-                            value={ref.name}
-                            onChange={(event) => handleChange(index, event)}
-                          />
-                        </div>
-                        <div class="row">
-                          <div className="col-lg-6">
-                            <div class="form-group">
-                              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                                Reference Email{" "}
-                                <sup className="text-danger">*</sup>
-                              </label>
-                              <input
-                                type="text"
-                                style={{ height: "40px" }}
-                                className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                                id="exampleFormControlInput1"
-                                name="contact"
-                                placeholder="090-090"
-                                value={ref.contact}
-                                onChange={(event) => handleChange(index, event)}
-                              />
-                            </div>
-                          </div>
-                        </div>
+            {reference.map((ref, index) => (
+              <div key={index} style={{ marginBottom: "10px" }}>
+                <div className=" pe-">
+                  <div class="form-group mb-2">
+                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                      Reference Full Name <sup className="text-danger">*</sup>
+                    </label>
+                    <input
+                      type="text"
+                      style={{ height: "40px" }}
+                      className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                      id="exampleFormControlInput1"
+                      name="name"
+                      placeholder="Name"
+                      value={ref.name}
+                      onChange={(event) => handleChange(index, event)}
+                    />
+                  </div>
+                  <div class="row">
+                    <div className="col-lg-6">
+                      <div class="form-group">
+                        <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                          Reference Email <sup className="text-danger">*</sup>
+                        </label>
+                        <input
+                          type="text"
+                          style={{ height: "40px" }}
+                          className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                          id="exampleFormControlInput1"
+                          name="contact"
+                          placeholder="090-090"
+                          value={ref.contact}
+                          onChange={(event) => handleChange(index, event)}
+                        />
                       </div>
                     </div>
-                  ))}
-                  <button
-                    type="button"
-                    className="btn py-2 px-4  mb-2 text-white rounded-md"
-                    style={{ backgroundColor: "#17082d" }}
-                    onClick={handleAddReference}
-                  >
-                    Add More Reference
-                  </button>
-
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Resume File
-                    </label>
-                    <div className=" relative    flex items-center">
-                      <input
-                        type="file"
-                        placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                        required
-                        autoComplete="on"
-                        max-file-size="2084"
-                        accept=".pdf,.docx"
-                        name="resume"
-                        // value={formValues.resume_file}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            resume_file: e.target.files[0],
-                          })
-                        }
-                        autoCapitalize="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                      />
-                    </div>
-                    <sup className="text-danger">Format accepted: Docx/Pdf</sup>
                   </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Birth Certificate
-                    </label>
-                    <div className=" relative    flex items-center">
-                      <input
-                        type="file"
-                        placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                        required
-                        autoComplete="on"
-                        max-file-size="2084"
-                        accept=".pdf,.docx"
-                        name="birth-certificate"
-                        // value={formValues.resume_file}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            birth_certificate: e.target.files[0],
-                          })
-                        }
-                        autoCapitalize="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                      />
-                    </div>
-                    <sup className="text-danger">Format accepted: Docx/Pdf</sup>
-                  </div>
-                  <div className="mb-[16px]">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                      Academic Experience
-                    </label>
-                    <div className=" relative    flex items-center">
-                      <input
-                        type="file"
-                        placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                        autoComplete="on"
-                        max-file-size="2084"
-                        accept=".pdf,.docx"
-                        name="full-name"
-                        // value={formValues.resume_file}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            academic_file: e.target.files[0],
-                          })
-                        }
-                        autoCapitalize="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                      />
-                    </div>
-                    <sup className="text-danger">Format accepted: Docx/Pdf</sup>
-                  </div>
-                </div>
-      
-
-              <div className="border-[0.8px]  border-[#E4E7EC] mb-[20px]" />
-              <div className=" flex w-full  justify-end">
-                <div className="">
-                  {" "}
-                  <button
-                    disabled={checkJobExpire(job.closing_date)}
-                    onClick={() => {
-                      if (jobId === job.id) {
-                        handleSubmit();
-                      } else {
-                        setJobId(job.id);
-                      }
-                      // console.log("referencess", reference)
-                    }}
-                    className="border-[0.2px]  border-[#98A2B3] w-[99px] bg-[#17082d] flex items-center justify-center text-center rounded-[8px] py-[12px] text-[14px] font-medium text-white"
-                  >
-                    {jobId === job.id && isLoading ? (
-                      <ClipLoader color={"white"} size={20} />
-                    ) : (
-                      <>
-                        {" "}
-                        {checkJobExpire(job.closing_date) ? "Closed" : "Apply"}
-                      </>
-                    )}
-                  </button>
                 </div>
               </div>
+            ))}
+            <button
+              type="button"
+              className="btn py-1 px-4  mb-2 text-white rounded-md"
+              style={{ backgroundColor: "#17082d" }}
+              onClick={handleAddReference}
+            >
+              Add More Reference
+            </button>
+
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                Resume File
+              </label>
+              <div className=" relative    flex items-center">
+                <input
+                  type="file"
+                  placeholder=""
+                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  required
+                  autoComplete="on"
+                  max-file-size="2084"
+                  accept=".pdf,.docx"
+                  name="resume"
+                  // value={formValues.resume_file}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      resume_file: e.target.files[0],
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
+              </div>
+              <sup className="text-danger">Format accepted: Docx/Pdf</sup>
             </div>
-         
-       
+           
+            <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                Academic Experience
+              </label>
+              <div className=" relative    flex items-center">
+                <input
+                  type="file"
+                  placeholder=""
+                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  autoComplete="on"
+                  max-file-size="2084"
+                  accept=".pdf,.docx"
+                  name="full-name"
+                  // value={formValues.resume_file}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      academic_file: e.target.files[0],
+                    })
+                  }
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
+              </div>
+              <sup className="text-danger">Format accepted: Docx/Pdf</sup>
+            </div>
+          </div>
+
+          <div className="border-[0.8px]  border-[#E4E7EC] mb-[20px]" />
+          <div className=" flex w-full  justify-end">
+            <div className="">
+              {" "}
+              <button
+                disabled={checkJobExpire(job.closing_date)}
+                onClick={() => {
+                  if (jobId === job.id) {
+                    handleSubmit();
+                  } else {
+                    setJobId(job.id);
+                  }
+                  // console.log("referencess", reference)
+                }}
+                className="border-[0.2px]  border-[#98A2B3] w-[99px] bg-[#17082d] flex items-center justify-center text-center rounded-[8px] py-[12px] text-[14px] font-medium text-white"
+              >
+                {jobId === job.id && isLoading ? (
+                  <ClipLoader color={"white"} size={20} />
+                ) : (
+                  <> {checkJobExpire(job.closing_date) ? "Closed" : "Apply"}</>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

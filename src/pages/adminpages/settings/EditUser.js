@@ -278,6 +278,7 @@ const EditUser = () => {
                   />
                 </div>
               </div>
+
               <div className="my-5 form-group row">
                 <label
                   for="inputPassword"
@@ -298,6 +299,7 @@ const EditUser = () => {
                   </select>
                 </div>
               </div>
+              
               <div className="my-5 form-group row">
                 <label
                   for="inputPassword"
@@ -316,7 +318,7 @@ const EditUser = () => {
                     <option value="">Select Role</option>
                     {roleData.map((role) => (
                       <option key={role.id} value={role.name}>
-                        {role.name}
+                        {role.description}
                       </option>
                     ))}
                   </select>
