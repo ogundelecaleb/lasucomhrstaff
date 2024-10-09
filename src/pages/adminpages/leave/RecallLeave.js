@@ -143,7 +143,7 @@ const RecallLeave = () => {
             <div className="row mt-4 pa-res px-3">
               <div className="col-lg-4 pt-3 " style={{ height: "70px" }}>
                 <p className="fs-5 ">
-                  Recall Staffs On Leave : {data?.users.length}
+                  Recall Staffs On Leave : {data?.users?.filter((result) => result?.on_leave.length)}
                 </p>
               </div>
               <div className="col-lg-3 " style={{ height: "70px" }}>
@@ -307,7 +307,7 @@ const RecallLeave = () => {
               </ModalContent>
             </Modal>
 
-            {data && data.data && data?.data?.length === 0 && (
+            {data && data.data && data?.users?.length === 0 && (
               <Box
                 w={"80vw"}
                 display="flex"

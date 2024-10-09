@@ -195,27 +195,19 @@ const AddSupervisors = () => {
     });
 
     try {
-      const response = await api.addUser({
-        title: selectedTitle,
-        first_name: firstName,
-        maiden_name: middleName,
-        last_name: lastName,
+      const response = await api.createSupervisor({
+        
         email,
-        staff_number: staffID,
-        status,
+        status: "active",
         role: selectedRole,
         unit: selectedDivision.id,
         type: selectedStaffType,
-        conuass: selectedConuass,
-        conunass: selectedConunass,
-        level: selectedLevel,
+      
         office: office,
-        confirmation: selectedConfirmed,
+        confirmation: "confirmed",
         total_leave_due: setEntitledLeave(),
         faculty_id: selectedFaculty.id,
         department_id: selectedDepartment.id,
-        date_of_first_appointment: dofa,
-        step: step,
       });
       console.log("responce==>>>>>", response);
       enqueueSnackbar("User added successfully", { variant: "success" });
@@ -302,8 +294,8 @@ const AddSupervisors = () => {
                 <option value="CS">College Secretary</option>
                 <option value="DEAN">Dean</option>
                 <option value="HASE">Head of ASE</option>
-                <option value="HASEJ">Head of NASE Junior</option>
-                <option value="HASES">Head of NASE Senior</option>
+                <option value="HNASEJ">Head of NASE Junior</option>
+                <option value="HNASES">Head of NASE Senior</option>
                 <option value="HOU">Head of Unit</option>
                 <option value="HOD">Head of Department</option>
                 

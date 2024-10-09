@@ -51,7 +51,8 @@ import {
   CARRYOVER,
   ASSIGNROLE,
   STAFFONLEAVE,
-  RECALLSTAFF
+  RECALLSTAFF,
+  CREATESUPERVISOR
 } from "../utils/config";
 import { apiGet, apiPost, apiPut, apiDelete } from "../utils/utils";
 
@@ -173,6 +174,9 @@ export function fetchDivision(data) {
 
 export function createDivision(data) {
   return apiPost(GETDIVISION, data);
+}
+export function createSupervisor(data) {
+  return apiPost(CREATESUPERVISOR, data);
 }
 
 export function fetchDivisionById(data) {
