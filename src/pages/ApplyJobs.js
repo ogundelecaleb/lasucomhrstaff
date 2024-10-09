@@ -188,6 +188,10 @@ const ApplyJob = () => {
     formData.append("hobbies", formValues.hobbies);
     formData.append("skills", formValues.skills);
     formData.append("references", JSON.stringify(reference));
+    formData.append("journal_publication", JSON.stringify(journal));
+    formData.append("experience", JSON.stringify(experience));
+    formData.append("professional_qualification", JSON.stringify(professional));
+    formData.append("academic_qualification", JSON.stringify(academic));
     formData.append("reference_address", formValues.reference_address);
     formData.append("resume_file", formValues.resume_file);
     formData.append("birth_certificate", formValues.birth_certificate);
@@ -310,14 +314,14 @@ const ApplyJob = () => {
 
           <div className="mt-5">
             <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                Name
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] ">
+                Name <sup className="text-red-500 ">*</sup>
               </label>
               <div className=" relative    flex items-center">
                 <input
                   type="text"
                   placeholder=""
-                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                   required
                   autoComplete="on"
                   name="full-name"
@@ -335,14 +339,14 @@ const ApplyJob = () => {
               </div>
             </div>
             <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                Date of Birth
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
+                Date of Birth <sup className="text-red-500 ">*</sup>
               </label>
               <div className=" relative    flex items-center">
                 <input
                   type="date"
                   placeholder=""
-                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                   required
                   autoComplete="on"
                   name="full-name"
@@ -360,14 +364,14 @@ const ApplyJob = () => {
               </div>
             </div>
             <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                email
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
+                email <sup className="text-red-500 ">*</sup>
               </label>
               <div className=" relative    flex items-center">
                 <input
                   type="email"
                   placeholder=""
-                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                   required
                   autoComplete="on"
                   name="full-name"
@@ -385,14 +389,14 @@ const ApplyJob = () => {
               </div>
             </div>
             <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                State of Origin
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
+                State of Origin <sup className="text-red-500 ">*</sup>
               </label>
               <div className=" relative    flex items-center">
                 <input
                   type="text"
                   placeholder=""
-                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                   required
                   autoComplete="on"
                   name="full-name"
@@ -410,14 +414,14 @@ const ApplyJob = () => {
               </div>
             </div>
             <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                Permanent Address
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
+                Permanent Address <sup className="text-red-500 ">*</sup>
               </label>
               <div className=" relative    flex items-center">
                 <input
                   type="text"
                   placeholder=""
-                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                   required
                   autoComplete="on"
                   name="full-name"
@@ -434,15 +438,15 @@ const ApplyJob = () => {
                 />
               </div>
             </div>
-            <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+            {/* <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
                 Current Postal Address
               </label>
               <div className=" relative    flex items-center">
                 <input
                   type="text"
                   placeholder=""
-                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                   required
                   autoComplete="on"
                   name="full-name"
@@ -458,16 +462,16 @@ const ApplyJob = () => {
                   spellCheck="false"
                 />
               </div>
-            </div>
+            </div> */}
             <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                Nationality
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
+                Nationality <sup className="text-red-500 ">*</sup>
               </label>
               <div className=" relative    flex items-center">
                 <input
                   type="text"
                   placeholder=""
-                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                   required
                   autoComplete="on"
                   name="full-name"
@@ -485,14 +489,14 @@ const ApplyJob = () => {
               </div>
             </div>
             <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
-                Marital Status
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
+                Marital Status <sup className="text-red-500 ">*</sup>
               </label>
               <div className=" relative    flex items-center">
                 <select
                   type="text"
                   placeholder=""
-                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  className="w-full h-[48px] px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                   required
                   autoComplete="on"
                   name="full-name"
@@ -516,15 +520,15 @@ const ApplyJob = () => {
               </div>
             </div>
             <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
                 Number of Children
               </label>
               <div className=" relative    flex items-center">
                 <input
                   type="text"
                   placeholder=""
-                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                  required
+                  className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  
                   autoComplete="on"
                   name="full-name"
                   value={formValues.number_of_children}
@@ -542,7 +546,7 @@ const ApplyJob = () => {
             </div>
             <div className="mb-[16px]">
               <label className="text-[14px] text-[#667185] leading-[20px] font-semibold   ">
-                Academic Qualification
+                Academic Qualification <sup className="text-red-500 ">*</sup>
               </label>
               {academic.map((acad, index) => (
                 <div key={index} className="mt-[16px]">
@@ -555,7 +559,7 @@ const ApplyJob = () => {
                       <input
                         type="text"
                         placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
                         name="institution"
@@ -575,7 +579,7 @@ const ApplyJob = () => {
                       <input
                         type="text"
                         placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
                         name="degree"
@@ -595,7 +599,7 @@ const ApplyJob = () => {
                       <input
                         type="text"
                         placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
                         name="course"
@@ -617,7 +621,7 @@ const ApplyJob = () => {
                           <input
                             type="text"
                             placeholder=""
-                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                             required
                             autoComplete="on"
                             name="startDate"
@@ -642,7 +646,7 @@ const ApplyJob = () => {
                           <input
                             type="text"
                             placeholder=""
-                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                             required
                             autoComplete="on"
                             name="endDate"
@@ -686,7 +690,7 @@ const ApplyJob = () => {
                       <input
                         type="text"
                         placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
                         name="institution"
@@ -706,7 +710,7 @@ const ApplyJob = () => {
                       <input
                         type="text"
                         placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
                         name="certificate"
@@ -729,7 +733,7 @@ const ApplyJob = () => {
                           <input
                             type="text"
                             placeholder=""
-                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                             required
                             autoComplete="on"
                             name="startDate"
@@ -754,7 +758,7 @@ const ApplyJob = () => {
                           <input
                             type="text"
                             placeholder=""
-                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                             required
                             autoComplete="on"
                             name="endDate"
@@ -798,12 +802,12 @@ const ApplyJob = () => {
                       <input
                         type="text"
                         placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
                         name="title"
                         value={item.title}
-                        onChange={(event) => handleProfessionalChange(index, event)}
+                        onChange={(event) => handleJounalChange(index, event)}
                         autoCapitalize="off"
                         autoCorrect="off"
                         spellCheck="false"
@@ -818,12 +822,12 @@ const ApplyJob = () => {
                       <input
                         type="text"
                         placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
                         name="author"
                         value={item.author}
-                        onChange={(event) => handleProfessionalChange(index, event)}
+                        onChange={(event) => handleJounalChange(index, event)}
                         autoCapitalize="off"
                         autoCorrect="off"
                         spellCheck="false"
@@ -841,13 +845,13 @@ const ApplyJob = () => {
                           <input
                             type="text"
                             placeholder=""
-                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                             required
                             autoComplete="on"
                             name="year"
                             value={item.year}
                             onChange={(event) =>
-                              handleProfessionalChange(index, event)
+                              handleJounalChange(index, event)
                             }
                             autoCapitalize="off"
                             autoCorrect="off"
@@ -866,7 +870,7 @@ const ApplyJob = () => {
                 type="button"
                 className="btn py-1 px-4 mt-4  mb-2 text-white rounded-md"
                 style={{ backgroundColor: "#17082d" }}
-                onClick={handleProffesional}
+                onClick={handleJournal}
               >
                 Add More Publication
               </button>
@@ -874,7 +878,7 @@ const ApplyJob = () => {
 
             <div className="mb-[16px]">
               <label className="text-[14px] text-[#667185] leading-[20px] font-semibold   ">
-                Work Experience 
+                Work Experience  <sup className="text-red-500 ">*</sup>
               </label>
               {experience.map((exp, index) => (
                 <div key={index} className="mt-[16px]">
@@ -887,12 +891,12 @@ const ApplyJob = () => {
                       <input
                         type="text"
                         placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
                         name="company"
                         value={exp.company}
-                        onChange={(event) => handleProfessionalChange(index, event)}
+                        onChange={(event) => handleExperienceChange(index, event)}
                         autoCapitalize="off"
                         autoCorrect="off"
                         spellCheck="false"
@@ -907,12 +911,12 @@ const ApplyJob = () => {
                       <input
                         type="text"
                         placeholder=""
-                        className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                        className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                         required
                         autoComplete="on"
                         name="role"
                         value={exp.role}
-                        onChange={(event) => handleProfessionalChange(index, event)}
+                        onChange={(event) => handleExperienceChange(index, event)}
                         autoCapitalize="off"
                         autoCorrect="off"
                         spellCheck="false"
@@ -930,13 +934,13 @@ const ApplyJob = () => {
                           <input
                             type="text"
                             placeholder=""
-                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                             required
                             autoComplete="on"
                             name="startDate"
                             value={exp.startDate}
                             onChange={(event) =>
-                              handleProfessionalChange(index, event)
+                              handleExperienceChange(index, event)
                             }
                             autoCapitalize="off"
                             autoCorrect="off"
@@ -955,13 +959,13 @@ const ApplyJob = () => {
                           <input
                             type="text"
                             placeholder=""
-                            className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                            className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                             required
                             autoComplete="on"
                             name="endDate"
                             value={exp.endDate}
                             onChange={(event) =>
-                              handleProfessionalChange(index, event)
+                              handleExperienceChange(index, event)
                             }
                             autoCapitalize="off"
                             autoCorrect="off"
@@ -985,15 +989,15 @@ const ApplyJob = () => {
             </div>
 
             <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
                 Statement of experience
               </label>
               <div className=" relative    flex items-center">
                 <textarea
                   type="text"
                   placeholder=""
-                  className="w-full h-[148px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                  required
+                  className="w-full h-[148px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  
                   autoComplete="on"
                   maxLength={1000}
                   name="full-name"
@@ -1014,15 +1018,15 @@ const ApplyJob = () => {
               </sup>
             </div>
             <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
                 Hobbies
               </label>
               <div className=" relative    flex items-center">
                 <input
                   type="text"
                   placeholder=""
-                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                  required
+                  className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  
                   autoComplete="on"
                   name="full-name"
                   value={formValues.hobbies}
@@ -1039,15 +1043,15 @@ const ApplyJob = () => {
               </div>
             </div>
             <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
                 Skills
               </label>
               <div className=" relative    flex items-center">
                 <input
                   type="text"
                   placeholder=""
-                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
-                  required
+                  className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  
                   autoComplete="on"
                   name="full-name"
                   value={formValues.skills}
@@ -1064,14 +1068,14 @@ const ApplyJob = () => {
               </div>
             </div>
             {/* <div className="mb-[16px]">
-                      <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                      <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
                         Reference Phone Number
                       </label>
                       <div className=" relative    flex items-center">
                         <input
                           type="text"
                           placeholder=""
-                          className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                          className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                           required
                           autoComplete="on"
                           name="full-name"
@@ -1093,13 +1097,13 @@ const ApplyJob = () => {
               <div key={index} style={{ marginBottom: "10px" }}>
                 <div className=" pe-">
                   <div class="form-group mb-2">
-                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                    <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
                       Reference Full Name <sup className="text-danger">*</sup>
                     </label>
                     <input
                       type="text"
                       style={{ height: "40px" }}
-                      className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                      className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                       id="exampleFormControlInput1"
                       name="name"
                       placeholder="Name"
@@ -1110,13 +1114,13 @@ const ApplyJob = () => {
                   <div class="row">
                     <div className="col-lg-6">
                       <div class="form-group">
-                        <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+                        <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
                           Reference Email <sup className="text-danger">*</sup>
                         </label>
                         <input
                           type="text"
                           style={{ height: "40px" }}
-                          className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                          className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                           id="exampleFormControlInput1"
                           name="contact"
                           placeholder="090-090"
@@ -1139,14 +1143,14 @@ const ApplyJob = () => {
             </button>
 
             <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
                 Resume File
               </label>
               <div className=" relative    flex items-center">
                 <input
                   type="file"
                   placeholder=""
-                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                   required
                   autoComplete="on"
                   max-file-size="2084"
@@ -1167,15 +1171,15 @@ const ApplyJob = () => {
               <sup className="text-danger">Format accepted: Docx/Pdf</sup>
             </div>
            
-            <div className="mb-[16px]">
-              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px] md:mb-[16px]">
+            {/* <div className="mb-[16px]">
+              <label className="text-[14px] text-[#667185] leading-[20px]   mb-[8px]  ">
                 Academic Experience
               </label>
               <div className=" relative    flex items-center">
                 <input
                   type="file"
                   placeholder=""
-                  className="w-full h-[48px] pl-[16px] py-[12px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
+                  className="w-full h-[48px]  px-[8px]  py-[8px] text-[14px] text-[#344054] leading-[20px]  placeholder:text-[#98A2B3] placeholder:text-[12px]  border-[#D0D5DD] border-[0.2px] rounded-[8px] focus:outline-none focus:ring-[#17082d] focus:border-[#17082d] "
                   autoComplete="on"
                   max-file-size="2084"
                   accept=".pdf,.docx"
@@ -1193,7 +1197,7 @@ const ApplyJob = () => {
                 />
               </div>
               <sup className="text-danger">Format accepted: Docx/Pdf</sup>
-            </div>
+            </div> */}
           </div>
 
           <div className="border-[0.8px]  border-[#E4E7EC] mb-[20px]" />
@@ -1210,7 +1214,7 @@ const ApplyJob = () => {
                   }
                   // console.log("referencess", reference)
                 }}
-                className="border-[0.2px]  border-[#98A2B3] w-[99px] bg-[#17082d] flex items-center justify-center text-center rounded-[8px] py-[12px] text-[14px] font-medium text-white"
+                className="border-[0.2px]  border-[#98A2B3] w-[99px] bg-[#17082d] flex items-center justify-center text-center rounded-[8px] py-[11px] text-[14px] font-medium text-white"
               >
                 {jobId === job.id && isLoading ? (
                   <ClipLoader color={"white"} size={20} />

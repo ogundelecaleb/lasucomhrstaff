@@ -299,7 +299,7 @@ const EditUser = () => {
                   </select>
                 </div>
               </div>
-              
+
               <div className="my-5 form-group row">
                 <label
                   for="inputPassword"
@@ -328,22 +328,19 @@ const EditUser = () => {
               <div className="my-5 form-group row">
                   <label
                     for="email"
-                    className="text-[18px] font-medium col-md-2"
-                  >
+                    className=" fs-5 fw-semibold col-md-2 col-form-label"
+                    >
                     Unit/Division<sup className="text-danger">*</sup>
                   </label>
                   <div className="col-md-8">
                     <select
                       id="division"
-                      value={selectedDivision ? selectedDivision.id : ""}
+                      value={selectedDivision}
                       onChange={(e) => {
-                        const selectedId = e.target.value;
-                        const selectedDivisionObject = divisionOptions.find(
-                          (division) => division.id === parseInt(selectedId)
-                        );
-                        setSelectedDivision(selectedDivisionObject);
+                      
+                        setSelectedDivision(e.target.value);
                       }}
-                      className="form-control rounded-0"
+                      className="border rounded-0"
                       style={{ height: "60px" }}
                     >
                       <option value="">Select Unit</option>

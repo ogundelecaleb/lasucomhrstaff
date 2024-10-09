@@ -79,7 +79,7 @@ const Leave = () => {
         </div>
       ) : (
         <div>
-          <div className='container px-4'>
+          <div className='px-4 md:px-6'>
             <div className='row mt-4 pa-res px-3'>
               <div className='col-lg-4 pt-3 ' style={{ height: "70px" }}>
                 <p className='fs-5 '>Total Applicants : {data?.meta?.total}</p>
@@ -102,24 +102,12 @@ const Leave = () => {
               <div
                 className='col-lg-5 d-flex flex-wrap gap-3 align-items-center justify-content-end'
                 style={{ cursor: "pointer", height: "70px" }}>
-                <div className='d-flex'>
-                  <div className='border py-2 px-2'>
-                    <TbGridDots size={"15"} />
-                  </div>
-                  <div className='py-2 px-2 border'>
-                    <AiOutlineMenu size={"15"} />
-                  </div>
-                </div>
+                
                 <div className='border d-flex align-items-center gap-2 py-2 px-2'>
-                  <AiOutlineMenu /> Filter
+                  <AiOutlineMenu /> Download
                 </div>
                 <div>
-                  {/* <button
-                  className='btn btn-sm pa-res d-flex align-items-center text-white'
-                  style={{ backgroundColor: "#984779" }}>
-                  <AiOutlinePlus /> Add leave type
-                </button> */}
-                  {/* <LeaveModal name={"Add leave type "} /> */}
+                 
                 </div>
               </div>
             </div>
