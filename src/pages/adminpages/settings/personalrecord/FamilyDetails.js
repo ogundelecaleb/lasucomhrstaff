@@ -259,32 +259,24 @@ const FamilyDetails = () => {
                     className='fw-semibold text-muted fs-6 mt-3 mb-2'>
                     Date of Birth
                   </label>
-                  <DatePicker
-                    selected={
-                      formValues.c1_date_of_birth
-                        ? new Date(formValues.c1_date_of_birth)
-                        : null
-                    }
-                    onChange={(date) => {
-                      if (date instanceof Date && !isNaN(date)) {
-                        const formattedDate = date.toISOString().split('T')[0];
-                        setFormValues({
-                          ...formValues,
-                          c1_date_of_birth: formattedDate,
-                        });
-                      } else {
-                        setFormValues({
-                          ...formValues,
-                          c1_date_of_birth: "", 
-                        });
-                      }
-                    }}
-                    dateFormat="yyyy-MM-dd"
-                    disabled
-                    className="form-control rounded-0"
-                    id="exampleFormControlInput1"
-                    placeholder=""
-                  />
+
+                  <input
+                          className="border py-2 px-2 w-full rounded-0"
+                          type="text"
+                          id=""
+                          required
+                          disabled
+                          value={  formValues.c1_date_of_birth}
+                          onChange={(e) =>
+                            setFormValues({
+                              ...formValues,
+                              c1_date_of_birth: e.target.value,
+                            })
+                          }
+                          //min={new Date().toISOString().split("T")[0]}
+                          // Set max attribute to today's date
+                        />
+                
                 </div>
               </div>
               <div className='col-lg-6'>

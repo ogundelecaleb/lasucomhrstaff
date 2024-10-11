@@ -41,104 +41,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
             Dashboard
           </div>
         </CustomLink>
-        <CustomLink to='calender'>
-          <div
-            id='hoverEffect'
-            className='d-flex ps-3 ms-1 align-items-center rounded gap-2'
-            style={{ height: "48px", width: "90%" }}>
-            <IoMdCalendar size='25' style={{ color: "#84818A" }} />
-            Calender & Schedule
-          </div>
-        </CustomLink>
-        <CustomLink to='inbox'>
-          <div
-            id='hoverEffect'
-            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
-            style={{ height: "48px", width: "90%" }}>
-            <MdMoveToInbox size='25' style={{ color: "#84818A" }} />
-            Inbox
-          </div>
-        </CustomLink>
-        <CustomLink to='event'>
-          <div
-            id='hoverEffect'
-            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
-            style={{ height: "48px", width: "90%" }}>
-            <RiBubbleChartFill size='25' style={{ color: "#84818A" }} />
-            Events/Training
-          </div>
-        </CustomLink>
-        <p className='text-muted ms-4 mt-2' style={{ marginBottom: "5px" }}>
-          Organization
-        </p>
-        <CustomLink to='job-openings'>
-          <div
-            id='hoverEffect'
-            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
-            style={{ height: "48px", width: "90%" }}>
-            <MdAccountTree size='25' style={{ color: "#84818A" }} />
-            Job Openings
-          </div>
-        </CustomLink>
-        <CustomLink to='availablejobs'>
-          <div
-            id='hoverEffect'
-            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
-            style={{ height: "48px", width: "90%" }}>
-            <MdSupervisedUserCircle size='25' style={{ color: "#84818A" }} />
-            Job Applicants
-          </div>
-        </CustomLink>
-        <CustomLink to='leave'>
-          <div
-            id='hoverEffect'
-            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
-            style={{ height: "48px", width: "90%" }}>
-            <FcLeave size='25' style={{ color: "#84818A" }} />
-            Leave
-          </div>
-        </CustomLink>
-        <Link to='/carryover-leave'>
-          <div
-            id='hoverEffect'
-            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
-            style={{ height: "48px", width: "90%" }}>
-            <RxReload size='25' style={{ color: "#84818A" }} />
-            Leave Carryover
-          </div>
-        </Link>
 
-        <Link to='/recall-leave'>
-          <div
-            id='hoverEffect'
-            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
-            style={{ height: "48px", width: "90%" }}>
-            <IoPlayBackOutline size='25' style={{ color: "#84818A" }} />
-            Recall Leave
-          </div>
-        </Link>
-
-        <CustomLink to='promotion'>
-          <div
-            id='hoverEffect'
-            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
-            style={{ height: "48px", width: "90%" }}>
-            <HiUpload size='25' style={{ color: "#84818A" }} />
-            Promotions
-          </div>
-        </CustomLink>
-        <CustomLink to='report'>
-          <div
-            id='hoverEffect'
-            className='ps-3 ms-2 d-flex align-items-center rounded gap-2'
-            style={{ height: "48px", width: "90%" }}>
-            <MdInsertChart size='25' style={{ color: "#84818A" }} />
-            Report
-          </div>
-        </CustomLink>
-        <p className='text-muted ms-4 mt-1' style={{ marginBottom: "0" }}>
-          Others
-        </p>
         <CustomLink to='settings'>
           <div
             onClick={() => setSettingDropDown(!settingDropDown)}
@@ -146,7 +49,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
             className='ps-3 ms-1 d-flex align-items-center rounded gap-2 position-relative'
             style={{ height: "48px", width: "90%" }}>
             <IoMdSettings size='25' style={{ color: "#84818A" }} />
-            Settings
+          Manage Staffs
             {settingDropDown ? (
               <AiOutlineUp className='position-absolute end-0 me-3' />
             ) : (
@@ -220,7 +123,106 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
            
           </div>
         </div>
-        <CustomLink to='get-help'>
+        {/* <CustomLink to='calender'>
+          <div
+            id='hoverEffect'
+            className='d-flex ps-3 ms-1 align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <IoMdCalendar size='25' style={{ color: "#84818A" }} />
+            Calender & Schedule
+          </div>
+        </CustomLink>
+        <CustomLink to='inbox'>
+          <div
+            id='hoverEffect'
+            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <MdMoveToInbox size='25' style={{ color: "#84818A" }} />
+            Inbox
+          </div>
+        </CustomLink> */}
+        {/* <CustomLink to='event'>
+          <div
+            id='hoverEffect'
+            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <RiBubbleChartFill size='25' style={{ color: "#84818A" }} />
+            Events/Training
+          </div>
+        </CustomLink> */}
+        <p className='text-muted ms-4 mt-2' style={{ marginBottom: "5px" }}>
+          Organization
+        </p>
+        <CustomLink to='job-openings'>
+          <div
+            id='hoverEffect'
+            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <MdAccountTree size='25' style={{ color: "#84818A" }} />
+            Job Openings
+          </div>
+        </CustomLink>
+        <CustomLink to='availablejobs'>
+          <div
+            id='hoverEffect'
+            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <MdSupervisedUserCircle size='25' style={{ color: "#84818A" }} />
+            Job Applicants
+          </div>
+        </CustomLink>
+        <CustomLink to='leave'>
+          <div
+            id='hoverEffect'
+            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <FcLeave size='25' style={{ color: "#84818A" }} />
+            Leave
+          </div>
+        </CustomLink>
+        <Link to='/carryover-leave'>
+          <div
+            id='hoverEffect'
+            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <RxReload size='25' style={{ color: "#84818A" }} />
+            Leave Carryover
+          </div>
+        </Link>
+
+        <Link to='/recall-leave'>
+          <div
+            id='hoverEffect'
+            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <IoPlayBackOutline size='25' style={{ color: "#84818A" }} />
+            Recall Leave
+          </div>
+        </Link>
+
+        {/* <CustomLink to='promotion'>
+          <div
+            id='hoverEffect'
+            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <HiUpload size='25' style={{ color: "#84818A" }} />
+            Promotions
+          </div>
+        </CustomLink>
+        <CustomLink to='report'>
+          <div
+            id='hoverEffect'
+            className='ps-3 ms-2 d-flex align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <MdInsertChart size='25' style={{ color: "#84818A" }} />
+            Report
+          </div>
+        </CustomLink> */}
+        {/* <p className='text-muted ms-4 mt-1' style={{ marginBottom: "0" }}>
+          Others
+        </p> */}
+       
+        {/* <CustomLink to='get-help'>
           <div
             id='hoverEffect'
             className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
@@ -228,7 +230,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
             <MdMoveToInbox size='25' style={{ color: "#84818A" }} />
             Get Help
           </div>
-        </CustomLink>
+        </CustomLink> */}
        <LogoutModal/>
       </div>
     </div>

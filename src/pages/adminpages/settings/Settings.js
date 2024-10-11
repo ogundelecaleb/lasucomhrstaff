@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Text } from "@chakra-ui/react";
+import { Box, Grid, Stack, Text, SimpleGrid } from "@chakra-ui/react";
 import React, { useState, useEffect,} from "react";
 import { FaSignLanguage, FaBuilding} from "react-icons/fa";
 import { FaUsersGear,FaUsersRectangle, FaUsersRays } from "react-icons/fa6";
@@ -40,8 +40,8 @@ const Settings = () => {
   }
 
   return (
-    <Box ml='14' my='20' w='100%'>
-      <Grid templateColumns='repeat(3, 1fr)' gap={6}>
+    <Box px="6" mt="4">
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 3, md: 5 }}>
         <DashbordBox
           title={"Manage Users"}
           total={dashboardDetails?.total_users}
@@ -78,7 +78,7 @@ const Settings = () => {
           icon={<FaSignLanguage color='#984779' size={32} />}
           route="user-access-role"
         />
-      </Grid>
+      </SimpleGrid>
     </Box>
   );
 };
