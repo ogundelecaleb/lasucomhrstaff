@@ -64,3 +64,6 @@ export const ASSIGNROLE = getApiUrl("/assign-role");
 export const STAFFONLEAVE = getApiUrl('/user-leave-status')
 export const RECALLSTAFF = getApiUrl('/recall-leave-user')
 export const CREATESUPERVISOR = getApiUrl('/create-supervisor')
+export const CREATERETIREMENTAGE = getApiUrl('/settings/age')
+export const FETCHRETIREMENTAGE = getApiUrl('/settings/platform-default-age')
+

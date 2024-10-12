@@ -33,9 +33,10 @@ import api from "../../../api";
 import { useNavigate, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { HiUserAdd } from "react-icons/hi";
-import { MoonLoader } from "react-spinners";
+import { ClipLoader, MoonLoader } from "react-spinners";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import { CiSettings } from "react-icons/ci";
 
 const CustomSkeletonLoader = ({ count }) => {
   const skeletonRows = Array.from({ length: count }, (_, index) => (
@@ -59,7 +60,7 @@ const CustomSkeletonLoader = ({ count }) => {
   return skeletonRows;
 };
 
-const Report = () => {
+const Retirement = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -75,7 +76,13 @@ const Report = () => {
   const [staff_type, setStaffType] = useState("");
   const [pageLength, setPageLength] = useState(300);
   const [origin, setOrigin] = useState("");
-  const [staff_status, setStaffStatus] = useState("")
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [age, setAge] = useState("");
+  const [isRetired, setIsRetired] = useState(true);
+
+  const closeSumbitModal = () => {
+    setIsModalOpen(false);
+  };
 
   async function getUser(page) {
     const response = await api.fetchUsers({
@@ -88,7 +95,7 @@ const Report = () => {
         department,
         level,
         state_of_origin: origin,
-        status:staff_status
+        is_due_for_retirement: isRetired,
       },
     });
     return response;
@@ -100,6 +107,10 @@ const Report = () => {
   }
   async function getUnit(page) {
     const response = await api.fetchDivision();
+    return response;
+  }
+  async function getAge(page) {
+    const response = await api.fetchRetirementAge();
     return response;
   }
 
@@ -114,7 +125,7 @@ const Report = () => {
         department,
         level,
         state_of_origin: origin,
-        status:staff_status
+        is_due_for_retirement: isRetired,
       },
     });
     return response;
@@ -132,7 +143,7 @@ const Report = () => {
       department,
       level,
       origin,
-      staff_status
+      isRetired,
     ],
     () => getUser(page, searchTerrm),
     {
@@ -152,7 +163,7 @@ const Report = () => {
       department,
       level,
       origin,
-      staff_status
+      isRetired,
     ],
     () => getExportUser(page, searchTerrm),
     {
@@ -170,10 +181,10 @@ const Report = () => {
     refetchOnWindowFocus: "always",
   });
 
- 
-
- 
-
+  const AgeQuery = useQuery(["age"], () => getAge(), {
+    keepPreviousData: true,
+    refetchOnWindowFocus: "always",
+  });
 
   const Levels = [
     "Level 1",
@@ -214,16 +225,17 @@ const Report = () => {
     setLoading(true);
 
     try {
-      const response = await api.updateUser({
-        staffId: userId,
-        user_supervision_role: selectedRole,
+      const response = await api.createRetirementAge({
+        age: age,
       });
       console.log("responce==>>>>>", response);
-      enqueueSnackbar("Role Assigned to Staff successfully", {
+      enqueueSnackbar("Retirment Age Created successfully", {
         variant: "success",
       });
       setLoading(false);
-      setIsAssignModal(false);
+      setIsModalOpen(false);
+      refetch()
+      AgeQuery.refetch()
     } catch (error) {
       console.log(error);
       enqueueSnackbar(error.message, { variant: "error" });
@@ -260,7 +272,7 @@ const Report = () => {
       {isLoading ? (
         <div className=" shadow mx-3 pb-5 mb-5 mt-5">
           <p className="fw-semibold ps-4 fs-4 py-4 border-bottom">
-            Filter and Generate Reports
+            Staffs Due for Retirement
           </p>
 
           <div className="tb-res-parent mt-4">
@@ -282,10 +294,32 @@ const Report = () => {
               alignItems={"center"}
               borderBottom="1px solid #EBEAED"
               px="5"
+              py="3"
               justifyContent="space-between"
             >
-              <Text className="text-[18px] font-semibold"> Filter and Generate Reports</Text>{" "}
-            
+              <Text className="text-[18px] font-semibold mb-0">
+                {" "}
+                Staffs Due for Retirement
+              </Text>{" "}
+              <button
+                onClick={() => setIsModalOpen(!isModalOpen)}
+                className="px-2 py-2 bg-[#984779] text-white rounded-md flex items-center gap-2"
+              >
+                <CiSettings variant="Bold" color="#fff" className=" h-[16px]" />
+                Retirement Settings
+              </button>
+            </Box>
+
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              borderBottom="1px solid #EBEAED"
+              px="5"
+              justifyContent="space-between"
+            >
+              <Text className="text-[18px] font-semibold py-2 mb-0">
+                Current Retirement Age: {AgeQuery?.data[0]?.age}
+              </Text>{" "}
             </Box>
 
             <div className="row mt-1 pa-res px-3">
@@ -293,8 +327,9 @@ const Report = () => {
                 className="col-lg-3 d-flex gap-3 align-items-center "
                 style={{ height: "70px" }}
               >
-                <p className="mt-3 fw-semibold text-muted fs-5">
-                  Total Staffs: {data?.meta?.total}
+                <p className=" fw-semibold text-muted fs-5 mb-0">
+                  Total Staffs:
+                  {data?.meta?.total}
                 </p>
               </div>
 
@@ -380,19 +415,6 @@ const Report = () => {
                     <option value="ASE">ASE</option>
                   </select>
 
-                  <select
-                    value={staff_status}
-                    onChange={(e) => {
-                      setStaffStatus(e.target.value);
-                    }}
-                    style={{ height: "45px" }}
-                    className="px-2  border max-w-[220px]  rounded-0"
-                  >
-                    <option value="">Select Staff Status</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                  </select>
-
                   <input
                     placeholder="Search by state of origin "
                     value={origin}
@@ -441,69 +463,45 @@ const Report = () => {
                 <table className="table table-hover table-bordered">
                   <thead>
                     <tr className="">
-                    
-                      <th scope="col">Image</th>
                       <th scope="col">Title</th>
                       <th scope="col">Full Name</th>
                       <th scope="col">Email Address</th>
                       <th scope="col">PF</th>
                       <th scope="col">Role</th>
-                      <th scope="col">Faculty</th>
+                      <th scope="col">Age</th>
                       <th scope="col">Department/Unit</th>
-                    
                     </tr>
                   </thead>
+
                   <tbody>
                     {isLoading && !isPreviousData && <div>Loading...</div>}
-                    {data?.data?.map((user, index) => (
-                      <tr key={user.id}>
-                       
-                        <td>
-                          {user.image ? (
-                            <Avatar
-                              h={"40px"}
-                              w={"40px"}
-                              borderWidth={1}
-                              borderColor={"#ccc"}
-                              src={user.image}
-                            />
-                          ) : (
-                            <RxAvatar size={40} color={"#25324B"} />
-                          )}
-                          {/* <img src={user.image} style={{ height: "60px" }} alt='staff' /> */}
-                        </td>
-                        <td className="fs-6">{user.title}</td>
-                        <td className="fs-6 whitespace-nowrap">
-                          {user.first_name} {user.last_name}
-                        </td>
-                        <td className="fs-6">{user.email}</td>
+                    {data?.data
+                      ?.filter((result) => result?.is_due_for_retirement)
+                      ?.map((user, index) => (
+                        <tr key={user.id}>
+                          <td className="fs-6">{user.title}</td>
+                          <td className="fs-6 whitespace-nowrap">
+                            {user.first_name} {user.last_name}
+                          </td>
+                          <td className="fs-6">{user.email}</td>
 
-                        <td className="fs-6">{user.staff_number}</td>
-                        <td className="fs-6">{user.role}</td>
-                        <td className="fs-6 whitespace-nowrap">
-                          {user.faculty
-                            ? user.faculty.name
-                            : user.department
-                            ? user.department.name
-                            : user.unit
-                            ? user.unit.name
-                            : "N/A"}
-                        </td>
-                        <td className="fs-6 whitespace-nowrap">
-                          {user.department
-                            ? user.department.name
-                            : user.unit
-                            ? user.unit.name
-                            : "N/A"}
-                        </td>
-
-                        
-                      </tr>
-                    ))}
+                          <td className="fs-6">{user.staff_number}</td>
+                          <td className="fs-6">{user.role}</td>
+                          <td className="fs-6 whitespace-nowrap">
+                            {user?.age}
+                          </td>
+                          <td className="fs-6 whitespace-nowrap">
+                            {user.department
+                              ? user.department.name
+                              : user.unit
+                              ? user.unit.name
+                              : "N/A"}
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
-             
             </div>
           </div>
           {data && data.data && data?.data?.length > 0 && (
@@ -575,6 +573,34 @@ const Report = () => {
                   </h1>
                 </div>
               </div>
+
+              <Modal isOpen={isModalOpen} onClose={closeSumbitModal}>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Set Retirement Age</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <div className="flex flex-col gap-2">
+                      <label>Retirement Age</label>
+                      <input
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
+                        className="py-[6px] px-1 rounded-md border border-[#181818]"
+                      />
+                    </div>{" "}
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button colorScheme="red" mr={3} onClick={handleSubmit}>
+                      {loading ? (
+                        <ClipLoader color={"white"} size={16} />
+                      ) : (
+                        "Continue"
+                      )}{" "}
+                    </Button>
+                    <Button onClick={closeSumbitModal}>Close</Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
             </div>
           )}
         </div>
@@ -583,4 +609,4 @@ const Report = () => {
   );
 };
 
-export default Report;
+export default Retirement;

@@ -52,7 +52,9 @@ import {
   ASSIGNROLE,
   STAFFONLEAVE,
   RECALLSTAFF,
-  CREATESUPERVISOR
+  CREATESUPERVISOR,
+  CREATERETIREMENTAGE,
+  FETCHRETIREMENTAGE
 } from "../utils/config";
 import { apiGet, apiPost, apiPut, apiDelete } from "../utils/utils";
 
@@ -280,4 +282,9 @@ export function staffOnLeave(data) {
 export function recallStaff(data) {
   return apiPost(RECALLSTAFF, data);
 }
-
+export function createRetirementAge(data) {
+  return apiPost(CREATERETIREMENTAGE, data);
+}
+export function fetchRetirementAge(data) {
+  return apiGet(FETCHRETIREMENTAGE, data);
+}

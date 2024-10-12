@@ -106,12 +106,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
               to='settings/role-list'>
               Manage Role
             </Link>
-            <Link
-              style={{ borderBottom: "1px solid #2D1460" }}
-              className='w-100 py-2 px-2'
-              to='settings/user-access-role'>
-              User access Role
-            </Link>
+          
           </div>
           <div className='d-flex flex-column align-items-center px-4'>
             <Link
@@ -123,7 +118,17 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
            
           </div>
         </div>
-        {/* <CustomLink to='calender'>
+
+        <CustomLink to='report'>
+          <div
+            id='hoverEffect'
+            className='ps-3 ms-2 d-flex align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <MdInsertChart size='25' style={{ color: "#84818A" }} />
+            Report
+          </div>
+        </CustomLink>
+        {/*<CustomLink to='calender'>
           <div
             id='hoverEffect'
             className='d-flex ps-3 ms-1 align-items-center rounded gap-2'
@@ -140,7 +145,8 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
             <MdMoveToInbox size='25' style={{ color: "#84818A" }} />
             Inbox
           </div>
-        </CustomLink> */}
+        </CustomLink>
+         */}
         {/* <CustomLink to='event'>
           <div
             id='hoverEffect'
@@ -199,6 +205,15 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
             Recall Leave
           </div>
         </Link>
+        <CustomLink to='retirement'>
+          <div
+            id='hoverEffect'
+            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
+            style={{ height: "48px", width: "90%" }}>
+            <HiUpload size='25' style={{ color: "#84818A" }} />
+            Retirement
+          </div>
+        </CustomLink>
 
         {/* <CustomLink to='promotion'>
           <div

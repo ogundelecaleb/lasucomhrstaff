@@ -3,7 +3,8 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Leave from "../pages/adminpages/leave/Leave";
 import MainAdminDashboard from "../pages/dashboards/MainAdminDashboard";
-import Promotion from "../pages/adminpages/promotion/Promotion";
+// import Promotion from "../pages/adminpages/promotion/Promotion";
+import Retirement from "../pages/adminpages/retirement/Retirement";
 // import JobApplicants from "../pages/adminpages/job-applicants/JobApplicants";
 import JobApplicantsRoutes from "./JobApplicantsRoutes";
 import AdminSettingsRoute from "./AdminSettingsRoute";
@@ -63,7 +64,8 @@ const AdminDashboardRoute = ({ mobile, setMobile, display }) => {
           path="/job-openings"
           element={<JobOpening reuseableNavigation={reuseableNavigation} />}
         />
-        <Route path="/promotion/*" exact element={<Promotion />} />
+        {/* <Route path="/promotion/*" exact element={<Promotion />} /> */}
+        <Route path="/retirement" exact element={<Retirement />} />
         <Route path="/staff/*" exact element={<AdminStaffRoute />} />
         <Route path="calender" exact element={<Calender />} />
         <Route path="/carryover-leave" element={<CarryOverLeave />} />
