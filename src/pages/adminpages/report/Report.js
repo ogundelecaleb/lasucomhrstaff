@@ -36,6 +36,7 @@ import { HiUserAdd } from "react-icons/hi";
 import { MoonLoader } from "react-spinners";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import { GiAges } from "react-icons/gi";
 
 const CustomSkeletonLoader = ({ count }) => {
   const skeletonRows = Array.from({ length: count }, (_, index) => (
@@ -76,6 +77,7 @@ const Report = () => {
   const [pageLength, setPageLength] = useState(300);
   const [origin, setOrigin] = useState("");
   const [staff_status, setStaffStatus] = useState("")
+  const [age, setAge] = useState(null)
 
   async function getUser(page) {
     const response = await api.fetchUsers({
@@ -88,7 +90,8 @@ const Report = () => {
         department,
         level,
         state_of_origin: origin,
-        status:staff_status
+        status:staff_status,
+        age_range: age
       },
     });
     return response;
@@ -114,7 +117,9 @@ const Report = () => {
         department,
         level,
         state_of_origin: origin,
-        status:staff_status
+        status:staff_status,
+        age_range: age
+
       },
     });
     return response;
@@ -132,7 +137,8 @@ const Report = () => {
       department,
       level,
       origin,
-      staff_status
+      staff_status,
+      age
     ],
     () => getUser(page, searchTerrm),
     {
@@ -152,7 +158,8 @@ const Report = () => {
       department,
       level,
       origin,
-      staff_status
+      staff_status,
+      age
     ],
     () => getExportUser(page, searchTerrm),
     {
@@ -254,6 +261,10 @@ const Report = () => {
 
     saveAs(blob, "exportedData.xlsx");
   };
+
+  const AgeRange = [
+    "10-20","20-30", "30-40", "40-50", "50-60", "60-70","80-90"
+  ]
 
   return (
     <div>
@@ -414,6 +425,20 @@ const Report = () => {
                     <option value="">Select Levels</option>
                     {Levels.map((level) => (
                       <option value={level}>{level}</option>
+                    ))}
+                  </select>
+
+                  <select
+                    value={age}
+                    onChange={(e) => {
+                      setAge(e.target.value);
+                    }}
+                    style={{ height: "45px" }}
+                    className="px-2  border max-w-[220px]  rounded-0"
+                  >
+                    <option value="">Select Age Range</option>
+                    {AgeRange.map((age) => (
+                      <option value={age}>{age}</option>
                     ))}
                   </select>
 
