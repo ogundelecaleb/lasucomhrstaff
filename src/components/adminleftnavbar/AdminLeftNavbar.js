@@ -1,130 +1,235 @@
 import React from "react";
 import "../dasLeftNav.css";
 import schLogo from "../../asset/logo(small).svg";
-import { MdDashboard, MdMoveToInbox, MdAccountTree, MdSupervisedUserCircle } from "react-icons/md";
-import { IoMdCalendar,IoMdSettings } from "react-icons/io";
+import {
+  MdDashboard,
+  MdMoveToInbox,
+  MdAccountTree,
+  MdSupervisedUserCircle,
+} from "react-icons/md";
+import { IoMdCalendar, IoMdSettings } from "react-icons/io";
 import { RxReload } from "react-icons/rx";
 import { RiBubbleChartFill } from "react-icons/ri";
 import { FcLeave } from "react-icons/fc";
 
 import { HiUpload } from "react-icons/hi";
 import { MdInsertChart } from "react-icons/md";
-import { Link, useMatch, useResolvedPath,useNavigate } from "react-router-dom";
+import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { useState } from "react";
 import LogoutModal from "../../pages/adminpages/logout/Logout";
 import { IoPlayBackOutline } from "react-icons/io5";
-
+import { BiCalendar } from "react-icons/bi";
 
 const AdminLeftNavbar = ({ mobile, setMobile }) => {
-
   const navigate = useNavigate();
   const dash1Style = { flexDirection: "column" };
   const [settingDropDown, setSettingDropDown] = useState(false);
   const [staffDropDown, setStaffDropDown] = useState(false);
-  
+  const [isLeave, setIsLeave] = useState(false);
+  const [isJobs, setIsJobs] = useState(false);
+
   return (
     <div className={mobile ? "leftNav" : "swapLeftNav"}>
       <div
-        onClick={() => setMobile(true)}
+        // onClick={() => setMobile(true)}
         style={dash1Style}
-        className='over-class d-flex gap-2 ps-2 pt-3'>
-        <div className='d-flex justify-content-center pe-3 pb-2'>
-          <img src={schLogo} alt='schhol_image' />
+        className="over-class d-flex gap-2 ps-2 pt-3 relative"
+      >
+
+<button
+            className=' text-white absolute top-2 right-2 xl:hidden'
+            onClick={() => setMobile(!mobile)}>
+            <i className='ms-3 fa fa-bars'></i>
+          </button>
+        <div className="d-flex justify-content-center pe-3 pb-2">
+          <img src={schLogo} alt="schhol_image" />
         </div>
-        <CustomLink to='/dashboard'>
+        <CustomLink to="/dashboard">
           <div
-            id='hoverEffect'
-            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
-            style={{ height: "48px", width: "90%" }}>
-            <MdDashboard size='25' style={{ color: "#84818A" }} />
+            id="hoverEffect"
+            className="ps-3 ms-1 d-flex align-items-center rounded gap-2"
+            style={{ height: "48px", width: "90%" }}
+          >
+            <MdDashboard size="25" style={{ color: "#84818A" }} />
             Dashboard
           </div>
         </CustomLink>
 
-        <CustomLink to='settings'>
+        <CustomLink to="settings">
           <div
             onClick={() => setSettingDropDown(!settingDropDown)}
-            id='hoverEffect'
-            className='ps-3 ms-1 d-flex align-items-center rounded gap-2 position-relative'
-            style={{ height: "48px", width: "90%" }}>
-            <IoMdSettings size='25' style={{ color: "#84818A" }} />
-          Manage Staffs
+            id="hoverEffect"
+            className="ps-3 ms-1 d-flex align-items-center rounded gap-2 position-relative"
+            style={{ height: "48px", width: "90%" }}
+          >
+            <IoMdSettings size="25" style={{ color: "#84818A" }} />
+            Manage Staffs
             {settingDropDown ? (
-              <AiOutlineUp className='position-absolute end-0 me-3' />
+              <AiOutlineUp className="position-absolute end-0 me-3" />
             ) : (
               <AiOutlineDown
-                color='white'
-                className='position-absolute end-0 me-3'
+                color="white"
+                className="position-absolute end-0 me-3"
               />
             )}
           </div>
         </CustomLink>
         <div className={settingDropDown ? "d-block" : "d-none"}>
-          <div className='d-flex flex-column align-items-center px-4'>
+          <div className="d-flex flex-column align-items-center px-4">
             <Link
-              to='settings/user-list'
-              className='w-100 py-2 ps-2'
-              style={{ borderBottom: "1px solid #2D1460" }}>
+              to="settings/user-list"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
               Manage User
             </Link>
           </div>
-          <div className='d-flex flex-column align-items-center px-4'>
+          <div className="d-flex flex-column align-items-center px-4">
             <Link
-              to='settings/add-supervisor'
-              className='w-100 py-2 ps-2'
-              style={{ borderBottom: "1px solid #2D1460" }}>
+              to="settings/add-supervisor"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
               Manage Supervisors
             </Link>
           </div>
-          <div className='d-flex flex-column align-items-center px-4'>
+          <div className="d-flex flex-column align-items-center px-4">
             <Link
-              to='settings/assign-role'
-              className='w-100 py-2 ps-2'
-              style={{ borderBottom: "1px solid #2D1460" }}>
+              to="settings/assign-role"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
               Assign Designation
             </Link>
           </div>
-          <div className='d-flex flex-column align-items-center px-4'>
+          <div className="d-flex flex-column align-items-center px-4">
             <Link
-              to='settings/faculty-list'
-              className='w-100 py-2 ps-2'
-              style={{ borderBottom: "1px solid #2D1460" }}>
+              to="settings/faculty-list"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
               Manage Faculty
             </Link>
             <Link
-              to='settings/department-list'
-              className='w-100 py-2 ps-2'
-              style={{ borderBottom: "1px solid #2D1460" }}>
+              to="settings/department-list"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
               Manage Department
             </Link>
           </div>
-          <div className='d-flex flex-column align-items-center px-4'>
+          <div className="d-flex flex-column align-items-center px-4">
             <Link
               style={{ borderBottom: "1px solid #2D1460" }}
-              className='w-100 py-2 px-2'
-              to='settings/role-list'>
+              className="w-100 py-2 px-2"
+              to="settings/role-list"
+            >
               Manage Role
             </Link>
-          
           </div>
-          <div className='d-flex flex-column align-items-center px-4'>
+          <div className="d-flex flex-column align-items-center px-4">
             <Link
               style={{ borderBottom: "1px solid #2D1460" }}
-              className='w-100 py-2 px-2'
-              to='settings/manage-division'>
+              className="w-100 py-2 px-2"
+              to="settings/manage-division"
+            >
               Manage Division
             </Link>
-           
+          </div>
+        </div>
+        <div
+          onClick={() => setIsJobs(!isJobs)}
+          id="hoverEffect"
+          className="ps-3 ms-1 d-flex align-items-center rounded gap-2 position-relative"
+          style={{ height: "48px", width: "90%" }}
+        >
+          <MdSupervisedUserCircle size="25" style={{ color: "#84818A" }} />
+          Jobs
+          {isJobs ? (
+            <AiOutlineUp className="position-absolute end-0 me-3" />
+          ) : (
+            <AiOutlineDown
+              color="white"
+              className="position-absolute end-0 me-3"
+            />
+          )}
+        </div>
+        <div className={isJobs ? "d-block" : "d-none"}>
+          <div className="d-flex flex-column align-items-center px-4">
+            <Link
+              to="job-openings"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
+              Create Jobs
+            </Link>
+          </div>
+          <div className="d-flex flex-column align-items-center px-4">
+            <Link
+              to="availablejobs"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
+              Job Applicants
+            </Link>
           </div>
         </div>
 
-        <CustomLink to='report'>
+        <div
+          onClick={() => setIsLeave(!isLeave)}
+          id="hoverEffect"
+          className="ps-3 ms-1 d-flex align-items-center rounded gap-2 position-relative"
+          style={{ height: "48px", width: "90%" }}
+        >
+          <BiCalendar size="25" style={{ color: "#84818A" }} />
+          Leave
+          {isLeave ? (
+            <AiOutlineUp className="position-absolute end-0 me-3" />
+          ) : (
+            <AiOutlineDown
+              color="white"
+              className="position-absolute end-0 me-3"
+            />
+          )}
+        </div>
+        <div className={isLeave ? "d-block" : "d-none"}>
+          <div className="d-flex flex-column align-items-center px-4">
+            <Link
+              to="/leave"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
+              Leave Applications
+            </Link>
+          </div>
+          <div className="d-flex flex-column align-items-center px-4">
+            <Link
+              to="/carryover-leave"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
+              Carryover Leave
+            </Link>
+          </div>
+          <div className="d-flex flex-column align-items-center px-4">
+            <Link
+              to="/recall-leave"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
+              Recall Leave
+            </Link>
+          </div>
+        </div>
+
+        <CustomLink to="report">
           <div
-            id='hoverEffect'
-            className='ps-3 ms-2 d-flex align-items-center rounded gap-2'
-            style={{ height: "48px", width: "90%" }}>
-            <MdInsertChart size='25' style={{ color: "#84818A" }} />
+            id="hoverEffect"
+            className="ps-3 ms-2 d-flex align-items-center rounded gap-2"
+            style={{ height: "48px", width: "90%" }}
+          >
+            <MdInsertChart size="25" style={{ color: "#84818A" }} />
             Report
           </div>
         </CustomLink>
@@ -156,7 +261,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
             Events/Training
           </div>
         </CustomLink> */}
-        <p className='text-muted ms-4 mt-2' style={{ marginBottom: "5px" }}>
+        {/* <p className='text-muted ms-4 mt-2' style={{ marginBottom: "5px" }}>
           Organization
         </p>
         <CustomLink to='job-openings'>
@@ -204,13 +309,14 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
             <IoPlayBackOutline size='25' style={{ color: "#84818A" }} />
             Recall Leave
           </div>
-        </Link>
-        <CustomLink to='retirement'>
+        </Link> */}
+        <CustomLink to="retirement">
           <div
-            id='hoverEffect'
-            className='ps-3 ms-1 d-flex align-items-center rounded gap-2'
-            style={{ height: "48px", width: "90%" }}>
-            <HiUpload size='25' style={{ color: "#84818A" }} />
+            id="hoverEffect"
+            className="ps-3 ms-1 d-flex align-items-center rounded gap-2"
+            style={{ height: "48px", width: "90%" }}
+          >
+            <HiUpload size="25" style={{ color: "#84818A" }} />
             Retirement
           </div>
         </CustomLink>
@@ -236,7 +342,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
         {/* <p className='text-muted ms-4 mt-1' style={{ marginBottom: "0" }}>
           Others
         </p> */}
-       
+
         {/* <CustomLink to='get-help'>
           <div
             id='hoverEffect'
@@ -246,7 +352,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
             Get Help
           </div>
         </CustomLink> */}
-       <LogoutModal/>
+        <LogoutModal />
       </div>
     </div>
   );

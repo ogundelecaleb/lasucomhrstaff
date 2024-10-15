@@ -78,6 +78,8 @@ const Report = () => {
   const [origin, setOrigin] = useState("");
   const [staff_status, setStaffStatus] = useState("")
   const [age, setAge] = useState(null)
+  const [appointment_type, setAppointmentType] = useState("")
+
 
   async function getUser(page) {
     const response = await api.fetchUsers({
@@ -91,7 +93,8 @@ const Report = () => {
         level,
         state_of_origin: origin,
         status:staff_status,
-        age_range: age
+        age_range: age,
+        appointment_type
       },
     });
     return response;
@@ -118,7 +121,8 @@ const Report = () => {
         level,
         state_of_origin: origin,
         status:staff_status,
-        age_range: age
+        age_range: age,
+        appointment_type
 
       },
     });
@@ -138,7 +142,8 @@ const Report = () => {
       level,
       origin,
       staff_status,
-      age
+      age,
+      appointment_type
     ],
     () => getUser(page, searchTerrm),
     {
@@ -159,7 +164,8 @@ const Report = () => {
       level,
       origin,
       staff_status,
-      age
+      age,
+      appointment_type
     ],
     () => getExportUser(page, searchTerrm),
     {
@@ -366,6 +372,8 @@ const Report = () => {
                         {division.name}
                       </option>
                     ))}
+                    <option value="">All</option>
+
                   </select>
                   <select
                     value={gender}
@@ -378,6 +386,7 @@ const Report = () => {
                     <option value="">Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
+                    <option value="">All</option>
                   </select>
                   <select
                     value={staff_type}
@@ -390,6 +399,7 @@ const Report = () => {
                     <option value="">Select Staff Type</option>
                     <option value="NASE">NASE</option>
                     <option value="ASE">ASE</option>
+                    <option value="">All</option>
                   </select>
 
                   <select
@@ -403,6 +413,30 @@ const Report = () => {
                     <option value="">Select Staff Status</option>
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
+                  </select>
+
+                  <select
+                    value={appointment_type}
+                    onChange={(e) => {
+                      setAppointmentType(e.target.value);
+                    }}
+                    style={{ height: "45px" }}
+                    className="px-2  border max-w-[220px]  rounded-0"
+                  >
+                    <option value="">Select Appointment Type</option>
+                    <option value="Temporary">
+                  Temporary Appointment
+                </option>
+                <option value="Contract">
+                  Contract Appointment{" "}
+                </option>
+                <option value="permanent">
+                  Permanent Appointment
+                </option>
+                <option value="Sabbatical">
+                  Sabbatical Appointment
+                </option>
+                <option value="Ad-hoc">Ad-hoc Appointment</option>
                   </select>
 
                   <input
@@ -423,7 +457,7 @@ const Report = () => {
                     style={{ height: "45px" }}
                     className="px-2  border max-w-[220px]  rounded-0"
                   >
-                    <option value="">Select Levels</option>
+                    <option value="">Select Grade Levels</option>
                     {Levels.map((level) => (
                       <option value={level}>{level}</option>
                     ))}
@@ -458,6 +492,8 @@ const Report = () => {
                         {division.name}
                       </option>
                     ))}
+                    <option value="">All</option>
+
                   </select>
                 </div>
               </>

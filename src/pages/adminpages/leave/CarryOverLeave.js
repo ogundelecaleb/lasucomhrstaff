@@ -136,7 +136,7 @@ const CarryOverLeave = () => {
               px="5"
               justifyContent="space-between"
             >
-              <Text className="text-[18px] font-semibold">Manage Users</Text>{" "}
+              <Text className="text-[18px] font-semibold">Carryover Unused Leave</Text>{" "}
               <Link to={`/settings/add-user`}>
                 <CommonButton title={"Add Staff"} />
               </Link>
