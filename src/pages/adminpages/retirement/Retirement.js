@@ -318,7 +318,7 @@ const Retirement = () => {
               justifyContent="space-between"
             >
               <Text className="text-[18px] font-semibold py-2 mb-0">
-                Current Retirement Age: {AgeQuery?.data[0]?.age}
+                Current Retirement Age: { AgeQuery && AgeQuery?.data[0]?.age}
               </Text>{" "}
             </Box>
 

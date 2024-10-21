@@ -54,7 +54,12 @@ import {
   RECALLSTAFF,
   CREATESUPERVISOR,
   CREATERETIREMENTAGE,
-  FETCHRETIREMENTAGE
+  FETCHRETIREMENTAGE,
+  GETAGEREPORT,
+  GETLLEVELREPORT,
+  GETSTATEOFORIGINREPORT,
+  GETACTIVESTAFFS,
+  GETAPPOINTMENTREPORT
 } from "../utils/config";
 import { apiGet, apiPost, apiPut, apiDelete } from "../utils/utils";
 
@@ -288,3 +293,25 @@ export function createRetirementAge(data) {
 export function fetchRetirementAge(data) {
   return apiGet(FETCHRETIREMENTAGE, data);
 }
+
+export function getAgeReport(data) {
+  return apiGet(GETAGEREPORT, data);
+}
+
+export function getLevelReport (data) {
+  return apiGet(GETLLEVELREPORT, data);
+}
+
+export function getStateOriginReport (data) {
+  return apiGet(GETSTATEOFORIGINREPORT, data);
+}
+
+export function getActiveStaffs (data) {
+  return apiGet(GETACTIVESTAFFS, data);
+}
+
+export function getAppointmentreport (data) {
+  return apiGet(GETAPPOINTMENTREPORT, data);
+}
+
+

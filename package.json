@@ -21,10 +21,11 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "chart.js": "^4.2.1",
+    "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
     "framer-motion": "^10.12.2",
-    "file-saver": "^2.0.5",
     "get-google-fonts": "^1.2.2",
+    "iconsax-react": "^0.0.8",
     "intl": "^1.2.2",
     "is_js": "^0.9.0",
     "jspdf": "^2.5.1",
@@ -46,7 +47,6 @@
     "react-spinners": "^0.13.8",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"
-
   },
   "scripts": {
     "start": "react-scripts start",

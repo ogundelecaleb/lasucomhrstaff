@@ -28,6 +28,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
   const [staffDropDown, setStaffDropDown] = useState(false);
   const [isLeave, setIsLeave] = useState(false);
   const [isJobs, setIsJobs] = useState(false);
+  const [isReport, setIsReport] = useState(false);
 
   return (
     <div className={mobile ? "leftNav" : "swapLeftNav"}>
@@ -36,12 +37,12 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
         style={dash1Style}
         className="over-class d-flex gap-2 ps-2 pt-3 relative"
       >
-
-<button
-            className=' text-white absolute top-2 right-2 xl:hidden'
-            onClick={() => setMobile(!mobile)}>
-            <i className='ms-3 fa fa-bars'></i>
-          </button>
+        <button
+          className=" text-white absolute top-2 right-2 xl:hidden"
+          onClick={() => setMobile(!mobile)}
+        >
+          <i className="ms-3 fa fa-bars"></i>
+        </button>
         <div className="d-flex justify-content-center pe-3 pb-2">
           <img src={schLogo} alt="schhol_image" />
         </div>
@@ -223,16 +224,80 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
           </div>
         </div>
 
-        <CustomLink to="report">
-          <div
-            id="hoverEffect"
-            className="ps-3 ms-2 d-flex align-items-center rounded gap-2"
-            style={{ height: "48px", width: "90%" }}
-          >
-            <MdInsertChart size="25" style={{ color: "#84818A" }} />
-            Report
+        <div
+          onClick={() => setIsReport(!isReport)}
+          id="hoverEffect"
+          className="ps-3 ms-1 d-flex align-items-center rounded gap-2 position-relative"
+          style={{ height: "48px", width: "90%" }}
+        >
+          <MdInsertChart size="25" style={{ color: "#84818A" }} />
+          Reports
+          {isReport ? (
+            <AiOutlineUp className="position-absolute end-0 me-3" />
+          ) : (
+            <AiOutlineDown
+              color="white"
+              className="position-absolute end-0 me-3"
+            />
+          )}
+        </div>
+        <div className={isReport ? "d-block" : "d-none"}>
+          <div className="d-flex flex-column align-items-center px-4">
+            <Link
+              to="/age-report"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
+              Age Distribution
+            </Link>
           </div>
-        </CustomLink>
+          <div className="d-flex flex-column align-items-center px-4">
+            <Link
+              to="/state-of-origin-report"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
+              State Of Origin
+            </Link>
+          </div>
+          <div className="d-flex flex-column align-items-center px-4">
+            <Link
+              to="/appointment-report"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
+              Appointment Type
+            </Link>
+          </div>
+          <div className="d-flex flex-column align-items-center px-4">
+            <Link
+              to="/active-staff-report"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
+              Active Staff
+            </Link>
+          </div>
+          <div className="d-flex flex-column align-items-center px-4">
+            <Link
+              to="/level-report"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
+             Level Report
+            </Link>
+          </div>
+          <div className="d-flex flex-column align-items-center px-4">
+            <Link
+              to="/report"
+              className="w-100 py-2 ps-2"
+              style={{ borderBottom: "1px solid #2D1460" }}
+            >
+          All Report 
+            </Link>
+          </div>
+        </div>
+
         {/*<CustomLink to='calender'>
           <div
             id='hoverEffect'
@@ -321,6 +386,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
           </div>
         </CustomLink>
 
+      
         {/* <CustomLink to='promotion'>
           <div
             id='hoverEffect'
@@ -356,6 +422,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
       </div>
     </div>
   );
+
   function CustomLink({ to, children, ...props }) {
     const resolvedpath = useResolvedPath(to);
     const isActive = useMatch({ path: resolvedpath.pathname, end: true });

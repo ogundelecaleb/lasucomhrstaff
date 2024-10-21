@@ -29,6 +29,11 @@ import AvailableJobs from "../pages/adminpages/job-applicants/AvailableJobs";
 import JobApplicants from "../pages/adminpages/job-applicants/JobApplicants";
 import CarryOverLeave from "../pages/adminpages/leave/CarryOverLeave";
 import RecallLeave from "../pages/adminpages/leave/RecallLeave";
+import AgeReport from "../pages/adminpages/report/AgeReport";
+import StateOfOriginReport from "../pages/adminpages/report/stateOfOriginReport";
+import LevelReport from "../pages/adminpages/report/LevelReport";
+import ActiveStaffReport from "../pages/adminpages/report/ActiveStaffReport";
+import AppointmentReport from "../pages/adminpages/report/AppointmentReport";
 
 const AdminDashboardRoute = ({ mobile, setMobile, display }) => {
   // const navigate = useNavigate();
@@ -64,6 +69,10 @@ const AdminDashboardRoute = ({ mobile, setMobile, display }) => {
           path="/job-openings"
           element={<JobOpening reuseableNavigation={reuseableNavigation} />}
         />
+         <Route
+          path="/age-report"
+          element={<AgeReport />}
+        />
         {/* <Route path="/promotion/*" exact element={<Promotion />} /> */}
         <Route path="/retirement" exact element={<Retirement />} />
         <Route path="/staff/*" exact element={<AdminStaffRoute />} />
@@ -95,6 +104,10 @@ const AdminDashboardRoute = ({ mobile, setMobile, display }) => {
         />
 
         <Route path="/report" element={<Report />} />
+        <Route path="/state-of-origin-report" element={<StateOfOriginReport />} />
+        <Route path="/level-report" element={<LevelReport />} />
+        <Route path="/active-staff-report" element={<ActiveStaffReport />} />
+        <Route path="/appointment-report" element={<AppointmentReport />} />
         <Route path="/event" element={<Event />} />
         <Route path="settings/*" element={<AdminSettingsRoute />} />
         <Route path="inbox/*" element={<AdminboxRoute />} />
