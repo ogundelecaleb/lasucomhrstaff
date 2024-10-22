@@ -187,11 +187,11 @@ const AcademicDetails = () => {
                         className="fw-semibold text-muted fs-6 mt-3 mb-2 flex justify-between"
                       >
                         Name of institution
-                        {acad.id > 0 && (
+                        {/* {acad.id > 0 && (
                           <button onClick={() => removeItem(acad.id)}>
                             <Trash size={15} />
                           </button>
-                        )}
+                        )} */}
                       </label>
                       <input
                         type="text"

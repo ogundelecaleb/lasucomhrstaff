@@ -716,7 +716,7 @@ const UserList = () => {
                     <nav aria-label="Page navigation example">
                       <ul class="pagination">
                         <li
-                          className={`page-item ${
+                          className={`page-item cursor-pointer ${
                             data?.meta?.current_page === 1 ? "disabled" : ""
                           }`}
                         >
@@ -736,7 +736,7 @@ const UserList = () => {
                         </li>
 
                         <li
-                          className={`page-item ${
+                          className={`page-item cursor-pointer ${
                             data?.meta?.current_page === data?.meta?.last_page
                               ? "disabled"
                               : ""

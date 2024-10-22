@@ -9,6 +9,16 @@ import { useParams } from "react-router-dom";
 const ContactInfo = () => {
   const [userDetails, setUserDetails] = useState([]);
   const { enqueueSnackbar } = useSnackbar();
+  const [divisionOptions, setDivisionOptions] = useState([]);
+  const [selectedDivision, setSelectedDivision] = useState("");
+  const [selectedRole, setSelectedRole] = useState(userDetails.role || "");
+  const [selectedStatus, setSelectedStatus] = useState(
+    userDetails.status || "active"
+  );
+  const [selectedConfirm, setSelectedConfirm] = useState(
+    userDetails.confirmation || ""
+  );
+  const [roleData, setRoleData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
 
@@ -32,6 +42,27 @@ const ContactInfo = () => {
         });
     }
   }, [id]);
+  useEffect(() => {
+    api
+      .fetchDivision()
+      .then((response) => setDivisionOptions(response.data))
+      .catch((error) => {
+        enqueueSnackbar("Error fetching Divisions/Unit", { variant: "error" });
+      });
+  }, []);
+  useEffect(() => {
+    api
+      .fetchRole()
+      .then((response) => {
+        setRoleData(response.data);
+      })
+      .catch((error) => {
+        enqueueSnackbar("Error fetching roles", { variant: "error" });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
 
   const [formValues, setFormValues] = useState({
     phone: "",
@@ -44,6 +75,11 @@ const ContactInfo = () => {
     faculty: "",
     level: "",
     unit: "",
+    annualLeave: "",
+    staffID: "",
+    selectedTitle: "",
+    status: "",
+    selectedConfirm: "",
   });
 
   useEffect(() => {
@@ -61,7 +97,14 @@ const ContactInfo = () => {
         role: userDetails?.role,
         unit: userDetails?.unit?.name,
         type: userDetails?.type,
+        annualLeave: userDetails.total_leave_due || "",
+        staffID: userDetails.staff_number || "",
+        selectedTitle: userDetails.title || "",
+        status: userDetails.status || "",
+        selectedConfirm: userDetails.confirmation || "",
       });
+      setSelectedDivision(userDetails?.unit?.id);
+      setSelectedRole(userDetails.role || "");
     }
   }, [userDetails]);
 
@@ -76,6 +119,12 @@ const ContactInfo = () => {
         current_address: formValues.current_address,
         permanent_address: formValues.permanent_address,
         date_of_first_appointment: formValues.date_of_first_appointment,
+        staff_number: formValues.staffID,
+        total_leave_due: formValues.annualLeave,
+        //department_id: selectedDivision,
+        role: selectedRole,
+        status: selectedStatus,
+        unit: selectedDivision,
       });
       console.log("responce==>>>>>", response);
       enqueueSnackbar("Information updated successfully", {
@@ -112,8 +161,6 @@ const ContactInfo = () => {
                     type="text"
                     //style={{ height: "40px" }}
                     className="border py-2 px-2 w-full rounded-0"
-                    required
-                    disabled
                     id="exampleFormControlInput1"
                     placeholder=""
                     value={formValues.phone}
@@ -139,8 +186,6 @@ const ContactInfo = () => {
                     //style={{ height: "40px" }}
                     className="border py-2 px-2 w-full rounded-0"
                     id="exampleFormControlInput1"
-                    disabled
-                    required
                     value={formValues.email}
                     onChange={(e) =>
                       setFormValues({
@@ -165,7 +210,6 @@ const ContactInfo = () => {
                 className="border py-2 px-2 w-full rounded-0"
                 id="exampleFormControlInput1"
                 placeholder=""
-                required
                 value={formValues.current_address}
                 onChange={(e) =>
                   setFormValues({
@@ -188,7 +232,6 @@ const ContactInfo = () => {
                 className="border py-2 px-2 w-full rounded-0"
                 id="exampleFormControlInput1"
                 placeholder=""
-                required
                 value={formValues.contact_address}
                 onChange={(e) =>
                   setFormValues({
@@ -245,8 +288,7 @@ const ContactInfo = () => {
                     className="border py-2 px-2 w-full rounded-0"
                     id="exampleFormControlInput1"
                     placeholder=""
-                    required
-                    disabled
+                    d
                     value={formValues.date_of_first_appointment}
                     onChange={(e) =>
                       setFormValues({
@@ -255,6 +297,88 @@ const ContactInfo = () => {
                       })
                     }
                   />
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div class="form-group">
+                  <label
+                    for="exampleFormControlSelect1"
+                    className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                  >
+                    Annual Leave
+                    <sup className="text-danger">*</sup>
+                  </label>
+
+                  <input
+                    type="text"
+                    //style={{ height: "40px" }}
+                    className="border py-2 px-2 w-full rounded-0"
+                    id="exampleFormControlInput1"
+                    placeholder=""
+                    d
+                    value={formValues.annualLeave}
+                    onChange={(e) =>
+                      setFormValues({
+                        ...formValues,
+                        annualLeave: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div className="col-lg-6">
+                <div class="form-group">
+                  <label
+                    for="exampleFormControlSelect1"
+                    className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                  >
+                    Staff ID
+                    <sup className="text-danger">*</sup>
+                  </label>
+
+                  <input
+                    type="text"
+                    //style={{ height: "40px" }}
+                    className="border py-2 px-2 w-full rounded-0"
+                    id="exampleFormControlInput1"
+                    placeholder="Staff ID"
+                    value={formValues.staffID}
+                    onChange={(e) =>
+                      setFormValues({
+                        ...formValues,
+                        staffID: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div class="form-group">
+                  <label
+                    for="exampleFormControlSelect1"
+                    className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                  >
+                    Staff Status
+                    <sup className="text-danger">*</sup>
+                  </label>
+
+                  <select
+                    type="text"
+                    //style={{ height: "40px" }}
+                    className="border py-2 px-2 w-full rounded-0"
+                    id="exampleFormControlInput1"
+                    placeholder=""
+                    d
+                    value={selectedStatus}
+                    onChange={(e) => setSelectedStatus(e.target.value)}
+                  >
+                    <option value="">Select Status </option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -273,7 +397,7 @@ const ContactInfo = () => {
                   className="border py-2 px-2 w-full rounded-0"
                   id="exampleFormControlInput1"
                   placeholder=""
-                  disabled
+                  d
                   value={formValues.faculty}
                   onChange={(e) =>
                     setFormValues({
@@ -300,7 +424,7 @@ const ContactInfo = () => {
                     className="border py-2 px-2 w-full rounded-0"
                     id="exampleFormControlInput1"
                     placeholder=""
-                    disabled
+                    d
                     value={formValues.department}
                     onChange={(e) =>
                       setFormValues({
@@ -320,21 +444,32 @@ const ContactInfo = () => {
                 >
                   Unit
                 </label>
-                <input
+                <select
                   type="text"
                   style={{ height: "40px" }}
                   class="form-control rounded-0"
                   id="exampleFormControlInput1"
                   placeholder=""
-                  disabled
-                  value={formValues.unit}
-                  onChange={(e) =>
-                    setFormValues({
-                      ...formValues,
-                      unit: e.target.value,
-                    })
-                  }
-                />
+                  d
+                  value={selectedDivision}
+                  onChange={(e) => {
+                    setSelectedDivision(e.target.value);
+                  }}
+                  // value={formValues.unit}
+                  // onChange={(e) =>
+                  //   setFormValues({
+                  //     ...formValues,
+                  //     unit: e.target.value,
+                  //   })
+                  // }
+                >
+                  <option value="">Select Unit</option>
+                  {divisionOptions.map((division) => (
+                    <option key={division.id} value={division.id}>
+                      {division.name}
+                    </option>
+                  ))}
+                </select>
               </div>
             )}
 
@@ -352,7 +487,7 @@ const ContactInfo = () => {
                     style={{ height: "40px" }}
                     class="form-control rounded-0"
                     id="exampleFormControlInput1"
-                    disabled
+                    d
                     value={formValues.level}
                     onChange={(e) =>
                       setFormValues({
@@ -372,26 +507,33 @@ const ContactInfo = () => {
                   >
                     Designation
                   </label>
-                  <input
+                  <select
                     type="text"
                     style={{ height: "40px" }}
                     class="form-control rounded-0"
                     id="exampleFormControlInput1"
-                    disabled
-                    value={formValues.role}
-                    onChange={(e) =>
-                      setFormValues({
-                        ...formValues,
-                        role: e.target.value,
-                      })
-                    }
-                  />
+                    d
+                    // value={formValues.role}
+                    // onChange={(e) =>
+                    //   setFormValues({
+                    //     ...formValues,
+                    //     role: e.target.value,
+                    //   })
+                    // }
+                    value={selectedRole}
+                    onChange={(e) => setSelectedRole(e.target.value)}
+                  >
+                    <option value="">Select Role</option>
+                    {roleData.map((role) => (
+                      <option key={role.id} value={role.id}>
+                        {role.description}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
             </div>
           </div>
-
-         
         </div>
        
       </form>
