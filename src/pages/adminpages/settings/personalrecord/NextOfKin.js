@@ -412,7 +412,7 @@ const NextOfKin = () => {
           <div className="col-lg-2"></div>
         </div>
         </div>
-        <div className="row pt-4">
+        {/* <div className="row pt-4">
           <div className="col-lg-9 d-flex gap-3">
             <input
               type="radio"
@@ -426,9 +426,9 @@ const NextOfKin = () => {
               the college.
             </p>
           </div>
-        </div>
+        </div> */}
 
-        {!isDeclarationAccepted && (
+        {/* {!isDeclarationAccepted && (
           <div className="row pt-2">
             <p className="text-danger">
               Please accept the declaration before saving or updating.
@@ -462,7 +462,7 @@ const NextOfKin = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </form>
     </div>
   );

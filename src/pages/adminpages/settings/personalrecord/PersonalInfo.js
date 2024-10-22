@@ -475,7 +475,7 @@ const PersonalInfo = () => {
                       </div>
                     </div>
                   </div>
-                  <div class="pb-2">
+                  {/* <div class="pb-2">
                     <div className="mb-2">
                       <label
                         style={{ marginBottom: "10px" }}
@@ -514,35 +514,10 @@ const PersonalInfo = () => {
                         </sup>
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
-              <div className="col-lg-2"></div>
-              <div className="row pt-2">
-                <p className="text-DARK">
-                  please report or contact the College Secretary in the case of
-                  change or addition to any information provided above with the
-                  exception of permanent address and date of first appointment
-                  so that this record can be updated appropriately.
-                </p>
-              </div>
-            </div>
-            {/* <div className='row border-top pb-5 mt-4'> */}
-            <div className="col-lg-12 py-5 d-flex justify-content-end">
-              <div>
-                <button
-                  className="btn py-2 px-4 me-2  text-white rounded-0"
-                  style={{ backgroundColor: "#984779" }}
-                  disabled={isLoading}
-                  type="submit"
-                >
-                  {isLoading ? (
-                    <MoonLoader color={"white"} size={20} />
-                  ) : (
-                    <>Submit</>
-                  )}
-                </button>
-              </div>
+              
             </div>
             {/* </div> */}
           </form>

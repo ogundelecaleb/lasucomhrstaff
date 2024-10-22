@@ -13,12 +13,27 @@ import ContactInfo from "./ContactInfo";
 import NextOfKin from "./NextOfKin";
 import FamilyDetails from "./FamilyDetails";
 import AcademicDetails from "./AcademicDetails";
+import { Link } from "react-router-dom";
 
 const PersonalRecord = () => {
 
   return (
 
     <Box className='container'>
+      <div className="flex items-center mt-3">
+              <p className="text-[#667185] text-[14px] md:text-[14px] xl:text-[16px] font-normal leading-[24px] ">
+                Manage Staffs /
+              </p>
+              <Link to="/settings/user-list">
+                <p className="text-[#667185] text-[14px] md:text-[14px] xl:text-[16px] font-normal leading-[24px] ">
+                  &nbsp; Manage Users /
+                </p>
+              </Link>
+            
+              <p className="text-[#000] text-[14px] md:text-[14px] xl:text-[16px] font-normal leading-[24px]  ">
+                &nbsp; View User
+              </p>
+            </div>
       <Tabs position='relative' variant='unstyled'>
         <Box className='table-responsive pt-3'>
           <TabList>

@@ -70,405 +70,802 @@ const FamilyDetails = () => {
 
 
   return (
-    <div className='container'>
-     <div>
-      <div className='row mt-4 border-bottom pb-4 pb-4'>
-        <div className='col-lg-4'>
-          <Text color='black' className='fs-5 pt-2 fw-semibold'>Spouse details</Text>
+    <div className="container">
+    <form >
+      <div className="row mt-4 border-bottom pb-4 pb-4">
+        <div className="col-lg-4">
+          <Text color="black" className="fs-5 pt-2 fw-semibold">
+            Spouse details
+          </Text>
         </div>
-        <div className='col-lg-6 pe-'>
-          
-            <div class='form-group'>
-              <label
-                for='exampleFormControlSelect1'
-                className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                Full Name
-              </label>
-              <input
-                type='text'
-                style={{ height: "40px" }}
-                class='form-control rounded-0'
-                id='exampleFormControlInput1'
-                placeholder=''
-                disabled
-                value={formValues.spouse_full_name}
-                onChange={(e) =>
-                  setFormValues({
-                    ...formValues,
-                    spouse_full_name: e.target.value,
-                  })
-                }
-              />
-            </div>
-            <div class='form-group'>
-              <label
-                for='exampleFormControlSelect1'
-                className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                Current Residential Address
-              </label>
+        <div className="col-lg-6 pe-">
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Full Name
+            </label>
+            <input
+              type="text"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.spouse_full_name}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  spouse_full_name: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+            Email Address 
+            </label>
+            <input
+              type="text"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.spouse_email}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  spouse_email: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Current Residential Address
+            </label>
+            <input
+              type="text"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.spouse_current_address}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  spouse_current_address: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="row">
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Phone number
+                </label>
                 <input
-                  type='text'
+                  type="text"
                   style={{ height: "40px" }}
-                  class='form-control rounded-0'
-                  id='exampleFormControlInput1'
-                  placeholder=''
-                  disabled
-                  value={formValues.spouse_current_address}
+                  class="form-control rounded-0"
+                  id="exampleFormControlInput1"
+                  placeholder=""
+                  value={formValues.spouse_phone}
                   onChange={(e) =>
                     setFormValues({
                       ...formValues,
-                      spouse_current_address: e.target.value,
+                      spouse_phone: e.target.value,
                     })
                   }
                 />
-            </div>
-            <div class='row'>
-              <div className='col-lg-6'>
-                <div class='form-group'>
-                  <label
-                    for='exampleFormControlSelect1'
-                    className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                    Phone number
-                  </label>
-                  <input
-                    type='text'
-                    style={{ height: "40px" }}
-                    class='form-control rounded-0'
-                    id='exampleFormControlInput1'
-                    placeholder=''
-                    disabled
-                    value={formValues.spouse_phone}
-                    onChange={(e) =>
-                      setFormValues({
-                        ...formValues,
-                        spouse_phone: e.target.value,
-                      })
-                    }
-                  />
-                </div>
               </div>
             </div>
+          </div>
         </div>
-        <div className='col-lg-2'></div>
+        <div className="col-lg-2"></div>
       </div>
-      <div className='row mt-4 border-bottom pb-4 pb-4'>
-        <div className='col-lg-4'>
-          <p className='fs-5 pt-2 fw-semibold'>Child 1 Details</p>
+      <div className="row mt-4 border-bottom pb-4 pb-4">
+        <div className="col-lg-4">
+          <p className="fs-5 pt-2 fw-semibold">Child 1 Details</p>
         </div>
-        <div className='col-lg-6 pe-'>
-          
-            <div class='form-group'>
-              <label
-                for='exampleFormControlSelect1'
-                className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                Full name
-              </label>
+        <div className="col-lg-6 pe-">
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Full name
+            </label>
+            <input
+              type="text"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.c1_full_name}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  c1_full_name: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.c1_email}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  c1_email: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Current Residential Address
+            </label>
+            <input
+              type="text"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.c1_current_address}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  c1_current_address: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="row">
+            
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Phone number
+                </label>
                 <input
-                  type='text'
+                  type="text"
                   style={{ height: "40px" }}
-                  class='form-control rounded-0'
-                  id='exampleFormControlInput1'
-                  placeholder=''
-                  disabled
-                  value={formValues.c1_full_name}
+                  class="form-control rounded-0"
+                  id="exampleFormControlInput1"
+                  placeholder=""
+                  value={formValues.c1_phone}
                   onChange={(e) =>
                     setFormValues({
                       ...formValues,
-                      c1_full_name: e.target.value,
+                      c1_phone: e.target.value,
                     })
                   }
                 />
+              </div>
             </div>
-            <div class='form-group'>
-              <label
-                for='exampleFormControlSelect1'
-                className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                Current Residential Address
-              </label>
+          </div>
+          <div class="row">
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Date of Birth
+                </label>
                 <input
-                  type='text'
+                  type="date"
                   style={{ height: "40px" }}
-                  class='form-control rounded-0'
-                  id='exampleFormControlInput1'
-                  placeholder=''
-                  disabled
-                  value={formValues.c1_current_address}
+                  class="form-control rounded-0"
+                  id="exampleFormControlInput1"
+                  placeholder=""
+                  value={formValues.c1_date_of_birth}
                   onChange={(e) =>
                     setFormValues({
                       ...formValues,
-                      c1_current_address: e.target.value,
+                      c1_date_of_birth: e.target.value,
                     })
                   }
                 />
-            </div>
-            <div class='row'>
-              <div className='col-lg-6'>
-                <div class='form-group'>
-                  <label
-                    for='exampleFormControlSelect1'
-                    className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                    Relationship to you
-                  </label>
-                  <input
-                    type='text'
-                    style={{ height: "40px" }}
-                    class='form-control rounded-0'
-                    id='exampleFormControlInput1'
-                    placeholder=''
-                    disabled
-                    value={formValues.c1_relationship}
-                    onChange={(e) =>
-                      setFormValues({
-                        ...formValues,
-                        c1_relationship: e.target.value,
-                      })
-                    }
-                  />
-                </div>
-              </div>
-              <div className='col-lg-6'>
-                <div class='form-group'>
-                  <label
-                    for='exampleFormControlSelect1'
-                    className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                    Phone number
-                  </label>
-                  <input
-                    type='text'
-                    style={{ height: "40px" }}
-                    class='form-control rounded-0'
-                    id='exampleFormControlInput1'
-                    placeholder=''
-                    disabled
-                    value={formValues.c1_phone}
-                    onChange={(e) =>
-                      setFormValues({
-                        ...formValues,
-                        c1_phone: e.target.value,
-                      })
-                    }
-                  />
-                </div>
               </div>
             </div>
-            <div class='row'>
-              <div className='col-lg-6'>
-                <div class='form-group'>
-                  <label
-                    for='exampleFormControlSelect1'
-                    className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                    Date of Birth
-                  </label>
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Gender
+                </label>
+                <select
+                  className="form-select rounded-0"
+                  id="exampleFormControlSelect1"
+                  value={formValues.c1_gender}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      c1_gender: e.target.value,
+                    })
+                  }
+                >
+                  <option value="" disabled>
+                    Select Gender
+                  </option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-2"></div>
+      </div>
+      <div className="row mt-4 border-bottom pb-4 pb-4">
+        <div className="col-lg-4">
+          <p className="fs-5 pt-2 fw-semibold">Child 2 Details</p>
+        </div>
+        <div className="col-lg-6 pe-">
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Full name
+            </label>
+            <input
+              type="text"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.c2_full_name}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  c2_full_name: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.c2_email}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  c2_email: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Current Residential Address
+            </label>
+            <input
+              type="text"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.c2_current_address}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  c2_current_address: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="row">
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Relationship to you
+                </label>
+                <input
+                  type="text"
+                  style={{ height: "40px" }}
+                  class="form-control rounded-0"
+                  id="exampleFormControlInput1"
+                  placeholder=""
+                  value={formValues.c2_relationship}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      c2_relationship: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Phone number
+                </label>
+                <input
+                  type="text"
+                  style={{ height: "40px" }}
+                  class="form-control rounded-0"
+                  id="exampleFormControlInput1"
+                  placeholder=""
+                  value={formValues.c2_phone}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      c2_phone: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Date of Birth
+                </label>
+                <input
+                  type="date"
+                  style={{ height: "40px" }}
+                  class="form-control rounded-0"
+                  id="exampleFormControlInput1"
+                  placeholder=""
+                  value={formValues.c2_date_of_birth}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      c2_date_of_birth: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Gender
+                </label>
+                <select
+                  className="form-select rounded-0"
+                  id="exampleFormControlSelect1"
+                  value={formValues.c2_gender}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      c2_gender: e.target.value,
+                    })
+                  }
+                >
+                  <option value="" disabled>
+                    Select Gender
+                  </option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-2"></div>
+      </div>
 
-                  <input
-                          className="border py-2 px-2 w-full rounded-0"
-                          type="text"
-                          id=""
-                          required
-                          disabled
-                          value={  formValues.c1_date_of_birth}
-                          onChange={(e) =>
-                            setFormValues({
-                              ...formValues,
-                              c1_date_of_birth: e.target.value,
-                            })
-                          }
-                          //min={new Date().toISOString().split("T")[0]}
-                          // Set max attribute to today's date
-                        />
-                
-                </div>
-              </div>
-              <div className='col-lg-6'>
-                <div class='form-group'>
-                  <label
-                    for='exampleFormControlSelect1'
-                    className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                    Gender
-                  </label>
-                  <select
-                    className="form-select rounded-0"
-                    id="exampleFormControlSelect1"
-                    disabled
-                    value={formValues.c1_gender}
-                    onChange={(e) =>
-                      setFormValues({
-                        ...formValues,
-                        c1_gender: e.target.value,
-                      })
-                    }
-                  >
-                    <option value="" disabled>Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                  </select>
-                </div>
+      <div className="row mt-4 border-bottom pb-4 pb-4">
+        <div className="col-lg-4">
+          <p className="fs-5 pt-2 fw-semibold">Child 3 Details</p>
+        </div>
+        <div className="col-lg-6 pe-">
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Full name
+            </label>
+            <input
+              type="text"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.c3_full_name}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  c3_full_name: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.c3_email}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  c3_email: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Current Residential Address
+            </label>
+            <input
+              type="text"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.c3_current_address}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  c3_current_address: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="row">
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Relationship to you
+                </label>
+                <input
+                  type="text"
+                  style={{ height: "40px" }}
+                  class="form-control rounded-0"
+                  id="exampleFormControlInput1"
+                  placeholder=""
+                  value={formValues.c3_relationship}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      c3_relationship: e.target.value,
+                    })
+                  }
+                />
               </div>
             </div>
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Phone number
+                </label>
+                <input
+                  type="text"
+                  style={{ height: "40px" }}
+                  class="form-control rounded-0"
+                  id="exampleFormControlInput1"
+                  placeholder=""
+                  value={formValues.c3_phone}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      c3_phone: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Date of Birth
+                </label>
 
-        </div>
-        <div className='col-lg-2'></div>
-      </div>
-      <div className='row mt-4 border-bottom pb-4 pb-4'>
-        <div className='col-lg-4'>
-          <p className='fs-5 pt-2 fw-semibold'>Child 2 Details</p>
-        </div>
-        <div className='col-lg-6 pe-'>
-            <div class='form-group'>
-              <label
-                for='exampleFormControlSelect1'
-                className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                Full name
-              </label>
-              <input
-                type='text'
-                style={{ height: "40px" }}
-                class='form-control rounded-0'
-                id='exampleFormControlInput1'
-                placeholder=''
-                disabled
-                value={formValues.c2_full_name}
-                onChange={(e) =>
-                  setFormValues({
-                    ...formValues,
-                    c2_full_name: e.target.value,
-                  })
-                }
-              />
-            </div>
-            <div class='row'>
-              <div className='col-lg-6'>
-                <div class='form-group'>
-                  <label
-                    for='exampleFormControlSelect1'
-                    className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                    Relationship to you
-                  </label>
-                  <input
-                    type='text'
-                    style={{ height: "40px" }}
-                    class='form-control rounded-0'
-                    id='exampleFormControlInput1'
-                    placeholder=''
-                    disabled
-                    value={formValues.c2_relationship}
-                    onChange={(e) =>
-                      setFormValues({
-                        ...formValues,
-                        c2_relationship: e.target.value,
-                      })
-                    }
-                  />
-                </div>
-              </div>
-              <div className='col-lg-6'>
-                <div class='form-group'>
-                  <label
-                    for='exampleFormControlSelect1'
-                    className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                    Phone number
-                  </label>
-                  <input
-                    type='text'
-                    style={{ height: "40px" }}
-                    class='form-control rounded-0'
-                    id='exampleFormControlInput1'
-                    placeholder=''
-                    disabled
-                    value={formValues.c2_phone}
-                    onChange={(e) =>
-                      setFormValues({
-                        ...formValues,
-                        c2_phone: e.target.value,
-                      })
-                    }
-                  />
-                </div>
+                <input
+                  type="date"
+                  style={{ height: "40px" }}
+                  class="form-control rounded-0"
+                  id="exampleFormControlInput1"
+                  placeholder=""
+                  value={formValues.c3_date_of_birth}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      c3_date_of_birth: e.target.value,
+                    })
+                  }
+                />
               </div>
             </div>
-            <div class='row'>
-              <div className='col-lg-6'>
-                <div class='form-group'>
-                  <label
-                    for='exampleFormControlSelect1'
-                    className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                    Date of Birth
-                  </label>
-                  <DatePicker
-                    selected={
-                      formValues.c2_date_of_birth
-                        ? new Date(formValues.c2_date_of_birth)
-                        : null
-                    }
-                    onChange={(date) => {
-                      if (date instanceof Date && !isNaN(date)) {
-                        const formattedDate = date.toISOString().split('T')[0];
-                        setFormValues({
-                          ...formValues,
-                          c2_date_of_birth: formattedDate,
-                        });
-                      } else {
-                        setFormValues({
-                          ...formValues,
-                          c2_date_of_birth: "", 
-                        });
-                      }
-                    }}
-                    dateFormat="yyyy-MM-dd"
-                    className="form-control rounded-0"
-                    id="exampleFormControlInput1"
-                    placeholder=""
-                    disabled
-                  />
-                </div>
-              </div>
-              <div className='col-lg-6'>
-                <div class='form-group'>
-                  <label
-                    for='exampleFormControlSelect1'
-                    className='fw-semibold text-muted fs-6 mt-3 mb-2'>
-                    Gender
-                  </label>
-                  <select
-                      className="form-select rounded-0"
-                      id="exampleFormControlSelect1"
-                      value={formValues.c2_gender}
-                      disabled
-                      onChange={(e) =>
-                        setFormValues({
-                          ...formValues,
-                          c2_gender: e.target.value,
-                        })
-                      }
-                    >
-                      <option value="" disabled>Select Gender</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                    </select>
-                </div>
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Gender
+                </label>
+                <select
+                  className="form-select rounded-0"
+                  id="exampleFormControlSelect1"
+                  value={formValues.c3_gender}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      c3_gender: e.target.value,
+                    })
+                  }
+                >
+                  <option value="" disabled>
+                    Select Gender
+                  </option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
               </div>
             </div>
-          
+          </div>
         </div>
-        <div className='col-lg-2'></div>
-      </div>
-      {/* <div className='row border-top pb-5 mt-4'> */}
-        <div className='col-lg-12 py-5 d-flex justify-content-end'>
-          {/* <div>
-          <button
-            className='btn py-2 px-4 me-2  text-white rounded-0'
-            style={{ backgroundColor: "#984779" }} disabled={isLoading} type="submit">
-              {isLoading ? (
-                  <MoonLoader color={"white"} size={20} />
-                ) : ( <>Save & Continue</>
-                )}
-          </button>
-          </div> */}
         </div>
-      {/* </div> */}
+        <div className="row mt-4 border-bottom pb-4 pb-4">
+        <div className="col-lg-4">
+          <p className="fs-5 pt-2 fw-semibold">Child 4 Details</p>
+        </div>
+        <div className="col-lg-6 pe-">
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Full name
+            </label>
+            <input
+              type="text"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.c4_full_name}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  c4_full_name: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.c4_email}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  c4_email: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="exampleFormControlSelect1"
+              className="fw-semibold text-muted fs-6 mt-3 mb-2"
+            >
+              Current Residential Address
+            </label>
+            <input
+              type="text"
+              style={{ height: "40px" }}
+              class="form-control rounded-0"
+              id="exampleFormControlInput1"
+              placeholder=""
+              value={formValues.c4_current_address}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  c4_current_address: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div class="row">
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Relationship to you
+                </label>
+                <input
+                  type="text"
+                  style={{ height: "40px" }}
+                  class="form-control rounded-0"
+                  id="exampleFormControlInput1"
+                  placeholder=""
+                  value={formValues.c4_relationship}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      c4_relationship: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Phone number
+                </label>
+                <input
+                  type="text"
+                  style={{ height: "40px" }}
+                  class="form-control rounded-0"
+                  id="exampleFormControlInput1"
+                  placeholder=""
+                  value={formValues.c4_phone}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      c4_phone: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Date of Birth
+                </label>
+
+                <input
+                  type="date"
+                  style={{ height: "40px" }}
+                  class="form-control rounded-0"
+                  id="exampleFormControlInput1"
+                  placeholder=""
+                  value={formValues.c4_date_of_birth}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      c4_date_of_birth: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div class="form-group">
+                <label
+                  for="exampleFormControlSelect1"
+                  className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                >
+                  Gender
+                </label>
+                <select
+                  className="form-select rounded-0"
+                  id="exampleFormControlSelect1"
+                  value={formValues.c4_gender}
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      c4_gender: e.target.value,
+                    })
+                  }
+                >
+                  <option value="" disabled>
+                    Select Gender
+                  </option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-2"></div>
       </div>
-    </div>
-  );
+      {/*  */}
+
+    </form>
+  </div>
+);
 };
 
 export default FamilyDetails;
