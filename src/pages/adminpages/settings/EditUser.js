@@ -315,6 +315,77 @@ const EditUser = () => {
     e.preventDefault();
     setIsLoading(true);
     console.log("Form submitted");
+    const formData = new FormData();
+    formData.append("staffId", id);
+    formData.append("image", file);
+    formData.append("first_name", formValues.firstName);
+    formData.append("title", formValues.title);
+    formData.append("last_name", formValues.lastName);
+    formData.append("nationality", formValues.nationality);
+    formData.append("state_of_origin", formValues.stateOfOrigin);
+    formData.append("date_of_birth", formValues.dateOfBirth);
+    formData.append("gender", formValues.gender);
+    formData.append("marital_status", formValues.marital_status);
+    formData.append("maiden_name", formValues.maidenName);
+    formData.append("blood_group", formValues.bloodGroup);
+    formData.append("birth_certificate", uploadedDocument1);
+    formData.append("marriage_certificate", uploadedDocument2);
+    formData.append("age", formValues.age);
+    formData.append("role", formValues.selectedRole);
+    formData.append("staff_number", formValues.selectedRole);
+    formData.append("total_leave_due", formValues.annualLeave);
+    formData.append("unit", selectedDivision.id);
+    formData.append("level", userDetails?.level);
+    formData.append("staff_number", formValues.staffID);
+    formData.append("k1_full_name", formValues.k1_full_name);
+    formData.append("k1_relationship", formValues.k1_relationship);
+    formData.append("k1_phone", formValues.k1_phone);
+    formData.append("k2_full_name", formValues.k2_full_name);
+    formData.append("k2_phone", formValues.k2_phone);
+    formData.append("beneficiaries", beneficiaries);
+    formData.append("spouse_full_name", formValues.spouse_full_name);
+    formData.append(
+      "spouse_current_address",
+      formValues.spouse_current_address
+    );
+    formData.append("spouse_phone", formValues.spouse_phone);
+    formData.append("c1_full_name", formValues.c1_full_name);
+    formData.append("c1_current_address", formValues.c1_current_address);
+    formData.append("c1_current_address", formValues.c1_current_address);
+
+    // spouse_full_name: formValues.spouse_full_name,
+    // spouse_current_address: formValues.spouse_current_address,
+    // spouse_phone: formValues.spouse_phone,
+    // c1_full_name: formValues.c1_full_name,
+    // c1_current_address: formValues.c1_current_address,
+    // c1_relationship: formValues.c1_relationship,
+    // c1_phone: formValues.c1_phone,
+    // c1_date_of_birth: formValues.c1_date_of_birth,
+    // c1_gender: formValues.c1_gender,
+    // c1_email: formValues.c1_email,
+    // c2_full_name: formValues.c2_full_name,
+    // c2_current_address: formValues.c2_current_address,
+    // c2_relationship: formValues.c2_relationship,
+    // c2_phone: formValues.c2_phone,
+    // c2_date_of_birth: formValues.c2_date_of_birth,
+    // c2_gender: formValues.c2_gender,
+    // c2_email: formValues.c2_email,
+    // c3_full_name: formValues.c3_full_name,
+    // c3_current_address: formValues.c3_current_address,
+    // c3_relationship: formValues.c3_relationship,
+    // c3_phone: formValues.c3_phone,
+    // c3_date_of_birth: formValues.c3_date_of_birth,
+    // c3_gender: formValues.c3_gender,
+    // c3_email: formValues.c3_email,
+    // c4_full_name: formValues.c4_full_name,
+    // c4_current_address: formValues.c4_current_address,
+    // c4_relationship: formValues.c4_relationship,
+    // c4_phone: formValues.c4_phone,
+    // c4_date_of_birth: formValues.c4_date_of_birth,
+    // c4_gender: formValues.c2_gender,
+    // c4_email: formValues.c4_email,
+    // spouse_email: formValues.spouse_email
+
     try {
       const response = await api.updateUser({
         staffId: id,
@@ -370,21 +441,20 @@ const EditUser = () => {
         </Box>
       ) : (
         <div className=" shadow  px-4 md:px-6  ">
-
-<div className="flex items-center mt-3">
+          <div className="flex items-center mt-3">
+            <p className="text-[#667185] text-[14px] md:text-[14px] xl:text-[16px] font-normal leading-[24px] ">
+              Manage Staffs /
+            </p>
+            <Link to="/settings/user-list">
               <p className="text-[#667185] text-[14px] md:text-[14px] xl:text-[16px] font-normal leading-[24px] ">
-                Manage Staffs /
+                &nbsp; Manage Users /
               </p>
-              <Link to="/settings/user-list">
-                <p className="text-[#667185] text-[14px] md:text-[14px] xl:text-[16px] font-normal leading-[24px] ">
-                  &nbsp; Manage Users /
-                </p>
-              </Link>
-            
-              <p className="text-[#000] text-[14px] md:text-[14px] xl:text-[16px] font-normal leading-[24px]  ">
-                &nbsp; Edit User
-              </p>
-            </div>
+            </Link>
+
+            <p className="text-[#000] text-[14px] md:text-[14px] xl:text-[16px] font-normal leading-[24px]  ">
+              &nbsp; Edit User
+            </p>
+          </div>
           <p className="border-bottom mb-5 fs-4 fw-semibold ps-4 py-3">
             {" "}
             Edit User
@@ -916,7 +986,7 @@ const EditUser = () => {
                         for="exampleFormControlSelect1"
                         className="fw-semibold text-muted fs-6 mt-3 mb-2"
                       >
-                      Annual Leave
+                        Annual Leave
                         <sup className="text-danger">*</sup>
                       </label>
 
@@ -929,12 +999,12 @@ const EditUser = () => {
                         required
                         d
                         value={formValues.annualLeave}
-                      onChange={(e) =>
-                        setFormValues({
-                          ...formValues,
-                          annualLeave: e.target.value,
-                        })
-                      }
+                        onChange={(e) =>
+                          setFormValues({
+                            ...formValues,
+                            annualLeave: e.target.value,
+                          })
+                        }
                       />
                     </div>
                   </div>
@@ -947,7 +1017,7 @@ const EditUser = () => {
                         for="exampleFormControlSelect1"
                         className="fw-semibold text-muted fs-6 mt-3 mb-2"
                       >
-                     Staff ID
+                        Staff ID
                         <sup className="text-danger">*</sup>
                       </label>
 
@@ -974,7 +1044,7 @@ const EditUser = () => {
                         for="exampleFormControlSelect1"
                         className="fw-semibold text-muted fs-6 mt-3 mb-2"
                       >
-                      Staff Status
+                        Staff Status
                         <sup className="text-danger">*</sup>
                       </label>
 
@@ -988,7 +1058,7 @@ const EditUser = () => {
                         d
                         value={selectedStatus}
                         onChange={(e) => setSelectedStatus(e.target.value)}
-                        >
+                      >
                         <option value="">Select Status </option>
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
@@ -996,8 +1066,6 @@ const EditUser = () => {
                     </div>
                   </div>
                 </div>
-
-
 
                 {formValues.type === "ASE" && formValues.role === "DEAN" && (
                   <div class="form-group">
@@ -2363,7 +2431,7 @@ const EditUser = () => {
             {/* </div> */}
           </form>
 
-          <div className="px-4">
+          {/* <div className="px-4">
             <form onSubmit={handleSubmit}>
               <div className="my-5 form-group row">
                 <label
@@ -2632,7 +2700,7 @@ const EditUser = () => {
                 </div>
               </div>
             </form>
-          </div>
+          </div> */}
         </div>
       )}
     </div>
