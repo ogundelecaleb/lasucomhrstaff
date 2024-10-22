@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
 
 
-const PersonalInfo = () => {
+const PersonalInfoEdit = () => {
   const [userDetails, setUserDetails] = useState([]);
   const { enqueueSnackbar } = useSnackbar();
   const [isLoadinge, setIsLoadinge] = useState(false);
@@ -70,6 +70,7 @@ const PersonalInfo = () => {
         age: userDetails?.age
 
       });
+      setFile(userDetails?.image)
     }
   }, [userDetails]);
 
@@ -78,6 +79,7 @@ const PersonalInfo = () => {
     setIsLoading(true);
     const formData = new FormData();
     formData.append("image", file);
+    formData.append("staff_id", id);
     formData.append("first_name", formValues.firstName);
     formData.append("title", formValues.title);
     formData.append("last_name", formValues.lastName);
@@ -93,7 +95,7 @@ const PersonalInfo = () => {
     formData.append('age', formValues.age);
 
     try {
-      const response = await api.updateUser({ staffId: id, formData });
+      const response = await api.updatePinfo(formData );
       console.log("Response: ", response);
       enqueueSnackbar("Information updated successfully", {
         variant: "success",
@@ -218,8 +220,8 @@ const PersonalInfo = () => {
                       class="form-control rounded-0"
                       id="exampleFormControlInput1"
                       placeholder=""
-                      required
-                      disabled
+                       
+                       d
                       value={formValues.title}
                       onChange={(e) =>
                         setFormValues({
@@ -242,8 +244,8 @@ const PersonalInfo = () => {
                       class="form-control rounded-0"
                       id="exampleFormControlInput1"
                       placeholder=""
-                      required
-                      disabled
+                       
+                       d
                       value={formValues.firstName}
                       onChange={(e) =>
                         setFormValues({
@@ -266,8 +268,8 @@ const PersonalInfo = () => {
                       class="form-control rounded-0"
                       id="exampleFormControlInput1"
                       placeholder=""
-                      required
-                      disabled
+                       
+                       d
                       value={formValues.lastName}
                       onChange={(e) =>
                         setFormValues({
@@ -290,8 +292,8 @@ const PersonalInfo = () => {
                       class="form-control rounded-0"
                       id="exampleFormControlInput1"
                       placeholder=""
-                      required
-                      disabled
+                       
+                       d
                       value={formValues.maidenName}
                       onChange={(e) =>
                         setFormValues({
@@ -316,7 +318,7 @@ const PersonalInfo = () => {
                           class="form-control rounded-0"
                           id="exampleFormControlInput1"
                           placeholder=""
-                          required
+                           
                           value={formValues.nationality}
                           onChange={(e) =>
                             setFormValues({
@@ -341,8 +343,8 @@ const PersonalInfo = () => {
                           class="form-control rounded-0"
                           id="exampleFormControlInput1"
                           placeholder=""
-                          required
-                          disabled
+                           
+                           d
                           value={formValues.stateOfOrigin}
                           onChange={(e) =>
                             setFormValues({
@@ -368,8 +370,8 @@ const PersonalInfo = () => {
                           className="border py-2 px-2 w-full rounded-0"
                           type="text"
                           id=""
-                          required
-                          disabled
+                           
+                           d
                           value={formValues.dateOfBirth}
                           onChange={(e) =>
                             setFormValues({
@@ -394,8 +396,8 @@ const PersonalInfo = () => {
                       className="border py-2 px-2 w-full rounded-0"
                       type="text"
                   id="dateInput"
-                  required
-                  // disabled
+                   
+                  //  d
                   value={formValues.age}
                       onChange={(e) =>
                         setFormValues({
@@ -420,8 +422,8 @@ const PersonalInfo = () => {
                           className="border py-2 px-2 w-full rounded-0"
                           id="exampleFormControlSelect1"
                           value={formValues.gender}
-                          required
-                          disabled
+                           
+                           d
                           onChange={(e) =>
                             setFormValues({
                               ...formValues,
@@ -449,7 +451,7 @@ const PersonalInfo = () => {
                           className="border py-2 px-2 w-full rounded-0"
                           id="O+"
                           placeholder=""
-                          required
+                           
                           value={formValues.bloodGroup}
                           onChange={(e) =>
                             setFormValues({
@@ -472,8 +474,8 @@ const PersonalInfo = () => {
                           className="border py-2 px-2 w-full rounded-0"
                           id="exampleFormControlSelect1"
                           value={formValues.marital_status}
-                          required
-                          disabled
+                           
+                           d
                           onChange={(e) =>
                             setFormValues({
                               ...formValues,
@@ -532,7 +534,18 @@ const PersonalInfo = () => {
               </div>
               
             </div>
-            {/* </div> */}
+            <div className='col-lg-12 py-5 d-flex justify-content-end'>
+          <div>
+            <button
+              className='btn py-2 px-4 me-2  text-white rounded-0'
+              style={{ backgroundColor: "#984779" }}  d={isLoading} type="submit">
+              {isLoading ? (
+                <MoonLoader color={"white"} size={20} />
+              ) : (<>Submit</>
+              )}
+            </button>
+          </div>
+        </div>
           </form>
         </Box>
       )}
@@ -540,4 +553,4 @@ const PersonalInfo = () => {
   );
 };
 
-export default PersonalInfo;
+export default PersonalInfoEdit;

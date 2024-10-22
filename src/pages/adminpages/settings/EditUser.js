@@ -185,12 +185,14 @@ const EditUser = () => {
     c1_phone: "",
     c1_date_of_birth: "",
     c1_gender: "",
+    c1_email: "",
     c2_full_name: "",
     c2_current_address: "",
     c2_relationship: "",
     c2_phone: "",
     c2_date_of_birth: "",
     c2_gender: "",
+    c2_email: "",
     c3_full_name: "",
     c3_current_address: "",
     c3_relationship: "",
@@ -315,6 +317,10 @@ const EditUser = () => {
     e.preventDefault();
     setIsLoading(true);
     console.log("Form submitted");
+
+    academic.forEach((acad, index) => {
+      formData.append(`qualifications`, JSON.stringify(acad) ); // Send each item as "items[]"
+    });
     const formData = new FormData();
     formData.append("staffId", id);
     formData.append("image", file);
@@ -349,61 +355,46 @@ const EditUser = () => {
       formValues.spouse_current_address
     );
     formData.append("spouse_phone", formValues.spouse_phone);
+    formData.append("spouse_email", formValues.spouse_email);
     formData.append("c1_full_name", formValues.c1_full_name);
     formData.append("c1_current_address", formValues.c1_current_address);
-    formData.append("c1_current_address", formValues.c1_current_address);
+    formData.append("c1_relationship", formValues.c1_relationship);
+    formData.append("c1_phone", formValues.c1_phone);
+    formData.append("c1_date_of_birth", formValues.c1_date_of_birth);
+    formData.append("c1_gender", formValues.c1_gender);
+    formData.append("c1_email", formValues.c1_email);
+    formData.append("c2_full_name", formValues.c2_full_name);
+    formData.append("c2_current_address", formValues.c2_current_address);
+    formData.append("c2_relationship", formValues.c2_relationship);
+    formData.append("c2_phone", formValues.c2_phone);
+    formData.append("c2_date_of_birth", formValues.c2_date_of_birth);
+    formData.append("c2_gender", formValues.c2_gender);
+    formData.append("c2_email", formValues.c2_email);
+    formData.append("c3_full_name", formValues.c3_full_name);
+    formData.append("c3_current_address", formValues.c3_current_address);
+    formData.append("c3_relationship", formValues.c3_relationship);
+    formData.append("c3_phone", formValues.c3_phone);
+    formData.append("c3_date_of_birth", formValues.c3_date_of_birth);
+    formData.append("c3_gender", formValues.c3_gender);
+    formData.append("c3_email", formValues.c3_email);
+    formData.append("c4_full_name", formValues.c4_full_name);
+    formData.append("c4_current_address", formValues.c4_current_address);
+    formData.append("c4_relationship", formValues.c4_relationship);
+    formData.append("c4_phone", formValues.c4_phone);
+    formData.append("c4_date_of_birth", formValues.c4_date_of_birth);
+    formData.append("c4_gender", formValues.c4_gender);
+    formData.append("c4_email", formValues.c4_email);
+    formData.append("phone", formValues.phone);
+    formData.append("contact_address", formValues.contact_address);
+    formData.append("current_address", formValues.current_address);
+    formData.append("permanent_address", formValues.permanent_address);
+    formData.append("date_of_first_appointment", formValues.date_of_first_appointment);
+    formData.append("qualifications", formValues.academic);
+ 
 
-    // spouse_full_name: formValues.spouse_full_name,
-    // spouse_current_address: formValues.spouse_current_address,
-    // spouse_phone: formValues.spouse_phone,
-    // c1_full_name: formValues.c1_full_name,
-    // c1_current_address: formValues.c1_current_address,
-    // c1_relationship: formValues.c1_relationship,
-    // c1_phone: formValues.c1_phone,
-    // c1_date_of_birth: formValues.c1_date_of_birth,
-    // c1_gender: formValues.c1_gender,
-    // c1_email: formValues.c1_email,
-    // c2_full_name: formValues.c2_full_name,
-    // c2_current_address: formValues.c2_current_address,
-    // c2_relationship: formValues.c2_relationship,
-    // c2_phone: formValues.c2_phone,
-    // c2_date_of_birth: formValues.c2_date_of_birth,
-    // c2_gender: formValues.c2_gender,
-    // c2_email: formValues.c2_email,
-    // c3_full_name: formValues.c3_full_name,
-    // c3_current_address: formValues.c3_current_address,
-    // c3_relationship: formValues.c3_relationship,
-    // c3_phone: formValues.c3_phone,
-    // c3_date_of_birth: formValues.c3_date_of_birth,
-    // c3_gender: formValues.c3_gender,
-    // c3_email: formValues.c3_email,
-    // c4_full_name: formValues.c4_full_name,
-    // c4_current_address: formValues.c4_current_address,
-    // c4_relationship: formValues.c4_relationship,
-    // c4_phone: formValues.c4_phone,
-    // c4_date_of_birth: formValues.c4_date_of_birth,
-    // c4_gender: formValues.c2_gender,
-    // c4_email: formValues.c4_email,
-    // spouse_email: formValues.spouse_email
 
     try {
-      const response = await api.updateUser({
-        staffId: id,
-        title: formValues.selectedTitle,
-        first_name: formValues.firstName,
-        last_name: formValues.lastName,
-        email: formValues.email,
-        staff_number: formValues.staffID,
-        status: formValues.status,
-        role: formValues.selectedRole,
-        total_leave_due: formValues.annualLeave,
-        unit: selectedDivision.id,
-        maiden_name: userDetails?.maiden_name,
-        type: userDetails?.type,
-        conuass: userDetails?.conuass,
-        conunass: userDetails?.conunass,
-        level: userDetails?.level,
-      });
+      const response = await api.updateUser({staffId: id,formData});
       console.log("responce==>>>>>", response);
       enqueueSnackbar("User updated successfully", { variant: "success" });
       setIsLoading(false);
@@ -499,7 +490,7 @@ const EditUser = () => {
                       class="form-control rounded-0"
                       id="exampleFormControlInput1"
                       placeholder=""
-                      required
+                       
                       d
                       value={formValues.title}
                       onChange={(e) =>
@@ -523,7 +514,7 @@ const EditUser = () => {
                       class="form-control rounded-0"
                       id="exampleFormControlInput1"
                       placeholder=""
-                      required
+                       
                       d
                       value={formValues.firstName}
                       onChange={(e) =>
@@ -547,7 +538,7 @@ const EditUser = () => {
                       class="form-control rounded-0"
                       id="exampleFormControlInput1"
                       placeholder=""
-                      required
+                       
                       d
                       value={formValues.lastName}
                       onChange={(e) =>
@@ -571,7 +562,7 @@ const EditUser = () => {
                       class="form-control rounded-0"
                       id="exampleFormControlInput1"
                       placeholder=""
-                      required
+                       
                       d
                       value={formValues.maidenName}
                       onChange={(e) =>
@@ -597,7 +588,7 @@ const EditUser = () => {
                           class="form-control rounded-0"
                           id="exampleFormControlInput1"
                           placeholder=""
-                          required
+                           
                           value={formValues.nationality}
                           onChange={(e) =>
                             setFormValues({
@@ -622,7 +613,7 @@ const EditUser = () => {
                           class="form-control rounded-0"
                           id="exampleFormControlInput1"
                           placeholder=""
-                          required
+                           
                           d
                           value={formValues.stateOfOrigin}
                           onChange={(e) =>
@@ -649,7 +640,7 @@ const EditUser = () => {
                           className="border py-2 px-2 w-full rounded-0"
                           type="text"
                           id=""
-                          required
+                           
                           d
                           value={formValues.dateOfBirth}
                           onChange={(e) =>
@@ -676,7 +667,7 @@ const EditUser = () => {
                           className="border py-2 px-2 w-full rounded-0"
                           type="text"
                           id="dateInput"
-                          required
+                           
                           //  d
                           value={formValues.age}
                           onChange={(e) =>
@@ -702,7 +693,7 @@ const EditUser = () => {
                           className="border py-2 px-2 w-full rounded-0"
                           id="exampleFormControlSelect1"
                           value={formValues.gender}
-                          required
+                           
                           d
                           onChange={(e) =>
                             setFormValues({
@@ -731,7 +722,7 @@ const EditUser = () => {
                           className="border py-2 px-2 w-full rounded-0"
                           id="O+"
                           placeholder=""
-                          required
+                           
                           value={formValues.bloodGroup}
                           onChange={(e) =>
                             setFormValues({
@@ -754,7 +745,7 @@ const EditUser = () => {
                           className="border py-2 px-2 w-full rounded-0"
                           id="exampleFormControlSelect1"
                           value={formValues.marital_status}
-                          required
+                           
                           d
                           onChange={(e) =>
                             setFormValues({
@@ -834,7 +825,7 @@ const EditUser = () => {
                         type="text"
                         //style={{ height: "40px" }}
                         className="border py-2 px-2 w-full rounded-0"
-                        required
+                         
                         d
                         id="exampleFormControlInput1"
                         placeholder=""
@@ -862,7 +853,7 @@ const EditUser = () => {
                         className="border py-2 px-2 w-full rounded-0"
                         id="exampleFormControlInput1"
                         d
-                        required
+                         
                         value={formValues.email}
                         onChange={(e) =>
                           setFormValues({
@@ -888,7 +879,7 @@ const EditUser = () => {
                     className="border py-2 px-2 w-full rounded-0"
                     id="exampleFormControlInput1"
                     placeholder=""
-                    required
+                     
                     value={formValues.current_address}
                     onChange={(e) =>
                       setFormValues({
@@ -911,7 +902,7 @@ const EditUser = () => {
                     className="border py-2 px-2 w-full rounded-0"
                     id="exampleFormControlInput1"
                     placeholder=""
-                    required
+                     
                     value={formValues.contact_address}
                     onChange={(e) =>
                       setFormValues({
@@ -968,7 +959,7 @@ const EditUser = () => {
                         className="border py-2 px-2 w-full rounded-0"
                         id="exampleFormControlInput1"
                         placeholder=""
-                        required
+                         
                         d
                         value={formValues.date_of_first_appointment}
                         onChange={(e) =>
@@ -996,7 +987,7 @@ const EditUser = () => {
                         className="border py-2 px-2 w-full rounded-0"
                         id="exampleFormControlInput1"
                         placeholder=""
-                        required
+                         
                         d
                         value={formValues.annualLeave}
                         onChange={(e) =>
@@ -1026,7 +1017,7 @@ const EditUser = () => {
                         //style={{ height: "40px" }}
                         className="border py-2 px-2 w-full rounded-0"
                         id="exampleFormControlInput1"
-                        required
+                         
                         placeholder="Staff ID"
                         value={formValues.staffID}
                         onChange={(e) =>
@@ -1054,7 +1045,7 @@ const EditUser = () => {
                         className="border py-2 px-2 w-full rounded-0"
                         id="exampleFormControlInput1"
                         placeholder=""
-                        required
+                         
                         d
                         value={selectedStatus}
                         onChange={(e) => setSelectedStatus(e.target.value)}
@@ -2329,7 +2320,7 @@ const EditUser = () => {
                         class="form-control rounded-0"
                         id="exampleFormControlInput1"
                         placeholder=""
-                        required
+                         
                         name="name_of_institution"
                         value={acad.name_of_institution}
                         onChange={(event) => handleAcademicChange(index, event)}

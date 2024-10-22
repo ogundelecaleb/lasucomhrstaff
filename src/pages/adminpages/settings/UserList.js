@@ -168,7 +168,7 @@ const UserList = () => {
   });
 
   const handleEdit = (id) => {
-    navigate(`/settings/edit-user/${id}`);
+    navigate(`/settings/edit-staff-record/${id}`);
   };
 
   const handleView = (id) => {
@@ -482,6 +482,7 @@ const UserList = () => {
                       <th scope="col">Faculty</th>
                       <th scope="col">Department/Unit</th>
                       <th scope="col">Status</th>
+                      <th scope="col">Profile Completion</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -532,6 +533,7 @@ const UserList = () => {
                         </td>
 
                         <td className="fs-6">{user.status}</td>
+                        <td className=" whitespace-nowrap text-md text-[#e25252]"><p className=" whitespace-nowrap text-md text-[#e25252] mb-0">{user?.profile_completion ? `${user?.profile_completion}%` : "Staff needs to login" }</p></td>
                         <td
                           className="flex gap-2 "
                           align="center"

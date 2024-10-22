@@ -59,7 +59,12 @@ import {
   GETLLEVELREPORT,
   GETSTATEOFORIGINREPORT,
   GETACTIVESTAFFS,
-  GETAPPOINTMENTREPORT
+  GETAPPOINTMENTREPORT,
+  UPDATEPINFO,
+  UPDATENOK,
+  UPDATECINFO,
+  UPDATEFINFO,
+  UPDATEAINFO,
 } from "../utils/config";
 import { apiGet, apiPost, apiPut, apiDelete } from "../utils/utils";
 
@@ -313,5 +318,24 @@ export function getActiveStaffs (data) {
 export function getAppointmentreport (data) {
   return apiGet(GETAPPOINTMENTREPORT, data);
 }
+export function updatePinfo(data) {
+  return apiPost(UPDATEPINFO, data, { 'Content-Type': 'multipart/form-data' });
+}
 
+
+export function updateCinfo(data) {
+  return apiPost(UPDATECINFO, data);
+}
+
+export function updateNok(data) {
+  return apiPost(UPDATENOK, data);
+}
+
+export function updateFinfo(data) {
+  return apiPost(UPDATEFINFO, data);
+}
+
+export function updateAinfo(data) {
+  return apiPost(UPDATEAINFO, data, { 'Content-Type': 'multipart/form-data' });
+}
 
