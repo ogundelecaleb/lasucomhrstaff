@@ -536,7 +536,7 @@ const ContactInfoEdit = () => {
                       >
                         <option value="">Select Role</option>
                         {roleData.map((role) => (
-                          <option key={role.id} value={role.id}>
+                          <option key={role.id} value={role.name}>
                             {role.description}
                           </option>
                         ))}
