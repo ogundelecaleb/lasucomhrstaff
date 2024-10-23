@@ -95,6 +95,7 @@ const FamilyDetailsEdit = () => {
     setIsLoading(true);
     try {
       const response = await api.updateFinfo({
+        staff_id: id,
         spouse_full_name: formValues.spouse_full_name,
         spouse_current_address: formValues.spouse_current_address,
         spouse_phone: formValues.spouse_phone,
