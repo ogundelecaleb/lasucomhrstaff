@@ -175,7 +175,7 @@ const AcademicDetails = () => {
             <div className="row mt-4 border-bottom pb-4">
               <div className="col-lg-4">
                 <Text color={"black"} className="fs-5 pt-2 fw-semibold">
-                  Academic Qualification
+                  Academic/Professional Qualification
                 </Text>
               </div>
               <div className="col-lg-6 pe-">
@@ -210,7 +210,7 @@ const AcademicDetails = () => {
                         for="exampleFormControlSelect1"
                         className="fw-semibold text-muted fs-6 mt-3 mb-2"
                       >
-                        Degree
+                        Qualification
                       </label>
                       <input
                         type="text"
@@ -224,7 +224,7 @@ const AcademicDetails = () => {
                       />
                     </div>
                     <div className="flex flex-col md:flex-row justify-between">
-                      <div class="form-group">
+                      {/* <div class="form-group">
                         <label
                           for="exampleFormControlSelect1"
                           className="fw-semibold text-muted fs-6 mt-3 mb-2"
@@ -243,7 +243,7 @@ const AcademicDetails = () => {
                             handleAcademicChange(index, event)
                           }
                         />
-                      </div>
+                      </div> */}
                       <div class="form-group">
                         <label
                           for="exampleFormControlSelect1"

@@ -73,8 +73,8 @@
   /* background-color: purple; */
   padding-left: 20px;
 }
-.tab-scroll::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+/* .tab-scroll::-webkit-scrollbar {
+  display: none;
 }
 .tab {
   background-color: #e9ebfd;
@@ -87,7 +87,7 @@
 .tab:hover {
   background-color: #984779;
   color: white;
-}
+} */
 input[type="checkbox"] {
   width: 20px;
   height: 20px;
