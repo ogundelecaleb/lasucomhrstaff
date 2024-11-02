@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../../../api";
 import { useSnackbar } from "notistack";
 import { ScaleLoader } from "react-spinners";
+import { nigerianStates } from "../../../utils/helperFunction";
 
 const AddUser = () => {
   const navigate = useNavigate();
@@ -33,6 +34,8 @@ const AddUser = () => {
   const [dofa, setDofa] = useState("");
   const [step, setStep] = useState("");
   const [cadre, setCadre]= useState("");
+  const [dob, setDob] = useState("")
+  const [state,setState] = useState("")
 
   useEffect(() => {
     api
@@ -169,6 +172,8 @@ const AddUser = () => {
     setSelectedConunass("");
     setSelectedLevel("");
     setSelectedStaffType("");
+    setState("")
+    setDob("")
   };
 
   async function handleSubmit(e) {
@@ -192,6 +197,9 @@ const AddUser = () => {
       confirmation: selectedConfirmed,
       type: selectedStaffType,
       total_leave_due: setEntitledLeave(),
+      state_of_origin: state,
+      date_of_birth:dob
+
     });
 
     try {
@@ -856,6 +864,48 @@ const AddUser = () => {
                 className="form-control rounded-0"
                 style={{ height: "60px" }}
               />
+            </div>
+          </div>
+          <div className="my-5 form-group row">
+            <label for="email" className="text-[18px] font-medium col-md-2">
+              Date Of Birth<sup className="text-danger">*</sup>
+            </label>
+            <div className="col-md-8">
+              <input
+                type="date"
+                id="date of birth"
+                value={dob}
+                onChange={(e) => {
+                  setDob(e.target.value);
+                }}
+                className="form-control rounded-0"
+                style={{ height: "60px" }}
+              />
+            </div>
+          </div>
+          <div className="my-5 form-group row">
+            <label for="email" className="text-[18px] font-medium col-md-2">
+              State Of Origin<sup className="text-danger">*</sup>
+            </label>
+            <div className="col-md-8">
+              <select
+                type="text"
+                id="state"
+                value={state}
+                onChange={(e) => {
+                  setState(e.target.value);
+                }}
+                className="form-control rounded-0"
+                style={{ height: "60px" }}
+              >
+                <option value="">Select State</option>
+                 {nigerianStates &&
+                   nigerianStates.map((state, index) => (
+                      <option key={index} value={state}>
+                        {state}
+                      </option>
+                    ))}
+                </select>
             </div>
           </div>
 

@@ -25,7 +25,7 @@ const AdminDashboard = () => {
 
   return (
     <div style={{ fontSize: "14px" }}>
-      <div className='d-flex text-white'>
+      <div className='d-flex text-white scroll-container '>
         <AdminLeftDashboard mobile={mobile} setMobile={setMobile} />
         <AdminDashboardRoute
           mobile={mobile}

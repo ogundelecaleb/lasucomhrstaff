@@ -26,7 +26,7 @@ function App() {
       <SnackbarProvider>
         <QueryClientProvider client={queryClient}>
           <Router>
-            <div>
+            <div className="scroll-container ">
               <Routes>
                 <Route path='/' exact element={<Login />} />
                 <Route path='/career' exact element={<SeeJobs />} />

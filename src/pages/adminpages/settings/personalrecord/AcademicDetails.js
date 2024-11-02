@@ -252,22 +252,22 @@ const AcademicDetails = () => {
                           End Year
                         </label>
                         <input
-                          type="date"
+                          type="text"
                           style={{ height: "40px" }}
                           class="form-control rounded-0"
                           id="exampleFormControlInput1"
                           placeholder=""
                           name="end_year"
                           value={acad.end_year}
-                          onChange={(event) =>
-                            handleAcademicChange(index, event)
-                          }
+                          // onChange={(event) =>
+                          //   handleAcademicChange(index, event)
+                          // }
                         />
                       </div>
                     </div>
                   </>
                 ))}
-
+{/* 
                 <button
                   type="button"
                   className="btn py-1 px-4 mt-4  mb-2 text-white rounded-md"
@@ -275,7 +275,7 @@ const AcademicDetails = () => {
                   onClick={handleAcademic}
                 >
                   Add More Qualification
-                </button>
+                </button> */}
 
               </div>
             </div>

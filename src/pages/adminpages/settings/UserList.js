@@ -316,7 +316,7 @@ const UserList = () => {
         </div>
       ) : (
         <div>
-          <div className=" shadow mx-3 pb-5 mb-5 mt-5">
+          <div className=" shadow mx-3 pb-5 mb-5 mt-5 scroll-container ">
             <Box
               display={"flex"}
               alignItems={"center"}

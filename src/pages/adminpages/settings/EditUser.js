@@ -9,6 +9,8 @@ import { ScaleLoader } from "react-spinners";
 import { MoonLoader } from "react-spinners";
 import { RxAvatar } from "react-icons/rx";
 import { Trash } from "iconsax-react";
+import { getYear, getMonth } from "date-fns";
+
 
 const EditUser = () => {
   const navigate = useNavigate();
@@ -409,6 +411,17 @@ const EditUser = () => {
     const updatedItems = academic.filter((item) => item.id !== idToRemove);
     setAcademic(updatedItems); // Update state with the new array
   };
+
+  function range(start, end, step) {
+    const result = [];
+    for (let i = start; i <= end; i += step) {
+      result.push(i);
+    }
+    return result;
+  }
+
+  const years = range(1900, getYear(new Date()) + 1, 1);
+
 
   return (
     <div>

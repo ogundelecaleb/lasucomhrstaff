@@ -63,7 +63,19 @@ const MainAdminDashboard = () => {
   };
 
   return (
-    <Box px="6" mt="4">
+    <Box px="6" mt="4"  overflowY="auto"
+    __css={{
+      '&::-webkit-scrollbar': {
+        w: '2',
+      },
+      '&::-webkit-scrollbar-track': {
+        w: '6',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        borderRadius: '10',
+        bg: `gray.100`,
+      },
+    }}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 3, md: 5 }}>
         <Link to="/settings/user-list">
           <DashbordBox

@@ -5,7 +5,6 @@
 // import api from "../../../api";
 // import { MoonLoader } from "react-spinners";
 // import DatePicker from "react-datepicker";
-// import { getYear, getMonth } from "date-fns";
 import { Trash } from "iconsax-react";
 import { useParams } from "react-router-dom";
 
@@ -19,6 +18,7 @@ import api from "../../../../api";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MoonLoader } from "react-spinners";
+import { getYear, getMonth } from "date-fns";
 
 
 const AcademicDetailsEdit = () => {
@@ -38,6 +38,7 @@ const AcademicDetailsEdit = () => {
     }
     return result;
   }
+  const years = range(1900, getYear(new Date()) + 1, 1);
 
 
 
@@ -257,10 +258,9 @@ const AcademicDetailsEdit = () => {
                         >
                           End Year
                         </label>
-                        <input
-                          type="date"
+                        <select
                           style={{ height: "40px" }}
-                          class="form-control rounded-0"
+                          class="rounded-0 form-control"
                           id="exampleFormControlInput1"
                           placeholder=""
                           name="end_year"
@@ -268,7 +268,14 @@ const AcademicDetailsEdit = () => {
                           onChange={(event) =>
                             handleAcademicChange(index, event)
                           }
-                        />
+                        >
+                          <option value="">Select Year</option>
+                          {years.map((year) => (
+                            <option key={year} value={year}>
+                              {year}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                     </div>
                   </>
