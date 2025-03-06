@@ -478,11 +478,12 @@ const UserList = () => {
                       <th scope="col">Full Name</th>
                       <th scope="col">Email Address</th>
                       <th scope="col">PF</th>
+                      <th scope="col" className="whitespace-nowrap">Supervision Role</th>
                       <th scope="col">Role</th>
                       <th scope="col">Faculty</th>
                       <th scope="col">Department/Unit</th>
                       <th scope="col">Status</th>
-                      <th scope="col">Profile Completion</th>
+                      <th scope="col"  className="whitespace-nowrap">Profile Completion</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -514,6 +515,8 @@ const UserList = () => {
                         <td className="fs-6">{user.email}</td>
 
                         <td className="fs-6">{user.staff_number}</td>
+                        <td className="fs-6">{user.user_supervision_role}</td>
+
                         <td className="fs-6">{user.role}</td>
                         <td className="fs-6 whitespace-nowrap">
                           {user.faculty
@@ -533,7 +536,13 @@ const UserList = () => {
                         </td>
 
                         <td className="fs-6">{user.status}</td>
-                        <td className=" whitespace-nowrap text-md text-[#e25252]"><p className=" whitespace-nowrap text-md text-[#e25252] mb-0">{user?.profile_completion ? `${user?.profile_completion}%` : "Staff needs to login" }</p></td>
+                        <td className=" whitespace-nowrap text-md text-[#e25252]">
+                          <p className=" whitespace-nowrap text-md text-[#e25252] mb-0">
+                            {user?.profile_completion
+                              ? `${user?.profile_completion}%`
+                              : "Staff needs to login"}
+                          </p>
+                        </td>
                         <td
                           className="flex gap-2 "
                           align="center"
@@ -654,7 +663,9 @@ const UserList = () => {
               >
                 <ModalOverlay />
                 <ModalContent>
-                  <ModalHeader>Assign A Role To Staff</ModalHeader>
+                  <ModalHeader fontSize={{ base: "14px", md: "16px" }}>
+                    Assign A supervision Role To Staff
+                  </ModalHeader>
                   <ModalCloseButton />
                   <ModalBody>
                     Select a role to be assigned to a staff
@@ -665,7 +676,7 @@ const UserList = () => {
                       >
                         <input
                           type="checkbox"
-                          className=""
+                          className="h-[16px] text-[14px]"
                           checked={selectedRole === option.value}
                           onChange={() => handleCheckboxChange(option.value)}
                         />

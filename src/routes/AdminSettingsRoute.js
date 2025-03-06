@@ -23,6 +23,7 @@ import CarryOverLeave from "../pages/adminpages/leave/CarryOverLeave";
 import AssignRole from "../pages/adminpages/settings/AssignRole";
 import AddSupervisors from "../pages/adminpages/settings/AddSupervisors";
 import PersonalRecordEdit from "../pages/adminpages/settings/personalrecordEdit/PersonalRecord";
+import AddSupervisinfOffice from "../pages/adminpages/settings/AddSupervisinfOffice";
 
 const AdminSettingsRoute = () => {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const AdminSettingsRoute = () => {
         <Route path='role-list' element={<RoleList />} />
         <Route path='add-department' element={<AddDepartment />} />
         <Route path='add-faculty' element={<AddFaculty />} />
+        <Route path='supervising-office' element={<AddSupervisinfOffice />} />
         <Route path='edit-faculty/:id' element={<EditFaculty />} />
         <Route path='edit-department/:id' element={<EditDepartment />} />
         <Route path='edit-role/:id' element={<EditRole />} />

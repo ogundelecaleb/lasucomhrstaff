@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../../api";
 import { useSnackbar } from "notistack";
 import { MoonLoader } from "react-spinners";
+import { Profile2User } from "iconsax-react";
 
 const MainAdminDashboard = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -22,7 +23,7 @@ const MainAdminDashboard = () => {
       });
   }, []);
 
-  const DashbordBox = ({ title, total, icon, route }) => {
+  const DashbordBox = ({ title, total, icon, route, desc }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -30,67 +31,68 @@ const MainAdminDashboard = () => {
     };
 
     return (
-      <Stack
-        gap={0}
-        border={"1px solid #EDF2F7"}
-        p="3"
-        pl="5"
-        borderRadius={"lg"}
-        w="300px"
-        h="250px"
-        cursor="pointer"
-        onClick={handleClick}
-      >
-        <Box
-          display={"flex"}
-          p="10"
-          mb="5"
-          borderRadius={"lg"}
-          border={"1px solid #EDF2F7"}
-          w="fit-content"
-        >
-          {" "}
-          {icon}
-        </Box>
-        <Text fontWeight={"medium"} fontSize={24} color={"#1A202C"}>
-          {total}
-        </Text>
-        <Text fontWeight={"medium"} fontSize={20} color={"#718096"}>
-          {title}
-        </Text>
-      </Stack>
+      <div className="border rounded-lg shadow overflow-hidden ">
+        <div className="flex justify-between items-center  p-2">
+          <p className="text-base md:text-lg font-semibold ">{title}</p>
+          <div>{icon}</div>
+        </div>
+
+        <div className="mt-7 ">
+          <p className="text-[#718096] p-2">
+            {desc}
+          </p>
+          <div className="p-2 bg-gray-100 flex justify-between items-center">
+            <p className="font-semibold">Total: </p>
+
+            <p className="text-lg font-semibold">{total}</p>
+          </div>
+        </div>
+      </div>
     );
   };
 
   return (
-    <Box px="6" mt="4"  overflowY="auto"
-    __css={{
-      '&::-webkit-scrollbar': {
-        w: '2',
-      },
-      '&::-webkit-scrollbar-track': {
-        w: '6',
-      },
-      '&::-webkit-scrollbar-thumb': {
-        borderRadius: '10',
-        bg: `gray.100`,
-      },
-    }}>
+    <Box
+      px="6"
+      mt="4"
+      overflowY="auto"
+      __css={{
+        "&::-webkit-scrollbar": {
+          w: "2",
+        },
+        "&::-webkit-scrollbar-track": {
+          w: "6",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          borderRadius: "10",
+          bg: `gray.100`,
+        },
+      }}
+    >
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 3, md: 5 }}>
         <Link to="/settings/user-list">
           <DashbordBox
             title={"Manage Users"}
             total={dashboardDetails?.total_users}
-            icon={<FaUsersGear color="#984779" size={32} />}
+            desc={"View, Create and Update Staff Details"}
+            icon={
+              <Profile2User
+                color="#984779"
+                className="text-16 md:text-[20px]"
+                variant="Bold"
+              />
+            }
             route=""
           />
         </Link>
-        
+
         <Link to="/settings/faculty-list">
           <DashbordBox
             title={"Manage Faculty"}
             total={dashboardDetails?.total_faculty}
             icon={<FaUsersRectangle color="#984779" size={32} />}
+            desc={"View, Create and Update Faculty Details"}
+
           />
         </Link>
 
@@ -100,6 +102,8 @@ const MainAdminDashboard = () => {
             total={dashboardDetails?.total_departments}
             icon={<FaBuilding color="#984779" size={32} />}
             route="department-list"
+            desc={"View, Create and Update Department Details"}
+
           />
         </Link>
 
@@ -108,6 +112,8 @@ const MainAdminDashboard = () => {
             title={"Manage Division"}
             total={dashboardDetails?.total_divisions}
             icon={<FaUsersRays color="#984779" size={32} />}
+            desc={"View, Create and Update Division Details"}
+
           />
         </Link>
 
@@ -116,6 +122,8 @@ const MainAdminDashboard = () => {
             title={"Manage Roles"}
             total={dashboardDetails?.total_roles}
             icon={<GiSwordsPower color="#984779" size={32} />}
+            desc={"View, Create and Update Staff Roles"}
+
           />
         </Link>
 
@@ -125,6 +133,7 @@ const MainAdminDashboard = () => {
             // total={dashboardDetails?.total_users}
             icon={<FaSignLanguage color="#984779" size={32} />}
             route="user-access-role"
+            desc={"View, Create and Update Supervision Role"}
           />
         </Link>
       </SimpleGrid>

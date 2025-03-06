@@ -121,6 +121,7 @@ const ContactInfoEdit = () => {
         staff_number: formValues.staffID,
         total_leave_due: formValues.annualLeave,
         //department_id: selectedDivision,
+        email:formValues.email,
         role: selectedRole,
         status: selectedStatus,
         unit:selectedDivision,
