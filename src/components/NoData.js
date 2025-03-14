@@ -11,7 +11,7 @@ function NoData() {
 
   return (
     <div>
-      <Lottie options={defaultOptions} height={400} width={400} />
+      <Lottie options={defaultOptions} height={300} width={300} />
     </div>
   );
 }

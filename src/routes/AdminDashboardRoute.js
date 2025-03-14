@@ -34,6 +34,7 @@ import StateOfOriginReport from "../pages/adminpages/report/stateOfOriginReport"
 import LevelReport from "../pages/adminpages/report/LevelReport";
 import ActiveStaffReport from "../pages/adminpages/report/ActiveStaffReport";
 import AppointmentReport from "../pages/adminpages/report/AppointmentReport";
+import AddSupervisinfOffice from "../pages/adminpages/settings/AddSupervisinfOffice";
 
 const AdminDashboardRoute = ({ mobile, setMobile, display }) => {
   // const navigate = useNavigate();
@@ -137,6 +138,7 @@ const AdminDashboardRoute = ({ mobile, setMobile, display }) => {
           path="/change-email"
           element={<ChangeEmail reuseableNavigation={reuseableNavigation} />}
         />
+        
       </Routes>
     </div>
   );

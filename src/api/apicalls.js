@@ -65,6 +65,9 @@ import {
   UPDATECINFO,
   UPDATEFINFO,
   UPDATEAINFO,
+  GETALLOFFICE,
+  ASIGNSUPERVISOR,
+  ALLSTAFFS,
 } from "../utils/config";
 import { apiGet, apiPost, apiPut, apiDelete } from "../utils/utils";
 
@@ -338,4 +341,17 @@ export function updateFinfo(data) {
 export function updateAinfo(data) {
   return apiPost(UPDATEAINFO, data, { 'Content-Type': 'multipart/form-data' });
 }
+
+export function getAllOffices(data) {
+  return apiGet(GETALLOFFICE, data);
+}
+export function getAllStaffs(data) {
+  return apiGet(ALLSTAFFS, data);
+}
+
+export function asignRoleToStaff(data) {
+  return apiPost(ASIGNSUPERVISOR, data);
+}
+
+
 

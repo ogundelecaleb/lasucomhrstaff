@@ -1,6 +1,6 @@
 
-//export const API_BASE_URL = 'https://hrmdev.devapi.live/api';
-export const API_BASE_URL = 'https://hrm.devapi.live/api';
+export const API_BASE_URL = 'https://hrmdev.devapi.live/api';
+//export const API_BASE_URL = 'https://hrm.devapi.live/api';
 export const getApiUrl = (endpoint) => API_BASE_URL + endpoint
 
 export const GETDASHBAORD = getApiUrl('/dashboard')
@@ -77,4 +77,9 @@ export const UPDATECINFO = getApiUrl('/update-contact-information')
 export const UPDATENOK = getApiUrl('/update-next-of-kin')
 export const UPDATEFINFO = getApiUrl('/update-family-details')
 export const UPDATEAINFO = getApiUrl('/update-academic-details')
+export const ALLSTAFFS = getApiUrl('/all-lasucom-staffs')
+export const ASIGNSUPERVISOR = getApiUrl('/assign-staff-to-head-supervision-office')
+export const GETALLOFFICE = getApiUrl('/supervisor-offices')
+
+
 

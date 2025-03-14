@@ -3,9 +3,9 @@ import {
   Box,
   Divider,
   Flex,
-} from "@chakra-ui/layout";
-import { Input } from "@chakra-ui/input";
-import { Button } from "@chakra-ui/button";
+} from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { BiMessageAltDetail } from "react-icons/bi";
 import 'intl';
 import 'intl/locale-data/jsonp/en';

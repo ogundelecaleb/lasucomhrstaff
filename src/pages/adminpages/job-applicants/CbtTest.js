@@ -3,7 +3,7 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
 import {
 
   Flex,
-} from "@chakra-ui/layout";
+} from "@chakra-ui/react";
 import 'intl';
 import 'intl/locale-data/jsonp/en';
 import { getYear, getMonth } from 'date-fns';

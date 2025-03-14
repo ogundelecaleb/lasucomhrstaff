@@ -57,6 +57,8 @@ const AdminSettingsRoute = () => {
         <Route path='user-access-role' element={<AssignRoleToUser />}/>
         <Route path='staff-record/:id' element={<PersonalRecord />}/>
         <Route path='edit-staff-record/:id' element={<PersonalRecordEdit />}/>
+        <Route path="/manage-supervising-office" element={<AddSupervisinfOffice />} />
+
       </Routes>
     </div>
   );

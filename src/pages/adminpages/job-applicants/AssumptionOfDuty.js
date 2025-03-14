@@ -10,7 +10,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs
-} from "@chakra-ui/tabs";
+} from "@chakra-ui/react";
 import { Badge, Avatar } from '@chakra-ui/react'
 import {
   Box,
@@ -20,9 +20,8 @@ import {
   GridItem,
   Stack,
   Text,
-} from "@chakra-ui/layout";
-import { Input } from "@chakra-ui/input";
-import { Button } from "@chakra-ui/button";
+} from "@chakra-ui/react";
+
 import { BiMessageAltDetail } from "react-icons/bi";
 
 const AssumptionOfDuty = () => {

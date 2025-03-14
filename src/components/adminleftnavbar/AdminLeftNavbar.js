@@ -92,9 +92,18 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
               className="w-100 py-2 ps-2"
               style={{ borderBottom: "1px solid #2D1460" }}
             >
-              Manage Supervisors
+              Create Supervisors
             </Link>
           </div>
+          <div className="d-flex flex-column align-items-center px-4">
+              <Link
+                to="settings/manage-supervising-office"
+                className="w-100 py-2 ps-2 whitespace-nowrap"
+                style={{ borderBottom: "1px solid #2D1460" }}
+              >
+                Manage Supervising Office
+              </Link>
+            </div>
           <div className="d-flex flex-column align-items-center px-4">
             <Link
               to="settings/assign-role"
@@ -112,15 +121,11 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
             >
               Manage Faculty
             </Link>
+            </div>
+
+         
             <div className="d-flex flex-column align-items-center px-4">
-            <Link
-              to="settings/add-supervisor"
-              className="w-100 py-2 ps-2 whitespace-nowrap"
-              style={{ borderBottom: "1px solid #2D1460" }}
-            >
-              Manage Supervising Office
-            </Link>
-          </div>
+
             <Link
               to="settings/department-list"
               className="w-100 py-2 ps-2"
@@ -128,7 +133,6 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
             >
               Manage Department
             </Link>
-            
           </div>
           <div className="d-flex flex-column align-items-center px-4">
             <Link
@@ -294,7 +298,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
               className="w-100 py-2 ps-2"
               style={{ borderBottom: "1px solid #2D1460" }}
             >
-             Level Report
+              Level Report
             </Link>
           </div>
           <div className="d-flex flex-column align-items-center px-4">
@@ -303,7 +307,7 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
               className="w-100 py-2 ps-2"
               style={{ borderBottom: "1px solid #2D1460" }}
             >
-          All Report 
+              All Report
             </Link>
           </div>
         </div>
@@ -396,7 +400,6 @@ const AdminLeftNavbar = ({ mobile, setMobile }) => {
           </div>
         </CustomLink>
 
-      
         {/* <CustomLink to='promotion'>
           <div
             id='hoverEffect'

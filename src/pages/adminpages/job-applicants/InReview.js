@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   Flex,
-} from "@chakra-ui/layout";
+} from "@chakra-ui/react";
 import api from "../../../api";
 import { enqueueSnackbar } from "notistack";
 const InReview = (props) => {

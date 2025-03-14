@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Box, Divider, Flex } from "@chakra-ui/layout";
-import { Input } from "@chakra-ui/input";
-import { Button } from "@chakra-ui/button";
+import { Box, Divider, Flex } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 import { BiMessageAltDetail } from "react-icons/bi";
 import { getUserDetails } from "../../../utils/utils";
 import { useSnackbar } from "notistack";

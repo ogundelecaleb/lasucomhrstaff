@@ -10,8 +10,8 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
 } from "@chakra-ui/react";
-import { Input } from "@chakra-ui/input";
-import { Button } from "@chakra-ui/button";
+import { Input } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { BiMessageAltDetail } from "react-icons/bi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { reuseAbleColor } from "../../../components/Color";
