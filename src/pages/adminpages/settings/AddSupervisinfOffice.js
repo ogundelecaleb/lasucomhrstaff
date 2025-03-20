@@ -56,11 +56,19 @@ const AddSupervisinfOffice = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [officeName, setOfficeName] = useState(null);
+  const [officesName, setOfficesName] = useState(null);
   const [formValue, setFormValue] = useState({
     staff_id: "",
     supervisor_office_id: "",
   });
 
+  const toggleCreateModal = ()=> {
+    setIsCreate(!isCreate);
+  }
+  const HandleCreateModalClose =() => {
+    setIsCreate(false);
+    ClearForm();
+  }
   function HandleEditModalClose() {
     setIsEditOpen(false);
     ClearForm();
@@ -165,10 +173,35 @@ const AddSupervisinfOffice = () => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
   };
 
+
+  const createOffice = async () => {
+    if (!officesName) {
+      enqueueSnackbar("Office name is required", { variant: "error" });
+      return;
+    }
+  
+    setIsLoading(true);
+    try {
+      const response = await api.createOffice({
+        name: officesName,
+      });
+      enqueueSnackbar("Office Created Successfully", { variant: "success" });
+      results.refetch();
+      setIsLoading(false);
+      HandleCreateModalClose();
+    } catch (error) {
+      //console.log(error.message);
+      enqueueSnackbar(error ? error?.message : "Unable to Create Office", { variant: "error" });
+
+      setIsLoading(false);
+    }
+  };
+
+
   return (
     <div className="md:p-[20px] p-[10px] bg-[#F2F2F2] min-h-screen ">
       <div className="border-[0.2px] border-[#98a2b3] rounded-[8px]  bg-[#984779] ">
-        <div className=" h-full p-[16px] md:p-[20px] block md:flex justify-between items-center ">
+        <div className=" h-full p-[16px] md:p-[20px] block md:flex justify-between items-center md:flex-wrap w-full ">
           <div className="flex items-center gap-[16px]">
             <div className="flex items-center">
               <h3 className="text-[#fff] text-[14px] md:text-[14px] mb-0 xl:text-[16px] font-semibold leading-[24px]  ">
@@ -176,10 +209,10 @@ const AddSupervisinfOffice = () => {
               </h3>
             </div>
             <div className="h-[32px] w-[1px] bg-[#D0D5DD]" />
-            <div className="flex items-center gap-[8px]">
-              <SearchNormal1 variant="Linear" color="#667185" size="16" />
+            <div className="flex flex-1 items-center gap-[8px]">
+              <SearchNormal1 variant="Linear" color="#fefefe" size="16" />
               <input
-                className="w-full lg:w-[300px] py-[6px] text-[16px] text-[#344054] leading-[20px] placeholder:text-[#98A2B3] placeholder:text-[12px] border border-transparent  focus:outline-none focus:ring-[#26ae5f] focus:border-b-[#26ae5f] "
+                className="w-full lg:w-[300px] text-sm py-[6px] px-3 text-[16px] text-[#344054] leading-[20px] placeholder:text-[#98A2B3] placeholder:text-[12px] border border-transparent  focus:outline-none focus:ring-[#26ae5f] focus:border-b-[#26ae5f] "
                 placeholder="Search by office name.."
                 value={search}
                 onChange={(e) => {
@@ -187,6 +220,7 @@ const AddSupervisinfOffice = () => {
                 }}
               />
             </div>
+            <button onClick={toggleCreateModal} className="rounded-lg py-2 px-3 bg-[#fefefe] text-sm hover:bg-gray-100">Create Office</button>
           </div>
         </div>
       </div>
@@ -308,6 +342,64 @@ const AddSupervisinfOffice = () => {
           </button>
         </div>
       </div> */}
+
+<Modal
+        isCentered
+        isOpen={isCreate}
+        onClose={HandleCreateModalClose}
+        size={{ sm: "md", lg: "xl" }}
+        style={{ borderRadius: 12 }}
+        motionPreset="slideInBottom"
+        className="rounded-[12px]"
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader
+            // py="4"
+            color="#000000"
+            mb="0"
+            fontSize={{ base: "14px", md: "16px" }}
+            className=""
+          >
+            Create New Office
+          </ModalHeader>
+          <ModalCloseButton size={"sm"} />
+          <ModalBody
+            px={{ base: "16px", md: "24px" }}
+            className="pt-[20px] md:pt-[24px] px-[16px] md:px-[24px] pb-[30px] md:pb-[40px]"
+          >
+           <div className="flex flex-col gap-2">
+              <labe className="text-sm text-gray-700">Office Name:</labe>
+              <input
+                type="text"
+                value={officesName}
+                onChange={(e) => setOfficesName(e.target.value)}
+                placeholder="Enter Office Name"
+                className="border-[0.2px] border-[#98A2B3] w-[full] py-[7px] px-[16px] rounded-[8px] text-[14px] text-[#667185] focus:outline-none focus:border-[#98A2B3]"
+              />
+           </div>
+          </ModalBody>
+          <Divider />
+          <ModalFooter gap={"16px"}>
+            <button
+              onClick={HandleCreateModalClose}
+              className="border-[0.2px]  border-[#98A2B3] w-[99px] text-center rounded-[8px] py-[7px] text-[14px] font-medium text-black"
+            >
+              Cancel
+            </button>
+            <button
+           onClick={createOffice}
+              className="border-[0.2px]  border-[#98A2B3] w-[109px] bg-[#984779] flex banks-center justify-center text-center rounded-[8px] py-[7px] text-[14px] font-medium text-white"
+            >
+              {isLoading ? (
+                <ClipLoader color={"white"} size={20} />
+              ) : (
+                <> Create Office </>
+              )}
+            </button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
       <Modal
         isCentered

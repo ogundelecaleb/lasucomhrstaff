@@ -68,6 +68,7 @@ import {
   GETALLOFFICE,
   ASIGNSUPERVISOR,
   ALLSTAFFS,
+  CREATEOFFICE,
 } from "../utils/config";
 import { apiGet, apiPost, apiPut, apiDelete } from "../utils/utils";
 
@@ -351,6 +352,9 @@ export function getAllStaffs(data) {
 
 export function asignRoleToStaff(data) {
   return apiPost(ASIGNSUPERVISOR, data);
+}
+export function createOffice(data) {
+  return apiPost(CREATEOFFICE, data);
 }
 
 

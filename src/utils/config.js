@@ -80,6 +80,8 @@ export const UPDATEAINFO = getApiUrl('/update-academic-details')
 export const ALLSTAFFS = getApiUrl('/all-lasucom-staffs')
 export const ASIGNSUPERVISOR = getApiUrl('/assign-staff-to-head-supervision-office')
 export const GETALLOFFICE = getApiUrl('/supervisor-offices')
+export const CREATEOFFICE = getApiUrl('/create-supervisor-offices')
+
 
 
 
