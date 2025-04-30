@@ -174,29 +174,12 @@ const AddSupervisors = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    console.log("Form submitted");
-    console.log({
-      title: selectedTitle,
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      staff_number: staffID,
-      status,
-      role: selectedRole,
-      faculty: selectedFaculty.id,
-      department: selectedDepartment.id,
-      unit: selectedDivision.id,
-      conuass: selectedConuass,
-      conunass: selectedConunass,
-      level: selectedLevel,
-      confirmation: selectedConfirmed,
-      type: selectedStaffType,
-      total_leave_due: setEntitledLeave(),
-    });
+
 
     try {
       const response = await api.createSupervisor({
-        
+        first_name: firstName,
+        last_name: lastName,
         email,
         status: "active",
         role: selectedRole,
@@ -209,7 +192,6 @@ const AddSupervisors = () => {
         faculty_id: selectedFaculty.id,
         department_id: selectedDepartment.id,
       });
-      console.log("responce==>>>>>", response);
       enqueueSnackbar("User added successfully", { variant: "success" });
       setIsLoading(false);
       resetForm();
@@ -230,7 +212,44 @@ const AddSupervisors = () => {
       </p>
       <div className="px-4">
         <form onSubmit={handleSubmit}>
-          
+        <div className="my-5 form-group row">
+            <label
+              for="first name"
+              className="text-[18px] font-medium col-md-2"
+            >
+              First Name <sup className="text-danger">*</sup>
+            </label>
+            <div className="col-md-8">
+              <input
+                style={{ height: "60px" }}
+                type="text"
+                className="form-control rounded-0"
+                placeholder="Head"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+          </div>
+        
+          <div className="my-5 form-group row">
+            <label
+              for="inputPassword"
+              className="text-[18px] font-medium col-md-2"
+            >
+              Last Name <sup className="text-danger">*</sup>
+            </label>
+            <div className="col-md-8">
+              <input
+                style={{ height: "60px" }}
+                type="text"
+                className="form-control rounded-0"
+                placeholder="Pharmacy"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+          </div>
+
           
           
           <div className="my-5 form-group row">

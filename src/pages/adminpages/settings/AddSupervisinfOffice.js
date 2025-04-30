@@ -50,7 +50,6 @@ const AddSupervisinfOffice = () => {
   const navigate = useNavigate();
   const [selectedStaff, setSelectedStaff] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isOpenImportModal, setIsOpenImportModal] = useState(false);
   const [isCreate, setIsCreate] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [page, setPage] = useState(1);
