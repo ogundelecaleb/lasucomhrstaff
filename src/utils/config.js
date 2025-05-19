@@ -11,6 +11,7 @@ export const UPDATEDEPARTMENT = getApiUrl('/departments/')
 export const DELETEDEPARTMENT = getApiUrl('/departments/')
 export const DISPLAYALLDEPARTMENT = getApiUrl('/departments')
 export const DISPLAYDEPARTMENTS = getApiUrl('/all-departments')
+export const GETROLES = getApiUrl('/roles')
 
 export const GETFACULTY = getApiUrl('/faculties')
 export const CREATEFACULTY = getApiUrl('/faculties')

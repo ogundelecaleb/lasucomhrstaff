@@ -1,6 +1,6 @@
 import { reuseAbleColor } from "../../../components/Color";
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { Box,Flex, Text,} from "@chakra-ui/react";
 import api from "../../../api";
@@ -264,9 +264,10 @@ const LeaveApplicantDetails = () => {
                   </div>
                   <div>
                   {isLeaveApproved && (
-                    <Button onClick={handlePrintCertificate} borderRadius={"0"} color='white' bg='#007BFF'>
+                     <Link to="/leave-certificate" state={leaveDetails}>
+                    <Button  borderRadius={"0"} color='white' bg='#007BFF'>
                       Print Leave Certificate
-                    </Button>
+                    </Button></Link>
                   )}
                   </div>
                 </div>

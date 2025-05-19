@@ -35,6 +35,7 @@ import LevelReport from "../pages/adminpages/report/LevelReport";
 import ActiveStaffReport from "../pages/adminpages/report/ActiveStaffReport";
 import AppointmentReport from "../pages/adminpages/report/AppointmentReport";
 import AddSupervisinfOffice from "../pages/adminpages/settings/AddSupervisinfOffice";
+import LeaveCertificate from "../pages/adminpages/leave/LeaveCertificate";
 
 const AdminDashboardRoute = ({ mobile, setMobile, display }) => {
   // const navigate = useNavigate();
@@ -61,6 +62,7 @@ const AdminDashboardRoute = ({ mobile, setMobile, display }) => {
       <Routes>
         <Route path="/dashboard" element={<MainAdminDashboard />} />
         <Route path="/leave" exact element={<Leave />} />
+        <Route path="/leave-certificate" exact element={<LeaveCertificate />} />
         <Route
           path="leave/leave-applicant-details/:id"
           exact
@@ -107,6 +109,7 @@ const AdminDashboardRoute = ({ mobile, setMobile, display }) => {
         <Route path="/report" element={<Report />} />
         <Route path="/state-of-origin-report" element={<StateOfOriginReport />} />
         <Route path="/level-report" element={<LevelReport />} />
+
         <Route path="/active-staff-report" element={<ActiveStaffReport />} />
         <Route path="/appointment-report" element={<AppointmentReport />} />
         <Route path="/event" element={<Event />} />
