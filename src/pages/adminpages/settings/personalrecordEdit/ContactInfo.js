@@ -444,7 +444,7 @@ const ContactInfoEdit = () => {
                 class="form-label fs-6 fw-semibold fs-6 mt-3 mb-2"
               >
                 Department{" "}
-                <span className="text-xs">
+                  <span className="text-xs text-red-400">
                   (if a NASE staffs works with ASE, give the staff a Department
                   and set his/her Unit to 'empty' )
                 </span>
@@ -481,7 +481,7 @@ const ContactInfoEdit = () => {
                   class="form-label fs-6 fw-semibold fs-6 mt-3 mb-2"
                 >
                   Unit{" "}
-                  <span className="text-xs">
+                  <span className="text-xs text-red-400">
                     (Unit is strictly for offices under NASE )
                   </span>
                 </label>
