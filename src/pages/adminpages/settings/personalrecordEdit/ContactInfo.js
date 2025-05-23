@@ -5,10 +5,12 @@ import api from "../../../../api";
 import { MoonLoader } from "react-spinners";
 import { getYear, getMonth } from "date-fns";
 import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const ContactInfoEdit = () => {
   const [userDetails, setUserDetails] = useState([]);
-  const { enqueueSnackbar } = useSnackbar();  const [divisionOptions, setDivisionOptions] = useState([]);
+  const { enqueueSnackbar } = useSnackbar();
+  const [divisionOptions, setDivisionOptions] = useState([]);
   const [selectedDivision, setSelectedDivision] = useState("");
   const [selectedRole, setSelectedRole] = useState(userDetails.role || "");
   const [selectedStatus, setSelectedStatus] = useState(
@@ -74,11 +76,11 @@ const ContactInfoEdit = () => {
     faculty: "",
     level: "",
     unit: "",
-    annualLeave:  "",
+    annualLeave: "",
     staffID: "",
-    selectedTitle:  "",
-    status:  "",
-    selectedConfirm:  "",
+    selectedTitle: "",
+    status: "",
+    selectedConfirm: "",
   });
 
   useEffect(() => {
@@ -89,9 +91,9 @@ const ContactInfoEdit = () => {
         contact_address: userDetails?.contact_address,
         current_address: userDetails?.current_address,
         permanent_address: userDetails?.permanent_address,
-        department: userDetails?.department?.name,
+        department: userDetails?.department?.id,
         date_of_first_appointment: userDetails?.date_of_first_appointment,
-        faculty: userDetails?.faculty?.name,
+        faculty: userDetails?.faculty?.id,
         level: userDetails?.level,
         role: userDetails?.role,
         unit: userDetails?.unit?.name,
@@ -120,14 +122,13 @@ const ContactInfoEdit = () => {
         date_of_first_appointment: formValues.date_of_first_appointment,
         staff_number: formValues.staffID,
         total_leave_due: formValues.annualLeave,
-        //department_id: selectedDivision,
-        email:formValues.email,
+        email: formValues.email,
         role: selectedRole,
         status: selectedStatus,
-        unit:selectedDivision,
-
+        unit: selectedDivision,
+        department_id: formValues.department,
+        faculty_id: formValues?.faculty,
       });
-      console.log("responce==>>>>>", response);
       enqueueSnackbar("Information updated successfully", {
         variant: "success",
       });
@@ -138,6 +139,22 @@ const ContactInfoEdit = () => {
       setIsLoading(false);
     }
   }
+
+  async function getFaculty() {
+    const response = await api.fetchFaculties({ params: {} });
+    return response;
+  }
+
+  const { isError, data, error, isPreviousData, refetch } = useQuery(
+    ["faculties"],
+    () => getFaculty(),
+    {
+      keepPreviousData: true,
+      refetchOnWindowFocus: "always",
+    }
+  );
+
+  const faculty = data?.data || [];
 
   return (
     <div className="container">
@@ -162,8 +179,6 @@ const ContactInfoEdit = () => {
                     type="text"
                     //style={{ height: "40px" }}
                     className="border py-2 px-2 w-full rounded-0"
-                     
-                     
                     id="exampleFormControlInput1"
                     placeholder=""
                     value={formValues.phone}
@@ -189,8 +204,6 @@ const ContactInfoEdit = () => {
                     //style={{ height: "40px" }}
                     className="border py-2 px-2 w-full rounded-0"
                     id="exampleFormControlInput1"
-                     
-                     
                     value={formValues.email}
                     onChange={(e) =>
                       setFormValues({
@@ -215,7 +228,6 @@ const ContactInfoEdit = () => {
                 className="border py-2 px-2 w-full rounded-0"
                 id="exampleFormControlInput1"
                 placeholder=""
-                 
                 value={formValues.current_address}
                 onChange={(e) =>
                   setFormValues({
@@ -238,7 +250,6 @@ const ContactInfoEdit = () => {
                 className="border py-2 px-2 w-full rounded-0"
                 id="exampleFormControlInput1"
                 placeholder=""
-                 
                 value={formValues.contact_address}
                 onChange={(e) =>
                   setFormValues({
@@ -274,293 +285,313 @@ const ContactInfoEdit = () => {
           <div className="col-lg-2"></div>
         </div>
         <div className="row mt-4 border-bottom pb-4">
-              <div className="col-lg-4">
-                <p className="fs-5 pt-2 fw-semibold">Work Contact</p>
+          <div className="col-lg-4">
+            <p className="fs-5 pt-2 fw-semibold">Work Contact</p>
+          </div>
+          <div className="col-lg-6 pe-">
+            <div class="row">
+              <div className="col-lg-6">
+                <div class="form-group">
+                  <label
+                    for="exampleFormControlSelect1"
+                    className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                  >
+                    Date of First Appointment{" "}
+                    <sup className="text-danger">*</sup>
+                  </label>
+
+                  <input
+                    type="text"
+                    //style={{ height: "40px" }}
+                    className="border py-2 px-2 w-full rounded-0"
+                    id="exampleFormControlInput1"
+                    placeholder=""
+                    d
+                    value={formValues.date_of_first_appointment}
+                    onChange={(e) =>
+                      setFormValues({
+                        ...formValues,
+                        date_of_first_appointment: e.target.value,
+                      })
+                    }
+                  />
+                </div>
               </div>
-              <div className="col-lg-6 pe-">
-                <div class="row">
-                  <div className="col-lg-6">
-                    <div class="form-group">
-                      <label
-                        for="exampleFormControlSelect1"
-                        className="fw-semibold text-muted fs-6 mt-3 mb-2"
-                      >
-                        Date of First Appointment{" "}
-                        <sup className="text-danger">*</sup>
-                      </label>
+              <div className="col-lg-6">
+                <div class="form-group">
+                  <label
+                    for="exampleFormControlSelect1"
+                    className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                  >
+                    Annual Leave
+                    <sup className="text-danger">*</sup>
+                  </label>
 
-                      <input
-                        type="text"
-                        //style={{ height: "40px" }}
-                        className="border py-2 px-2 w-full rounded-0"
-                        id="exampleFormControlInput1"
-                        placeholder=""
-                         
-                        d
-                        value={formValues.date_of_first_appointment}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            date_of_first_appointment: e.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div class="form-group">
-                      <label
-                        for="exampleFormControlSelect1"
-                        className="fw-semibold text-muted fs-6 mt-3 mb-2"
-                      >
-                        Annual Leave
-                        <sup className="text-danger">*</sup>
-                      </label>
-
-                      <input
-                        type="text"
-                        //style={{ height: "40px" }}
-                        className="border py-2 px-2 w-full rounded-0"
-                        id="exampleFormControlInput1"
-                        placeholder=""
-                         
-                        d
-                        value={formValues.annualLeave}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            annualLeave: e.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div className="col-lg-6">
-                    <div class="form-group">
-                      <label
-                        for="exampleFormControlSelect1"
-                        className="fw-semibold text-muted fs-6 mt-3 mb-2"
-                      >
-                        Staff ID
-                        <sup className="text-danger">*</sup>
-                      </label>
-
-                      <input
-                        type="text"
-                        //style={{ height: "40px" }}
-                        className="border py-2 px-2 w-full rounded-0"
-                        id="exampleFormControlInput1"
-                         
-                        placeholder="Staff ID"
-                        value={formValues.staffID}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            staffID: e.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div class="form-group">
-                      <label
-                        for="exampleFormControlSelect1"
-                        className="fw-semibold text-muted fs-6 mt-3 mb-2"
-                      >
-                        Staff Status
-                        <sup className="text-danger">*</sup>
-                      </label>
-
-                      <select
-                        type="text"
-                        //style={{ height: "40px" }}
-                        className="border py-2 px-2 w-full rounded-0"
-                        id="exampleFormControlInput1"
-                        placeholder=""
-                         
-                        d
-                        value={selectedStatus}
-                        onChange={(e) => setSelectedStatus(e.target.value)}
-                      >
-                        <option value="">Select Status </option>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                {formValues.type === "ASE" && formValues.role === "DEAN" && (
-                  <div class="form-group">
-                    <label
-                      for="exampleFormControlSelect1"
-                      className="fw-semibold text-muted fs-6 mt-3 mb-2"
-                    >
-                      Faculty
-                    </label>
-                    <input
-                      type="text"
-                      //style={{ height: "40px" }}
-                      className="border py-2 px-2 w-full rounded-0"
-                      id="exampleFormControlInput1"
-                      placeholder=""
-                      d
-                      value={formValues.faculty}
-                      onChange={(e) =>
-                        setFormValues({
-                          ...formValues,
-                          facultyt: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
-                )}
-
-                {formValues.type === "ASE" &&
-                  (formValues.role === "HOD" ||
-                    formValues.role === "RSWEP") && (
-                    <div class="form-group">
-                      <label
-                        for="exampleInputEmail1"
-                        class="form-label fs-6 fw-semibold fs-6 mt-3 mb-2"
-                      >
-                        Department
-                      </label>
-                      <input
-                        type="text"
-                        //style={{ height: "40px" }}
-                        className="border py-2 px-2 w-full rounded-0"
-                        id="exampleFormControlInput1"
-                        placeholder=""
-                        d
-                        value={formValues.department}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            department: e.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                  )}
-
-                {formValues.type === "NASE" && (
-                  <div class="form-group">
-                    <label
-                      for="exampleInputEmail1"
-                      class="form-label fs-6 fw-semibold fs-6 mt-3 mb-2"
-                    >
-                      Unit
-                    </label>
-                    <select
-                      type="text"
-                      style={{ height: "40px" }}
-                      class="form-control rounded-0"
-                      id="exampleFormControlInput1"
-                      placeholder=""
-                      d
-                      value={selectedDivision}
-                      onChange={(e) => {
-                        setSelectedDivision(e.target.value);
-                      }}
-                      // value={formValues.unit}
-                      // onChange={(e) =>
-                      //   setFormValues({
-                      //     ...formValues,
-                      //     unit: e.target.value,
-                      //   })
-                      // }
-                    >
-                      <option value="">Select Unit</option>
-                      {divisionOptions.map((division) => (
-                        <option key={division.id} value={division.id}>
-                          {division.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                )}
-
-                <div class="row">
-                  <div className="col-lg-6">
-                    <div class="form-group">
-                      <label
-                        for="exampleFormControlSelect1"
-                        className="fw-semibold text-muted fs-6 mt-3 mb-2"
-                      >
-                        Level
-                      </label>
-                      <input
-                        type="text"
-                        style={{ height: "40px" }}
-                        class="form-control rounded-0"
-                        id="exampleFormControlInput1"
-                        d
-                        value={formValues.level}
-                        onChange={(e) =>
-                          setFormValues({
-                            ...formValues,
-                            level: e.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-lg-6">
-                    <div class="form-group">
-                      <label
-                        for="exampleFormControlSelect1"
-                        className="fw-semibold text-muted fs-6 mt-3 mb-2"
-                      >
-                        Designation
-                      </label>
-                      <select
-                        type="text"
-                        style={{ height: "40px" }}
-                        class="form-control rounded-0"
-                        id="exampleFormControlInput1"
-                        d
-                        // value={formValues.role}
-                        // onChange={(e) =>
-                        //   setFormValues({
-                        //     ...formValues,
-                        //     role: e.target.value,
-                        //   })
-                        // }
-                        value={selectedRole}
-                        onChange={(e) => setSelectedRole(e.target.value)}
-                      >
-                        <option value="">Select Role</option>
-                        {roleData.map((role) => (
-                          <option key={role.id} value={role.name}>
-                            {role.description}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
+                  <input
+                    type="text"
+                    //style={{ height: "40px" }}
+                    className="border py-2 px-2 w-full rounded-0"
+                    id="exampleFormControlInput1"
+                    placeholder=""
+                    d
+                    value={formValues.annualLeave}
+                    onChange={(e) =>
+                      setFormValues({
+                        ...formValues,
+                        annualLeave: e.target.value,
+                      })
+                    }
+                  />
                 </div>
               </div>
             </div>
-            <div className='col-lg-12 py-5 d-flex justify-content-end'>
-          <div>
-          <button
-            className='btn py-2 px-4 me-2  text-white rounded-0'
-            style={{ backgroundColor: "#984779" }} disabled={isLoading} type="submit">
-              {isLoading ? (
-                  <MoonLoader color={"white"} size={20} />
-                ) : ( <>Submit</>
-                )}
-          </button>
+
+            <div class="row">
+              <div className="col-lg-6">
+                <div class="form-group">
+                  <label
+                    for="exampleFormControlSelect1"
+                    className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                  >
+                    Staff ID
+                    <sup className="text-danger">*</sup>
+                  </label>
+
+                  <input
+                    type="text"
+                    //style={{ height: "40px" }}
+                    className="border py-2 px-2 w-full rounded-0"
+                    id="exampleFormControlInput1"
+                    placeholder="Staff ID"
+                    value={formValues.staffID}
+                    onChange={(e) =>
+                      setFormValues({
+                        ...formValues,
+                        staffID: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div class="form-group">
+                  <label
+                    for="exampleFormControlSelect1"
+                    className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                  >
+                    Staff Status
+                    <sup className="text-danger">*</sup>
+                  </label>
+
+                  <select
+                    type="text"
+                    //style={{ height: "40px" }}
+                    className="border py-2 px-2 w-full rounded-0"
+                    id="exampleFormControlInput1"
+                    placeholder=""
+                    d
+                    value={selectedStatus}
+                    onChange={(e) => setSelectedStatus(e.target.value)}
+                  >
+                    <option value="">Select Status </option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* {formValues.type === "ASE" && formValues.role === "DEAN" && ( */}
+            <div class="form-group">
+              <label
+                for="exampleFormControlSelect1"
+                className="fw-semibold text-muted fs-6 mt-3 mb-2"
+              >
+                Faculty
+              </label>
+
+              <select
+                type="text"
+                style={{ height: "40px" }}
+                class="form-control rounded-0"
+                id="exampleFormControlInput1"
+                placeholder=""
+                value={formValues.faculty}
+                onChange={(e) =>
+                  setFormValues({
+                    ...formValues,
+                    faculty: e.target.value,
+                  })
+                }
+              >
+                <option value="">Select Faculty</option>
+                {faculty.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {/* )} */}
+
+            {/* {formValues.type === "ASE" &&
+                  (formValues.role === "HOD" ||
+                    formValues.role === "RSWEP") && ( */}
+
+            <div class="form-group">
+              <label
+                for="exampleInputEmail1"
+                class="form-label fs-6 fw-semibold fs-6 mt-3 mb-2"
+              >
+                Department{" "}
+                <span className="text-xs">
+                  (if a NASE staffs works with ASE, give the staff a Department
+                  and set his/her Unit to 'empty' )
+                </span>
+              </label>
+
+              <select
+                type="text"
+                style={{ height: "40px" }}
+                class="form-control rounded-0"
+                id="exampleFormControlInput1"
+                placeholder=""
+                value={formValues.department}
+                onChange={(e) =>
+                  setFormValues({
+                    ...formValues,
+                    department: e.target.value,
+                  })
+                }
+              >
+                <option value="">Select Department</option>
+                {divisionOptions.map((division) => (
+                  <option key={division.id} value={division.id}>
+                    {division.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {/* )} */}
+
+            {formValues.type === "NASE" && (
+              <div class="form-group">
+                <label
+                  for="exampleInputEmail1"
+                  class="form-label fs-6 fw-semibold fs-6 mt-3 mb-2"
+                >
+                  Unit{" "}
+                  <span className="text-xs">
+                    (Unit is strictly for offices under NASE )
+                  </span>
+                </label>
+                <select
+                  type="text"
+                  style={{ height: "40px" }}
+                  class="form-control rounded-0"
+                  id="exampleFormControlInput1"
+                  placeholder=""
+                  d
+                  value={selectedDivision}
+                  onChange={(e) => {
+                    setSelectedDivision(e.target.value);
+                  }}
+                  // value={formValues.unit}
+                  // onChange={(e) =>
+                  //   setFormValues({
+                  //     ...formValues,
+                  //     unit: e.target.value,
+                  //   })
+                  // }
+                >
+                  <option value="">Select Unit</option>
+                  {divisionOptions.map((division) => (
+                    <option key={division.id} value={division.id}>
+                      {division.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            <div class="row">
+              <div className="col-lg-6">
+                <div class="form-group">
+                  <label
+                    for="exampleFormControlSelect1"
+                    className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                  >
+                    Level
+                  </label>
+                  <input
+                    type="text"
+                    style={{ height: "40px" }}
+                    class="form-control rounded-0"
+                    id="exampleFormControlInput1"
+                    d
+                    value={formValues.level}
+                    onChange={(e) =>
+                      setFormValues({
+                        ...formValues,
+                        level: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+              </div>
+
+              <div className="col-lg-6">
+                <div class="form-group">
+                  <label
+                    for="exampleFormControlSelect1"
+                    className="fw-semibold text-muted fs-6 mt-3 mb-2"
+                  >
+                    Designation
+                  </label>
+                  <select
+                    type="text"
+                    style={{ height: "40px" }}
+                    class="form-control rounded-0"
+                    id="exampleFormControlInput1"
+                    d
+                    // value={formValues.role}
+                    // onChange={(e) =>
+                    //   setFormValues({
+                    //     ...formValues,
+                    //     role: e.target.value,
+                    //   })
+                    // }
+                    value={selectedRole}
+                    onChange={(e) => setSelectedRole(e.target.value)}
+                  >
+                    <option value="">Select Role</option>
+                    {roleData.map((role) => (
+                      <option key={role.id} value={role.name}>
+                        {role.description}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-   
-       
+        <div className="col-lg-12 py-5 d-flex justify-content-end">
+          <div>
+            <button
+              className="btn py-2 px-4 me-2  text-white rounded-0"
+              style={{ backgroundColor: "#984779" }}
+              disabled={isLoading}
+              type="submit"
+            >
+              {isLoading ? (
+                <MoonLoader color={"white"} size={20} />
+              ) : (
+                <>Submit</>
+              )}
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );

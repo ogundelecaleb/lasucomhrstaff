@@ -1097,15 +1097,15 @@ const EditUser = () => {
                   </div>
                 )}
 
-                {formValues.type === "ASE" &&
+                {/* {formValues.type === "NASE" &&
                   (formValues.role === "HOD" ||
-                    formValues.role === "RSWEP") && (
+                    formValues.role === "RSWEP") && ( */}
                     <div class="form-group">
                       <label
                         for="exampleInputEmail1"
                         class="form-label fs-6 fw-semibold fs-6 mt-3 mb-2"
                       >
-                        Department
+                        Department (if a NASE staffs works with ASE, give the staff a Department and set his/her Unit to 'empty' )
                       </label>
                       <input
                         type="text"
@@ -1123,7 +1123,7 @@ const EditUser = () => {
                         }
                       />
                     </div>
-                  )}
+                  {/* )} */}
 
                 {formValues.type === "NASE" && (
                   <div class="form-group">
